@@ -4,3 +4,4 @@ torchaudio
 torch-geometric
 sentence-transformers
 numpy
+neo4j

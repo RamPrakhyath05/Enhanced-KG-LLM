@@ -1,3 +1,5 @@
+# models/rgcn.py
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -8,6 +10,7 @@ class RGCN(nn.Module):
         super().__init__()
 
         self.embedding = nn.Embedding(num_nodes, dim)
+
         self.conv1 = RGCNConv(dim, dim, num_relations)
         self.conv2 = RGCNConv(dim, dim, num_relations)
 
