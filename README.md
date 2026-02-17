@@ -135,7 +135,7 @@ The repository name `enhanced-kg-llm` is provisional and may be updated as the p
 **Rahul Senthil Kumar** ([Rahul6700](https://github.com/Rahul6700))<br>
 **Ram Prakhyath Annamareddy** ([RamPrakhyath05](https://github.com/RamPrakhyath05))<br>
 **Renikuntla Ashish Pavan** ([ashishpavan1819](https://github.com/ashishpavan1819))<br>
-**Suryavanshi Prem Pandurang**
+**Suryavanshi Prem Pandurang**([prem-2411](https://github.com/prem-2411))<br>
 
 Project Mentor / Guide:<br>
 **Dr. Sandesh B J**<br>
