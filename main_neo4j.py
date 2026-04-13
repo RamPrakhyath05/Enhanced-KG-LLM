@@ -15,9 +15,9 @@ def main():
 
     # 1. Load graph from Neo4j
     loader = Neo4jLoader(
-        uri="bolt://localhost:7687",
+        uri="neo4j://127.0.0.1:7687",
         user="neo4j",
-        password="password"
+        password="Capstone_Data"
     )
 
     edges = loader.fetch_edges(limit=200)

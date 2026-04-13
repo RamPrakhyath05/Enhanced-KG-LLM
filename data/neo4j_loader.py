@@ -17,7 +17,6 @@ class Neo4jLoader:
         RETURN a, type(r) AS rel, b, properties(r) AS props
         LIMIT $limit
         """
-
         edges = []
         with self.driver.session() as session:
             result = session.run(query, limit=limit)

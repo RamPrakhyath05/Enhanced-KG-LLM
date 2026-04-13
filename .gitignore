@@ -7,6 +7,9 @@ capstone/
 Sem_5/
 Sem_6/
 
+# files not to be pushed
+GRL_Book.pdf
+
 # Python cache
 __pycache__/
 *.pyc
@@ -16,3 +19,6 @@ __pycache__/
 
 # VS Code settings (optional)
 .vscode/
+
+fullkg-2026-03-28T07-40-52.dump
+edge_embeddings.pkl
