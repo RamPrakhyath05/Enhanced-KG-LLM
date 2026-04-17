@@ -2,10 +2,10 @@
 
 import torch
 
+
 def build_graph(edges, device, add_reverse=True, add_self_loops=True):
-    # Collect nodes and relations
-    nodes = sorted({s for s,_,_,_ in edges} | {t for _,_,t,_ in edges})
-    relations = sorted({r for _,r,_,_ in edges})
+    nodes = sorted({s for s, _, _, _ in edges} | {t for _, _, t, _ in edges})
+    relations = sorted({r for _, r, _, _ in edges})
 
     node2id = {n: i for i, n in enumerate(nodes)}
     rel2id = {r: i for i, r in enumerate(relations)}
@@ -13,24 +13,18 @@ def build_graph(edges, device, add_reverse=True, add_self_loops=True):
     edge_index = []
     edge_type = []
 
-    # --- forward + reverse edges ---
     for s, r, t, _ in edges:
         src = node2id[s]
         dst = node2id[t]
         rel = rel2id[r]
-
-        # forward edge
         edge_index.append([src, dst])
         edge_type.append(rel)
-
-        # reverse edge
         if add_reverse:
             edge_index.append([dst, src])
             edge_type.append(rel)
 
-    # --- self-loops ---
     if add_self_loops:
-        self_loop_rel = len(relations)  # new relation id
+        self_loop_rel = len(relations)
         for node in node2id.values():
             edge_index.append([node, node])
             edge_type.append(self_loop_rel)
@@ -42,10 +36,12 @@ def build_graph(edges, device, add_reverse=True, add_self_loops=True):
 
 
 def graph_to_string(edges):
+    SKIP_KEYS = {"Relation_Aliases", "Relation_ID", "Relation_Name"}
     lines = []
     for s, r, t, props in edges:
-        if props:
-            prop_str = ", ".join(f"{k}={v}" for k, v in props.items())
+        extra = {k: v for k, v in props.items() if k not in SKIP_KEYS}
+        if extra:
+            prop_str = ", ".join(f"{k}={v}" for k, v in extra.items())
             lines.append(f"{s} -[{r} {{{prop_str}}}]-> {t}")
         else:
             lines.append(f"{s} -[{r}]-> {t}")
