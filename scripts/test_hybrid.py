@@ -88,7 +88,7 @@ def main():
         dense_time = time.perf_counter() - start
 
         # --------------------------------------------------------
-        # Hybrid / RRF
+        # Hybrid / Weighted Score Fusion
         # --------------------------------------------------------
 
         start = time.perf_counter()
@@ -130,7 +130,7 @@ def main():
                 f"{rank}. "
                 f"{result['name']} "
                 f"({result['id']}) "
-                f"[RRF={result['rrf_score']:.6f}]"
+                f"[Hybrid Score={result['hybrid_score']:.6f}]"
             )
 
     # ============================================================
@@ -162,7 +162,8 @@ def main():
     print("Corpus:              10,000 entities")
     print("Dense model:         all-MiniLM-L6-v2")
     print("Embedding dimension: 384")
-    print("RRF k:               60")
+    print("BM25 weight:         0.5")
+    print("Dense weight:        0.5")   
     print("Retrieval top-k:     5")
     print(f"Queries benchmarked: {n}")
 

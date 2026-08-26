@@ -216,6 +216,83 @@ The intended architecture runs BM25 and dense retrieval concurrently and applies
 
 ---
 
+## 2026-08-26 — Concurrent Hybrid Retrieval
+
+### Objective
+
+Optimize hybrid retrieval by running BM25 and dense retrieval concurrently instead of sequentially.
+
+### Changes
+
+- Updated `HybridRetriever` to use `ThreadPoolExecutor`.
+- BM25 and dense retrieval now execute concurrently.
+- RRF fusion is performed after both retrieval processes complete.
+- Preserved the existing RRF configuration:
+  - `k = 60`
+  - `top-k = 5`
+
+### Benchmark
+
+Using **10,000 entities** and the same 5 test queries:
+
+| Metric | Average |
+|---|---:|
+| BM25 | 23.592 ms |
+| Dense | 83.094 ms |
+| Hybrid | 107.800 ms |
+
+Model/index loading time:
+
+**6.2951 s**
+
+### Observation
+
+Concurrent execution reduced hybrid latency compared with the previous sequential baseline:
+
+```text
+Sequential hybrid: 117.297 ms
+Concurrent hybrid: 107.800 ms
+```
+
+---
+
+## 2026-08-26 — Concurrent Hybrid Retrieval with Weighted Score Fusion (Instead of RRF)
+
+### Objective
+
+Improve hybrid retrieval by executing BM25 and dense retrieval concurrently and replacing RRF with weighted score fusion.
+
+### Changes
+
+- Updated `HybridRetriever` to use `ThreadPoolExecutor`.
+- BM25 and dense retrieval now execute concurrently.
+- Replaced RRF rank fusion with normalized weighted score fusion.
+- BM25 and dense retrieval use equal weights:
+  - BM25: `0.5`
+  - Dense: `0.5`
+- Hybrid results are ranked using the combined normalized score.
+
+### Benchmark
+
+Using **10,000 entities** and the same 5 test queries:
+
+| Metric | Average |
+|---|---:|
+| BM25 | 22.464 ms |
+| Dense | 84.900 ms |
+| Hybrid | 106.177 ms |
+
+Model/index loading time:
+
+**6.4953 s**
+
+### Observation
+
+Weighted score fusion produced a similar hybrid latency to the previous concurrent RRF implementation while providing a simpler score-based combination of BM25 and dense retrieval.
+The retrieval layer currently serves as an entity-level baseline. The next major stage is knowledge graph cleaning and subsequent graph partitioning.
+
+---
+
 ## Current Status
 
 Completed:
@@ -225,19 +302,17 @@ Completed:
 - Entity document construction
 - BM25 retrieval
 - Dense retrieval
-- RRF hybrid retrieval
-- Initial retrieval benchmark
+- Concurrent hybrid retrieval
+- Weighted score fusion
+- Initial retrieval benchmarks
 
 Next:
 
-- Parallel BM25 + dense retrieval
-- Final hybrid latency benchmark
-- Retrieval quality evaluation
+- Knowledge graph cleaning
 - Graph partitioning
 - Partition-level retrieval
 - Query-aware traversal
 - Context construction
 - LLM generation
-- Knowledge graph cleaning
 
 ---
