@@ -1,0 +1,147 @@
+RELATION QUALITY AUDIT REPORT
+============================================================
+
+INPUTS
+------------------------------------------------------------
+Relations: dataset/cleaned/relations.csv
+Triples:   dataset/cleaned/triples.csv
+
+RELATION COUNTS
+------------------------------------------------------------
+Relation rows:                 825
+Unique relation IDs:           825
+Unique relation names:         825
+
+RELATION INTEGRITY
+------------------------------------------------------------
+Empty relation IDs:            0
+Empty relation names:          0
+Malformed relation rows:       0
+Duplicate relation IDs:        0
+Duplicate relation names:      0
+
+TRIPLE COUNTS
+------------------------------------------------------------
+Triples scanned:               20,599,278
+Entities appearing in triples: 4,589,269
+
+TRIPLE INTEGRITY
+------------------------------------------------------------
+Malformed triples:             0
+Duplicate triples:             0
+Self-loop triples:             758
+Missing relation references:   0
+
+RELATION USAGE
+------------------------------------------------------------
+Relations used by triples:     819
+Relations never used:          6
+Total relation references:     20,599,278
+Minimum usage:                 1
+Maximum usage:                 3,835,581
+Relations used <= 5 times:     121
+
+SUSPICIOUS RELATION NAMES
+------------------------------------------------------------
+Suspicious relation names:     1
+  P541 | office contested
+
+SAMPLES
+------------------------------------------------------------
+
+Duplicate relation IDs:
+  None
+
+Duplicate relation names:
+  None
+
+Duplicate triples:
+  None
+
+Self-loop triples:
+  Q2597467 | P36 | Q2597467
+  Q995601 | P131 | Q995601
+  Q218700 | P178 | Q218700
+  Q4540 | P36 | Q4540
+  Q236 | P17 | Q236
+  Q1410 | P36 | Q1410
+  Q3847260 | P36 | Q3847260
+  Q10943614 | P460 | Q10943614
+  Q262 | P17 | Q262
+  Q143112 | P1322 | Q143112
+  Q3824525 | P36 | Q3824525
+  Q12544 | P17 | Q12544
+  Q970 | P17 | Q970
+  Q185317 | P2789 | Q185317
+  Q165154 | P17 | Q165154
+  Q263044 | P131 | Q263044
+  Q31 | P17 | Q31
+  Q1246 | P17 | Q1246
+  Q4645537 | P1322 | Q4645537
+  Q286349 | P36 | Q286349
+  Q7375525 | P166 | Q7375525
+  Q2651175 | P36 | Q2651175
+  Q3826353 | P36 | Q3826353
+  Q235 | P17 | Q235
+  Q17 | P17 | Q17
+  Q200042 | P1322 | Q200042
+  Q29999 | P17 | Q29999
+  Q49654 | P36 | Q49654
+  Q36 | P17 | Q36
+  Q212 | P17 | Q212
+
+Missing relation references:
+  None
+
+Malformed triples:
+  None
+
+UNUSED RELATIONS
+------------------------------------------------------------
+  P1012 | 
+  P1151 | 
+  P1204 | 
+  P1423 | 
+  P301 | 
+  P423 | 
+
+RARE RELATIONS
+------------------------------------------------------------
+  P1011 | P1011 | 1
+  P1013 | P1013 | 2
+  P1026 | P1026 | 3
+  P1039 | P1039 | 5
+  P1041 | P1041 | 3
+  P1060 | P1060 | 3
+  P1170 | P1170 | 2
+  P1171 | P1171 | 2
+  P1194 | P1194 | 1
+  P1199 | P1199 | 4
+  P1210 | P1210 | 4
+  P1221 | P1221 | 2
+  P1310 | P1310 | 2
+  P1340 | P1340 | 3
+  P1393 | P1393 | 3
+  P1406 | P1406 | 2
+  P1424 | P1424 | 1
+  P1425 | P1425 | 1
+  P1464 | P1464 | 2
+  P1480 | P1480 | 2
+  P1558 | P1558 | 2
+  P1606 | P1606 | 1
+  P1625 | P1625 | 5
+  P1660 | P1660 | 1
+  P1677 | P1677 | 1
+  P1686 | P1686 | 2
+  P1703 | P1703 | 2
+  P1704 | P1704 | 2
+  P1792 | P1792 | 4
+  P1878 | P1878 | 2
+
+INTERPRETATION
+------------------------------------------------------------
+This is an audit only.
+No relation or triple records were modified.
+Self-loops are reported but NOT automatically removed.
+Rare relations are reported but NOT automatically removed.
+Unused relations are reported but NOT automatically removed.

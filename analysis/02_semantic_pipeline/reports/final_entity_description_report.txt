@@ -1,0 +1,44 @@
+FINAL ENTITY DESCRIPTION REPORT
+============================================================
+
+INPUT
+------------------------------------------------------------
+dataset/semantic/cleaned/entities.csv
+
+LLM DECISIONS
+------------------------------------------------------------
+dataset/semantic/analysis/empty_description_llm_decisions.csv
+
+OUTPUT
+------------------------------------------------------------
+dataset/semantic/cleaned/entities_final.csv
+
+ENTITY COUNTS
+------------------------------------------------------------
+Entities processed:                 4,813,491
+Originally non-empty descriptions:  4,684,140
+Originally empty descriptions:      129,351
+
+LLM RESULTS
+------------------------------------------------------------
+LLM generated descriptions:         63,524
+LLM returned NULL:                  192
+LLM candidates encountered:         63,716
+Descriptions successfully added:   63,524
+Candidate rows already non-empty:  0
+Unexpected candidate IDs:           0
+
+FINAL DESCRIPTION STATE
+------------------------------------------------------------
+Entities with descriptions:         4,747,664
+Entities still without descriptions: 65,827
+
+SAFETY
+------------------------------------------------------------
+Existing non-empty descriptions were never overwritten.
+Only empty descriptions with a non-NULL LLM result were populated.
+NULL LLM results remain empty.
+REVIEW and SKIP entities were not modified by this step.
+No graph triples were modified by this step.
+
+FINALIZATION COMPLETE

@@ -1,0 +1,843 @@
+============================================================
+SELF-LOOP ANALYSIS
+============================================================
+
+Total self-loops: 758
+
+============================================================
+SELF-LOOPS BY RELATION
+============================================================
+P17          247  country
+P36          175  capital
+P131          47  located in the administrative territorial entity
+P178          34  developer
+P3450         31  sports season of league or competition
+P1322         26  dual to
+P179          17  part of the series
+P1365         14  replaces
+P166          11  award received
+P485          11  archives at
+P2152         10  antiparticle
+P1383          9  contains settlement
+P127           8  owned by
+P155           7  follows
+P460           6  said to be the same as
+P276           6  location
+P1716          4  brand
+P277           4  programming language
+P553           4  website account on
+P156           4  followed by
+P461           4  opposite of
+P159           4  headquarters location
+P175           4  performer
+P1376          4  capital of
+P135           3  movement
+P910           3  topic's main category
+P1792          3  category of associated people
+P150           3  contains administrative territorial entity
+P1343          2  described by source
+P1327          2  partner in business or sport
+P1464          2  category for people born here
+P119           2  place of burial
+P1299          2  depicted by
+P559           2  terminus
+P921           2  main subject
+P527           2  has part
+P39            2  position held
+P414           2  stock exchange
+P1366          2  replaced by
+P2789          1  connects with
+P1542          1  has effect
+P1830          1  owner of
+P149           1  architectural style
+P108           1  employer
+P2388          1  office held by head of the organization
+P103           1  native language
+P2596          1  culture
+P61            1  discoverer or inventor
+P702           1  encoded by
+P598           1  commander of
+P942           1  theme music
+P1420          1  taxon synonym
+P463           1  member of
+P123           1  publisher
+P567           1  underlies
+P194           1  legislative body
+P927           1  anatomical location
+P289           1  vessel class
+P706           1  located on terrain feature
+P81            1  connecting line
+P1424          1  topic's main template
+P2377          1  MediaWiki hooks used
+P361           1  part of
+P162           1  producer
+P169           1  chief executive officer
+P140           1  religion
+P800           1  notable work
+P1811          1  list of episodes
+P3262          1  has anatomical branch
+P144           1  based on
+P749           1  parent organization
+P803           1  professorship
+
+============================================================
+ALL SELF-LOOPS
+============================================================
+Q2597467 --P36 (capital)--> Q2597467
+Q995601 --P131 (located in the administrative territorial entity)--> Q995601
+Q218700 --P178 (developer)--> Q218700
+Q4540 --P36 (capital)--> Q4540
+Q236 --P17 (country)--> Q236
+Q1410 --P36 (capital)--> Q1410
+Q3847260 --P36 (capital)--> Q3847260
+Q10943614 --P460 (said to be the same as)--> Q10943614
+Q262 --P17 (country)--> Q262
+Q143112 --P1322 (dual to)--> Q143112
+Q3824525 --P36 (capital)--> Q3824525
+Q12544 --P17 (country)--> Q12544
+Q970 --P17 (country)--> Q970
+Q185317 --P2789 (connects with)--> Q185317
+Q165154 --P17 (country)--> Q165154
+Q263044 --P131 (located in the administrative territorial entity)--> Q263044
+Q31 --P17 (country)--> Q31
+Q1246 --P17 (country)--> Q1246
+Q4645537 --P1322 (dual to)--> Q4645537
+Q286349 --P36 (capital)--> Q286349
+Q7375525 --P166 (award received)--> Q7375525
+Q2651175 --P36 (capital)--> Q2651175
+Q3826353 --P36 (capital)--> Q3826353
+Q235 --P17 (country)--> Q235
+Q17 --P17 (country)--> Q17
+Q200042 --P1322 (dual to)--> Q200042
+Q29999 --P17 (country)--> Q29999
+Q49654 --P36 (capital)--> Q49654
+Q36 --P17 (country)--> Q36
+Q212 --P17 (country)--> Q212
+Q794 --P17 (country)--> Q794
+Q131964 --P17 (country)--> Q131964
+Q4517333 --P17 (country)--> Q4517333
+Q423 --P17 (country)--> Q423
+Q3008526 --P36 (capital)--> Q3008526
+Q844930 --P17 (country)--> Q844930
+Q836 --P17 (country)--> Q836
+Q214 --P17 (country)--> Q214
+Q131344 --P1542 (has effect)--> Q131344
+Q7030338 --P36 (capital)--> Q7030338
+Q3416970 --P131 (located in the administrative territorial entity)--> Q3416970
+Q3312399 --P36 (capital)--> Q3312399
+Q7120536 --P3450 (sports season of league or competition)--> Q7120536
+Q3269196 --P1716 (brand)--> Q3269196
+Q1186818 --P1343 (described by source)--> Q1186818
+Q460584 --P277 (programming language)--> Q460584
+Q5060708 --P178 (developer)--> Q5060708
+Q1388946 --P1327 (partner in business or sport)--> Q1388946
+Q207208 --P36 (capital)--> Q207208
+Q1754332 --P1343 (described by source)--> Q1754332
+Q13582244 --P460 (said to be the same as)--> Q13582244
+Q153943 --P17 (country)--> Q153943
+Q214162 --P36 (capital)--> Q214162
+Q18136409 --P553 (website account on)--> Q18136409
+Q6318390 --P36 (capital)--> Q6318390
+Q2783150 --P135 (movement)--> Q2783150
+Q4751488 --P131 (located in the administrative territorial entity)--> Q4751488
+Q6903267 --P1383 (contains settlement)--> Q6903267
+Q1029 --P17 (country)--> Q1029
+Q2606760 --P36 (capital)--> Q2606760
+Q1020 --P17 (country)--> Q1020
+Q33 --P17 (country)--> Q33
+Q5104650 --P36 (capital)--> Q5104650
+Q49661 --P36 (capital)--> Q49661
+Q5469799 --P178 (developer)--> Q5469799
+Q502807 --P131 (located in the administrative territorial entity)--> Q502807
+Q4740701 --P36 (capital)--> Q4740701
+Q4777785 --P131 (located in the administrative territorial entity)--> Q4777785
+Q813 --P17 (country)--> Q813
+Q3312286 --P36 (capital)--> Q3312286
+Q3299 --P2152 (antiparticle)--> Q3299
+Q7439185 --P178 (developer)--> Q7439185
+Q757 --P17 (country)--> Q757
+Q7642512 --P3450 (sports season of league or competition)--> Q7642512
+Q8072845 --P36 (capital)--> Q8072845
+Q3846856 --P36 (capital)--> Q3846856
+Q1032 --P17 (country)--> Q1032
+Q3825200 --P36 (capital)--> Q3825200
+Q16975197 --P178 (developer)--> Q16975197
+Q624080 --P1830 (owner of)--> Q624080
+Q3300417 --P36 (capital)--> Q3300417
+Q1042 --P17 (country)--> Q1042
+Q3846870 --P36 (capital)--> Q3846870
+Q5748768 --P1322 (dual to)--> Q5748768
+Q46261 --P149 (architectural style)--> Q46261
+Q2639966 --P36 (capital)--> Q2639966
+Q210476 --P36 (capital)--> Q210476
+Q16153611 --P3450 (sports season of league or competition)--> Q16153611
+Q1000 --P17 (country)--> Q1000
+Q7145459 --P108 (employer)--> Q7145459
+Q7928974 --P127 (owned by)--> Q7928974
+Q221 --P17 (country)--> Q221
+Q145 --P17 (country)--> Q145
+Q4732962 --P178 (developer)--> Q4732962
+Q28401125 --P178 (developer)--> Q28401125
+Q51711 --P553 (website account on)--> Q51711
+Q1528983 --P36 (capital)--> Q1528983
+Q2448888 --P36 (capital)--> Q2448888
+Q774 --P17 (country)--> Q774
+Q683206 --P1464 (category for people born here)--> Q683206
+Q2564527 --P485 (archives at)--> Q2564527
+Q790 --P17 (country)--> Q790
+Q932142 --P1383 (contains settlement)--> Q932142
+Q2448101 --P36 (capital)--> Q2448101
+Q170770 --P17 (country)--> Q170770
+Q6320582 --P36 (capital)--> Q6320582
+Q15709997 --P1365 (replaces)--> Q15709997
+Q3051746 --P36 (capital)--> Q3051746
+Q819 --P17 (country)--> Q819
+Q1206012 --P17 (country)--> Q1206012
+Q4545908 --P1322 (dual to)--> Q4545908
+Q592204 --P119 (place of burial)--> Q592204
+Q754 --P17 (country)--> Q754
+Q1037 --P17 (country)--> Q1037
+Q842648 --P131 (located in the administrative territorial entity)--> Q842648
+Q1033 --P17 (country)--> Q1033
+Q26988 --P17 (country)--> Q26988
+Q458903 --P166 (award received)--> Q458903
+Q3315361 --P2388 (office held by head of the organization)--> Q3315361
+Q948 --P17 (country)--> Q948
+Q183 --P17 (country)--> Q183
+Q695 --P17 (country)--> Q695
+Q881 --P17 (country)--> Q881
+Q1275724 --P179 (part of the series)--> Q1275724
+Q10894685 --P460 (said to be the same as)--> Q10894685
+Q549962 --P36 (capital)--> Q549962
+Q403 --P17 (country)--> Q403
+Q16321377 --P3450 (sports season of league or competition)--> Q16321377
+Q950390 --P36 (capital)--> Q950390
+Q675363 --P17 (country)--> Q675363
+Q154401 --P17 (country)--> Q154401
+Q266341 --P1716 (brand)--> Q266341
+Q1045 --P17 (country)--> Q1045
+Q858 --P17 (country)--> Q858
+Q7259967 --P36 (capital)--> Q7259967
+Q77 --P17 (country)--> Q77
+Q798 --P1383 (contains settlement)--> Q798
+Q49660 --P36 (capital)--> Q49660
+Q4630156 --P156 (followed by)--> Q4630156
+Q298 --P17 (country)--> Q298
+Q858607 --P1383 (contains settlement)--> Q858607
+Q40 --P17 (country)--> Q40
+Q1044 --P17 (country)--> Q1044
+Q2445540 --P178 (developer)--> Q2445540
+Q640185 --P131 (located in the administrative territorial entity)--> Q640185
+Q15180 --P17 (country)--> Q15180
+Q381898 --P103 (native language)--> Q381898
+Q101667 --P2152 (antiparticle)--> Q101667
+Q49663 --P36 (capital)--> Q49663
+Q82172 --P1322 (dual to)--> Q82172
+Q229 --P17 (country)--> Q229
+Q243610 --P17 (country)--> Q243610
+Q6964989 --P36 (capital)--> Q6964989
+Q49662 --P36 (capital)--> Q49662
+Q781 --P17 (country)--> Q781
+Q7642538 --P3450 (sports season of league or competition)--> Q7642538
+Q1827219 --P36 (capital)--> Q1827219
+Q49683 --P17 (country)--> Q49683
+Q2123273 --P36 (capital)--> Q2123273
+Q208169 --P17 (country)--> Q208169
+Q2981404 --P178 (developer)--> Q2981404
+Q5160385 --P36 (capital)--> Q5160385
+Q7974997 --P1299 (depicted by)--> Q7974997
+Q20026895 --P127 (owned by)--> Q20026895
+Q1421130 --P127 (owned by)--> Q1421130
+Q3334167 --P179 (part of the series)--> Q3334167
+Q31184 --P461 (opposite of)--> Q31184
+Q792 --P17 (country)--> Q792
+Q32 --P17 (country)--> Q32
+Q41 --P17 (country)--> Q41
+Q763 --P17 (country)--> Q763
+Q17019639 --P3450 (sports season of league or competition)--> Q17019639
+Q400404 --P559 (terminus)--> Q400404
+Q79439 --P159 (headquarters location)--> Q79439
+Q223936 --P17 (country)--> Q223936
+Q884 --P17 (country)--> Q884
+Q6457537 --P155 (follows)--> Q6457537
+Q889 --P17 (country)--> Q889
+Q3890918 --P36 (capital)--> Q3890918
+Q34266 --P17 (country)--> Q34266
+Q219 --P17 (country)--> Q219
+Q907112 --P17 (country)--> Q907112
+Q3922854 --P175 (performer)--> Q3922854
+Q2431655 --P910 (topic's main category)--> Q2431655
+Q169923 --P1792 (category of associated people)--> Q169923
+Q745718 --P2596 (culture)--> Q745718
+Q147909 --P17 (country)--> Q147909
+Q471351 --P1365 (replaces)--> Q471351
+Q630302 --P36 (capital)--> Q630302
+Q34754 --P17 (country)--> Q34754
+Q151450 --P36 (capital)--> Q151450
+Q2886190 --P36 (capital)--> Q2886190
+Q30097019 --P460 (said to be the same as)--> Q30097019
+Q739 --P17 (country)--> Q739
+Q5413485 --P36 (capital)--> Q5413485
+Q354695 --P1365 (replaces)--> Q354695
+Q16335143 --P178 (developer)--> Q16335143
+Q8964931 --P276 (location)--> Q8964931
+Q371063 --P276 (location)--> Q371063
+Q7920662 --P36 (capital)--> Q7920662
+Q1703180 --P166 (award received)--> Q1703180
+Q4744218 --P485 (archives at)--> Q4744218
+Q1014 --P17 (country)--> Q1014
+Q7294405 --P131 (located in the administrative territorial entity)--> Q7294405
+Q3311372 --P36 (capital)--> Q3311372
+Q103585 --P2152 (antiparticle)--> Q103585
+Q826 --P17 (country)--> Q826
+Q39 --P17 (country)--> Q39
+Q6704643 --P127 (owned by)--> Q6704643
+Q7915900 --P131 (located in the administrative territorial entity)--> Q7915900
+Q7943939 --P127 (owned by)--> Q7943939
+Q796 --P17 (country)--> Q796
+Q3142191 --P36 (capital)--> Q3142191
+Q7125648 --P3450 (sports season of league or competition)--> Q7125648
+Q3313987 --P36 (capital)--> Q3313987
+Q3313945 --P36 (capital)--> Q3313945
+Q6318790 --P36 (capital)--> Q6318790
+Q178283 --P1792 (category of associated people)--> Q178283
+Q911439 --P178 (developer)--> Q911439
+Q1010812 --P1365 (replaces)--> Q1010812
+Q473503 --P553 (website account on)--> Q473503
+Q405809 --P36 (capital)--> Q405809
+Q4188162 --P166 (award received)--> Q4188162
+Q945 --P17 (country)--> Q945
+Q210531 --P36 (capital)--> Q210531
+Q932605 --P155 (follows)--> Q932605
+Q191 --P17 (country)--> Q191
+Q785 --P17 (country)--> Q785
+Q4401 --P155 (follows)--> Q4401
+Q2631370 --P179 (part of the series)--> Q2631370
+Q159 --P17 (country)--> Q159
+Q414 --P17 (country)--> Q414
+Q6005466 --P178 (developer)--> Q6005466
+Q57380 --P1365 (replaces)--> Q57380
+Q5374945 --P178 (developer)--> Q5374945
+Q5903374 --P127 (owned by)--> Q5903374
+Q7161526 --P131 (located in the administrative territorial entity)--> Q7161526
+Q96 --P17 (country)--> Q96
+Q6826921 --P178 (developer)--> Q6826921
+Q28 --P17 (country)--> Q28
+Q25230 --P17 (country)--> Q25230
+Q1006 --P17 (country)--> Q1006
+Q7410538 --P127 (owned by)--> Q7410538
+Q262346 --P1365 (replaces)--> Q262346
+Q805 --P17 (country)--> Q805
+Q369145 --P131 (located in the administrative territorial entity)--> Q369145
+Q7688077 --P1327 (partner in business or sport)--> Q7688077
+Q657 --P17 (country)--> Q657
+Q5595272 --P1322 (dual to)--> Q5595272
+Q20942864 --P156 (followed by)--> Q20942864
+Q810 --P17 (country)--> Q810
+Q16973138 --P3450 (sports season of league or competition)--> Q16973138
+Q8043794 --P178 (developer)--> Q8043794
+Q712 --P17 (country)--> Q712
+Q1812910 --P61 (discoverer or inventor)--> Q1812910
+Q1367222 --P36 (capital)--> Q1367222
+Q83286 --P17 (country)--> Q83286
+Q4041286 --P178 (developer)--> Q4041286
+Q1027 --P17 (country)--> Q1027
+Q954 --P17 (country)--> Q954
+Q5371734 --P36 (capital)--> Q5371734
+Q4737061 --P36 (capital)--> Q4737061
+Q6319968 --P36 (capital)--> Q6319968
+Q958 --P17 (country)--> Q958
+Q233 --P17 (country)--> Q233
+Q3198 --P2152 (antiparticle)--> Q3198
+Q217 --P17 (country)--> Q217
+Q917 --P17 (country)--> Q917
+Q1919318 --P36 (capital)--> Q1919318
+Q2651766 --P36 (capital)--> Q2651766
+Q5138665 --P36 (capital)--> Q5138665
+Q686 --P17 (country)--> Q686
+Q232 --P17 (country)--> Q232
+Q287806 --P485 (archives at)--> Q287806
+Q817 --P17 (country)--> Q817
+Q664 --P17 (country)--> Q664
+Q68682 --P17 (country)--> Q68682
+Q49659 --P36 (capital)--> Q49659
+Q967 --P17 (country)--> Q967
+Q29 --P17 (country)--> Q29
+Q542231 --P485 (archives at)--> Q542231
+Q965 --P17 (country)--> Q965
+Q6126975 --P36 (capital)--> Q6126975
+Q399 --P17 (country)--> Q399
+Q7202870 --P36 (capital)--> Q7202870
+Q713750 --P17 (country)--> Q713750
+Q142 --P17 (country)--> Q142
+Q408 --P17 (country)--> Q408
+Q730 --P17 (country)--> Q730
+Q3847312 --P36 (capital)--> Q3847312
+Q178202 --P921 (main subject)--> Q178202
+Q924 --P17 (country)--> Q924
+Q20290431 --P36 (capital)--> Q20290431
+Q6170765 --P36 (capital)--> Q6170765
+Q2702849 --P36 (capital)--> Q2702849
+Q6752339 --P131 (located in the administrative territorial entity)--> Q6752339
+Q3846365 --P36 (capital)--> Q3846365
+Q7701288 --P36 (capital)--> Q7701288
+Q709 --P17 (country)--> Q709
+Q252 --P17 (country)--> Q252
+Q12677 --P1383 (contains settlement)--> Q12677
+Q189 --P17 (country)--> Q189
+Q1009 --P17 (country)--> Q1009
+Q1049 --P17 (country)--> Q1049
+Q5546853 --P485 (archives at)--> Q5546853
+Q40362 --P17 (country)--> Q40362
+Q2651628 --P36 (capital)--> Q2651628
+Q42310411 --P156 (followed by)--> Q42310411
+Q1902128 --P131 (located in the administrative territorial entity)--> Q1902128
+Q3205839 --P179 (part of the series)--> Q3205839
+Q4782260 --P178 (developer)--> Q4782260
+Q143124 --P1322 (dual to)--> Q143124
+Q630605 --P131 (located in the administrative territorial entity)--> Q630605
+Q963 --P17 (country)--> Q963
+Q4820348 --P276 (location)--> Q4820348
+Q7642513 --P3450 (sports season of league or competition)--> Q7642513
+Q1809071 --P485 (archives at)--> Q1809071
+Q3311860 --P36 (capital)--> Q3311860
+Q5460848 --P36 (capital)--> Q5460848
+Q804 --P17 (country)--> Q804
+Q402 --P2152 (antiparticle)--> Q402
+Q842 --P17 (country)--> Q842
+Q3312404 --P36 (capital)--> Q3312404
+Q5600336 --P1322 (dual to)--> Q5600336
+Q3492021 --P1322 (dual to)--> Q3492021
+Q1128619 --P1322 (dual to)--> Q1128619
+Q7653715 --P159 (headquarters location)--> Q7653715
+Q2024141 --P2152 (antiparticle)--> Q2024141
+Q22340645 --P155 (follows)--> Q22340645
+Q666063 --P485 (archives at)--> Q666063
+Q4747987 --P36 (capital)--> Q4747987
+Q7908965 --P131 (located in the administrative territorial entity)--> Q7908965
+Q419 --P17 (country)--> Q419
+Q3418916 --P131 (located in the administrative territorial entity)--> Q3418916
+Q536414 --P131 (located in the administrative territorial entity)--> Q536414
+Q202006 --P1365 (replaces)--> Q202006
+Q25303427 --P178 (developer)--> Q25303427
+Q3893085 --P36 (capital)--> Q3893085
+Q36704 --P17 (country)--> Q36704
+Q13220124 --P36 (capital)--> Q13220124
+Q3845656 --P36 (capital)--> Q3845656
+Q4204340 --P2152 (antiparticle)--> Q4204340
+Q2098619 --P36 (capital)--> Q2098619
+Q230791 --P17 (country)--> Q230791
+Q25344846 --P3450 (sports season of league or competition)--> Q25344846
+Q868483 --P179 (part of the series)--> Q868483
+Q258 --P17 (country)--> Q258
+Q2364347 --P166 (award received)--> Q2364347
+Q800 --P17 (country)--> Q800
+Q8778635 --P36 (capital)--> Q8778635
+Q5015892 --P36 (capital)--> Q5015892
+Q248215 --P702 (encoded by)--> Q248215
+Q184 --P17 (country)--> Q184
+Q213 --P17 (country)--> Q213
+Q2991533 --P36 (capital)--> Q2991533
+Q3099435 --P36 (capital)--> Q3099435
+Q11105394 --P131 (located in the administrative territorial entity)--> Q11105394
+Q1268489 --P159 (headquarters location)--> Q1268489
+Q7939250 --P598 (commander of)--> Q7939250
+Q3019643 --P36 (capital)--> Q3019643
+Q13423099 --P1322 (dual to)--> Q13423099
+Q30 --P17 (country)--> Q30
+Q21715184 --P942 (theme music)--> Q21715184
+Q833 --P17 (country)--> Q833
+Q11033476 --P131 (located in the administrative territorial entity)--> Q11033476
+Q7642533 --P3450 (sports season of league or competition)--> Q7642533
+Q3710679 --P36 (capital)--> Q3710679
+Q863 --P17 (country)--> Q863
+Q265 --P17 (country)--> Q265
+Q1050 --P17 (country)--> Q1050
+Q801 --P17 (country)--> Q801
+Q238 --P17 (country)--> Q238
+Q1016 --P17 (country)--> Q1016
+Q228 --P17 (country)--> Q228
+Q23681 --P17 (country)--> Q23681
+Q1779802 --P1420 (taxon synonym)--> Q1779802
+Q3391635 --P179 (part of the series)--> Q3391635
+Q46 --P527 (has part)--> Q46
+Q1713466 --P178 (developer)--> Q1713466
+Q7260739 --P179 (part of the series)--> Q7260739
+Q28513 --P17 (country)--> Q28513
+Q645296 --P36 (capital)--> Q645296
+Q2486527 --P36 (capital)--> Q2486527
+Q7662089 --P178 (developer)--> Q7662089
+Q916 --P17 (country)--> Q916
+Q167086 --P910 (topic's main category)--> Q167086
+Q3847025 --P36 (capital)--> Q3847025
+Q150981 --P17 (country)--> Q150981
+Q534981 --P166 (award received)--> Q534981
+Q929 --P17 (country)--> Q929
+Q7642536 --P3450 (sports season of league or competition)--> Q7642536
+Q212587 --P277 (programming language)--> Q212587
+Q20313316 --P178 (developer)--> Q20313316
+Q1005 --P17 (country)--> Q1005
+Q107689 --P463 (member of)--> Q107689
+Q685 --P17 (country)--> Q685
+Q4644299 --P1322 (dual to)--> Q4644299
+Q1508143 --P17 (country)--> Q1508143
+Q172579 --P17 (country)--> Q172579
+Q2923858 --P175 (performer)--> Q2923858
+Q3824646 --P36 (capital)--> Q3824646
+Q750 --P17 (country)--> Q750
+Q717 --P17 (country)--> Q717
+Q7543031 --P1322 (dual to)--> Q7543031
+Q24884959 --P3450 (sports season of league or competition)--> Q24884959
+Q3415084 --P131 (located in the administrative territorial entity)--> Q3415084
+Q27306 --P17 (country)--> Q27306
+Q676179 --P131 (located in the administrative territorial entity)--> Q676179
+Q1896889 --P36 (capital)--> Q1896889
+Q3846842 --P36 (capital)--> Q3846842
+Q3272165 --P36 (capital)--> Q3272165
+Q361567 --P1365 (replaces)--> Q361567
+Q1019 --P17 (country)--> Q1019
+Q114 --P17 (country)--> Q114
+Q3847202 --P36 (capital)--> Q3847202
+Q2610144 --P36 (capital)--> Q2610144
+Q865 --P17 (country)--> Q865
+Q953 --P17 (country)--> Q953
+Q3825908 --P36 (capital)--> Q3825908
+Q671840 --P131 (located in the administrative territorial entity)--> Q671840
+Q736 --P17 (country)--> Q736
+Q971 --P17 (country)--> Q971
+Q2943527 --P36 (capital)--> Q2943527
+Q224 --P17 (country)--> Q224
+Q851 --P17 (country)--> Q851
+Q8560764 --P36 (capital)--> Q8560764
+Q190742 --P123 (publisher)--> Q190742
+Q2748453 --P39 (position held)--> Q2748453
+Q3175276 --P36 (capital)--> Q3175276
+Q7543030 --P1322 (dual to)--> Q7543030
+Q20 --P17 (country)--> Q20
+Q5598608 --P1322 (dual to)--> Q5598608
+Q624076 --P127 (owned by)--> Q624076
+Q2453974 --P17 (country)--> Q2453974
+Q734 --P17 (country)--> Q734
+Q2384286 --P36 (capital)--> Q2384286
+Q1848495 --P36 (capital)--> Q1848495
+Q3849488 --P36 (capital)--> Q3849488
+Q974 --P17 (country)--> Q974
+Q6460271 --P178 (developer)--> Q6460271
+Q672 --P17 (country)--> Q672
+Q7081629 --P131 (located in the administrative territorial entity)--> Q7081629
+Q983 --P17 (country)--> Q983
+Q244 --P17 (country)--> Q244
+Q283599 --P36 (capital)--> Q283599
+Q6250 --P17 (country)--> Q6250
+Q4696400 --P36 (capital)--> Q4696400
+Q1751359 --P175 (performer)--> Q1751359
+Q59551 --P414 (stock exchange)--> Q59551
+Q5469032 --P567 (underlies)--> Q5469032
+Q7642526 --P3450 (sports season of league or competition)--> Q7642526
+Q602729 --P36 (capital)--> Q602729
+Q3846492 --P36 (capital)--> Q3846492
+Q714886 --P1322 (dual to)--> Q714886
+Q200965 --P36 (capital)--> Q200965
+Q869 --P17 (country)--> Q869
+Q678 --P17 (country)--> Q678
+Q387677 --P36 (capital)--> Q387677
+Q3891536 --P36 (capital)--> Q3891536
+Q1320418 --P194 (legislative body)--> Q1320418
+Q733 --P17 (country)--> Q733
+Q4175787 --P927 (anatomical location)--> Q4175787
+Q2486505 --P36 (capital)--> Q2486505
+Q4854593 --P178 (developer)--> Q4854593
+Q424 --P17 (country)--> Q424
+Q2651591 --P36 (capital)--> Q2651591
+Q16 --P17 (country)--> Q16
+Q837 --P17 (country)--> Q837
+Q12977 --P131 (located in the administrative territorial entity)--> Q12977
+Q7196431 --P179 (part of the series)--> Q7196431
+Q7642529 --P3450 (sports season of league or competition)--> Q7642529
+Q1785843 --P289 (vessel class)--> Q1785843
+Q10827384 --P36 (capital)--> Q10827384
+Q3825157 --P36 (capital)--> Q3825157
+Q148 --P17 (country)--> Q148
+Q1634717 --P1322 (dual to)--> Q1634717
+Q1892375 --P178 (developer)--> Q1892375
+Q1667757 --P485 (archives at)--> Q1667757
+Q2307812 --P36 (capital)--> Q2307812
+Q7642539 --P3450 (sports season of league or competition)--> Q7642539
+Q21997420 --P3450 (sports season of league or competition)--> Q21997420
+Q572013 --P1383 (contains settlement)--> Q572013
+Q988667 --P150 (contains administrative territorial entity)--> Q988667
+Q853036 --P39 (position held)--> Q853036
+Q2838135 --P36 (capital)--> Q2838135
+Q347 --P17 (country)--> Q347
+Q959209 --P36 (capital)--> Q959209
+Q3312913 --P36 (capital)--> Q3312913
+Q7205239 --P178 (developer)--> Q7205239
+Q2745332 --P706 (located on terrain feature)--> Q2745332
+Q49651 --P36 (capital)--> Q49651
+Q5751603 --P36 (capital)--> Q5751603
+Q7171174 --P3450 (sports season of league or competition)--> Q7171174
+Q1013 --P17 (country)--> Q1013
+Q4642895 --P1322 (dual to)--> Q4642895
+Q912 --P17 (country)--> Q912
+Q211 --P17 (country)--> Q211
+Q539231 --P1376 (capital of)--> Q539231
+Q212439 --P17 (country)--> Q212439
+Q843 --P17 (country)--> Q843
+Q227 --P17 (country)--> Q227
+Q218 --P17 (country)--> Q218
+Q1011 --P17 (country)--> Q1011
+Q4639677 --P1322 (dual to)--> Q4639677
+Q3846796 --P36 (capital)--> Q3846796
+Q102742 --P2152 (antiparticle)--> Q102742
+Q3415051 --P131 (located in the administrative territorial entity)--> Q3415051
+Q18127401 --P3450 (sports season of league or competition)--> Q18127401
+Q760 --P17 (country)--> Q760
+Q334 --P36 (capital)--> Q334
+Q683 --P17 (country)--> Q683
+Q3622022 --P1792 (category of associated people)--> Q3622022
+Q206904 --P277 (programming language)--> Q206904
+Q8351454 --P36 (capital)--> Q8351454
+Q5613245 --P36 (capital)--> Q5613245
+Q1089449 --P1376 (capital of)--> Q1089449
+Q3350726 --P3450 (sports season of league or competition)--> Q3350726
+Q148540 --P17 (country)--> Q148540
+Q20728 --P921 (main subject)--> Q20728
+Q874 --P17 (country)--> Q874
+Q3846714 --P36 (capital)--> Q3846714
+Q273462 --P81 (connecting line)--> Q273462
+Q34234153 --P553 (website account on)--> Q34234153
+Q786 --P17 (country)--> Q786
+Q5317539 --P131 (located in the administrative territorial entity)--> Q5317539
+Q607112 --P179 (part of the series)--> Q607112
+Q775644 --P1299 (depicted by)--> Q775644
+Q9098219 --P36 (capital)--> Q9098219
+Q208167 --P166 (award received)--> Q208167
+Q2652046 --P36 (capital)--> Q2652046
+Q208201 --P36 (capital)--> Q208201
+Q829895 --P135 (movement)--> Q829895
+Q43287 --P17 (country)--> Q43287
+Q13476175 --P1424 (topic's main template)--> Q13476175
+Q854 --P17 (country)--> Q854
+Q702 --P17 (country)--> Q702
+Q682237 --P131 (located in the administrative territorial entity)--> Q682237
+Q1226211 --P2377 (MediaWiki hooks used)--> Q1226211
+Q1028 --P17 (country)--> Q1028
+Q691 --P17 (country)--> Q691
+Q539008 --P1322 (dual to)--> Q539008
+Q4736804 --P36 (capital)--> Q4736804
+Q945059 --P485 (archives at)--> Q945059
+Q3415010 --P131 (located in the administrative territorial entity)--> Q3415010
+Q4036320 --P178 (developer)--> Q4036320
+Q5208443 --P131 (located in the administrative territorial entity)--> Q5208443
+Q28864600 --P3450 (sports season of league or competition)--> Q28864600
+Q2300422 --P1716 (brand)--> Q2300422
+Q650777 --P175 (performer)--> Q650777
+Q242 --P17 (country)--> Q242
+Q230 --P17 (country)--> Q230
+Q4188061 --P166 (award received)--> Q4188061
+Q6003412 --P179 (part of the series)--> Q6003412
+Q2742036 --P179 (part of the series)--> Q2742036
+Q7827062 --P36 (capital)--> Q7827062
+Q43116 --P2152 (antiparticle)--> Q43116
+Q180393 --P17 (country)--> Q180393
+Q392201 --P155 (follows)--> Q392201
+Q1039 --P17 (country)--> Q1039
+Q215 --P17 (country)--> Q215
+Q28009010 --P461 (opposite of)--> Q28009010
+Q16152195 --P3450 (sports season of league or competition)--> Q16152195
+Q933437 --P155 (follows)--> Q933437
+Q565287 --P150 (contains administrative territorial entity)--> Q565287
+Q1450842 --P36 (capital)--> Q1450842
+Q192926 --P1376 (capital of)--> Q192926
+Q3846345 --P36 (capital)--> Q3846345
+Q27876648 --P460 (said to be the same as)--> Q27876648
+Q398 --P17 (country)--> Q398
+Q196062 --P36 (capital)--> Q196062
+Q3846385 --P36 (capital)--> Q3846385
+Q766 --P17 (country)--> Q766
+Q1454986 --P361 (part of)--> Q1454986
+Q632649 --P131 (located in the administrative territorial entity)--> Q632649
+Q174193 --P17 (country)--> Q174193
+Q207218 --P36 (capital)--> Q207218
+Q11291108 --P179 (part of the series)--> Q11291108
+Q902 --P17 (country)--> Q902
+Q45 --P17 (country)--> Q45
+Q9164822 --P155 (follows)--> Q9164822
+Q4850164 --P131 (located in the administrative territorial entity)--> Q4850164
+Q7629383 --P178 (developer)--> Q7629383
+Q6320079 --P36 (capital)--> Q6320079
+Q355904 --P131 (located in the administrative territorial entity)--> Q355904
+Q5929956 --P36 (capital)--> Q5929956
+Q7642534 --P3450 (sports season of league or competition)--> Q7642534
+Q2615179 --P485 (archives at)--> Q2615179
+Q778 --P17 (country)--> Q778
+Q37 --P17 (country)--> Q37
+Q155 --P17 (country)--> Q155
+Q20085667 --P3450 (sports season of league or competition)--> Q20085667
+Q6171399 --P36 (capital)--> Q6171399
+Q11263 --P131 (located in the administrative territorial entity)--> Q11263
+Q380668 --P1365 (replaces)--> Q380668
+Q12898721 --P460 (said to be the same as)--> Q12898721
+Q1030 --P17 (country)--> Q1030
+Q17276 --P179 (part of the series)--> Q17276
+Q1771198 --P36 (capital)--> Q1771198
+Q3136643 --P162 (producer)--> Q3136643
+Q1007 --P17 (country)--> Q1007
+Q368867 --P150 (contains administrative territorial entity)--> Q368867
+Q3313367 --P36 (capital)--> Q3313367
+Q799423 --P156 (followed by)--> Q799423
+Q936325 --P169 (chief executive officer)--> Q936325
+Q3892749 --P36 (capital)--> Q3892749
+Q34020 --P17 (country)--> Q34020
+Q11105446 --P131 (located in the administrative territorial entity)--> Q11105446
+Q6352597 --P131 (located in the administrative territorial entity)--> Q6352597
+Q35269 --P140 (religion)--> Q35269
+Q171150 --P17 (country)--> Q171150
+Q921 --P17 (country)--> Q921
+Q3019631 --P36 (capital)--> Q3019631
+Q2119550 --P3450 (sports season of league or competition)--> Q2119550
+Q6860722 --P800 (notable work)--> Q6860722
+Q635024 --P1811 (list of episodes)--> Q635024
+Q878 --P17 (country)--> Q878
+Q653262 --P178 (developer)--> Q653262
+Q38 --P17 (country)--> Q38
+Q5811760 --P36 (capital)--> Q5811760
+Q16842759 --P910 (topic's main category)--> Q16842759
+Q625356 --P485 (archives at)--> Q625356
+Q12560 --P17 (country)--> Q12560
+Q1154713 --P1322 (dual to)--> Q1154713
+Q21003957 --P3450 (sports season of league or competition)--> Q21003957
+Q4888102 --P36 (capital)--> Q4888102
+Q1758126 --P3262 (has anatomical branch)--> Q1758126
+Q696241 --P17 (country)--> Q696241
+Q281859 --P119 (place of burial)--> Q281859
+Q7642915 --P179 (part of the series)--> Q7642915
+Q43 --P17 (country)--> Q43
+Q1309 --P1383 (contains settlement)--> Q1309
+Q1041 --P17 (country)--> Q1041
+Q701372 --P144 (based on)--> Q701372
+Q16658574 --P461 (opposite of)--> Q16658574
+Q5192588 --P36 (capital)--> Q5192588
+Q7120535 --P3450 (sports season of league or competition)--> Q7120535
+Q3317696 --P1366 (replaced by)--> Q3317696
+Q697 --P17 (country)--> Q697
+Q4455218 --P36 (capital)--> Q4455218
+Q4231593 --P178 (developer)--> Q4231593
+Q6318088 --P36 (capital)--> Q6318088
+Q170174 --P17 (country)--> Q170174
+Q1548344 --P276 (location)--> Q1548344
+Q986 --P17 (country)--> Q986
+Q928 --P17 (country)--> Q928
+Q333415 --P1365 (replaces)--> Q333415
+Q783 --P17 (country)--> Q783
+Q1036 --P17 (country)--> Q1036
+Q1020174 --P36 (capital)--> Q1020174
+Q1901345 --P1383 (contains settlement)--> Q1901345
+Q678087 --P131 (located in the administrative territorial entity)--> Q678087
+Q2386614 --P131 (located in the administrative territorial entity)--> Q2386614
+Q974535 --P36 (capital)--> Q974535
+Q7810705 --P36 (capital)--> Q7810705
+Q870517 --P17 (country)--> Q870517
+Q6432701 --P276 (location)--> Q6432701
+Q4640115 --P1366 (replaced by)--> Q4640115
+Q6148347 --P36 (capital)--> Q6148347
+Q2904377 --P749 (parent organization)--> Q2904377
+Q3358290 --P1322 (dual to)--> Q3358290
+Q7094899 --P3450 (sports season of league or competition)--> Q7094899
+Q6318641 --P36 (capital)--> Q6318641
+Q568234 --P178 (developer)--> Q568234
+Q3311886 --P36 (capital)--> Q3311886
+Q6710821 --P36 (capital)--> Q6710821
+Q710 --P17 (country)--> Q710
+Q164 --P1322 (dual to)--> Q164
+Q828723 --P131 (located in the administrative territorial entity)--> Q828723
+Q7136573 --P36 (capital)--> Q7136573
+Q270424 --P559 (terminus)--> Q270424
+Q7414646 --P36 (capital)--> Q7414646
+Q19650330 --P1716 (brand)--> Q19650330
+Q675678 --P131 (located in the administrative territorial entity)--> Q675678
+Q811 --P17 (country)--> Q811
+Q6949997 --P276 (location)--> Q6949997
+Q241 --P17 (country)--> Q241
+Q3882 --P1376 (capital of)--> Q3882
+Q41304 --P17 (country)--> Q41304
+Q20386633 --P179 (part of the series)--> Q20386633
+Q161405 --P1365 (replaces)--> Q161405
+Q133116 --P159 (headquarters location)--> Q133116
+Q769 --P17 (country)--> Q769
+Q115 --P17 (country)--> Q115
+Q420759 --P17 (country)--> Q420759
+Q7938015 --P178 (developer)--> Q7938015
+Q11105342 --P131 (located in the administrative territorial entity)--> Q11105342
+Q711 --P17 (country)--> Q711
+Q5931073 --P36 (capital)--> Q5931073
+Q12586 --P131 (located in the administrative territorial entity)--> Q12586
+Q179876 --P17 (country)--> Q179876
+Q222 --P17 (country)--> Q222
+Q3845860 --P36 (capital)--> Q3845860
+Q42928021 --P527 (has part)--> Q42928021
+Q17085917 --P1322 (dual to)--> Q17085917
+Q846 --P17 (country)--> Q846
+Q977 --P17 (country)--> Q977
+Q3183863 --P1383 (contains settlement)--> Q3183863
+Q237 --P17 (country)--> Q237
+Q3893123 --P36 (capital)--> Q3893123
+Q1283898 --P36 (capital)--> Q1283898
+Q30905721 --P803 (professorship)--> Q30905721
+Q3846588 --P36 (capital)--> Q3846588
+Q21686710 --P179 (part of the series)--> Q21686710
+Q700550 --P131 (located in the administrative territorial entity)--> Q700550
+Q207942 --P1365 (replaces)--> Q207942
+Q962 --P17 (country)--> Q962
+Q30115980 --P3450 (sports season of league or competition)--> Q30115980
+Q7810712 --P36 (capital)--> Q7810712
+Q848317 --P277 (programming language)--> Q848317
+Q34 --P17 (country)--> Q34
+Q28401676 --P178 (developer)--> Q28401676
+Q5138604 --P36 (capital)--> Q5138604
+Q159979 --P461 (opposite of)--> Q159979
+Q9676 --P17 (country)--> Q9676
+Q3313200 --P36 (capital)--> Q3313200
+Q4653341 --P178 (developer)--> Q4653341
+Q7695265 --P36 (capital)--> Q7695265
+Q668 --P17 (country)--> Q668
+Q16957 --P17 (country)--> Q16957
+Q7642509 --P3450 (sports season of league or competition)--> Q7642509
+Q796297 --P414 (stock exchange)--> Q796297
+Q4187961 --P166 (award received)--> Q4187961
+Q603529 --P135 (movement)--> Q603529
+Q924387 --P36 (capital)--> Q924387
+Q6256556 --P1365 (replaces)--> Q6256556
+Q373628 --P1365 (replaces)--> Q373628
+Q79 --P17 (country)--> Q79
+Q43101 --P2152 (antiparticle)--> Q43101
+Q876919 --P166 (award received)--> Q876919
+Q1760473 --P17 (country)--> Q1760473
+Q6425240 --P131 (located in the administrative territorial entity)--> Q6425240
+Q3844956 --P36 (capital)--> Q3844956
+Q676548 --P36 (capital)--> Q676548
+Q6147705 --P36 (capital)--> Q6147705
+Q791569 --P179 (part of the series)--> Q791569
+Q3823978 --P36 (capital)--> Q3823978
+Q225 --P17 (country)--> Q225
+Q758861 --P166 (award received)--> Q758861
+Q1075704 --P1322 (dual to)--> Q1075704
+Q2696354 --P36 (capital)--> Q2696354
+Q186096 --P17 (country)--> Q186096
+Q1992899 --P36 (capital)--> Q1992899
+Q6101075 --P178 (developer)--> Q6101075
+Q1008 --P17 (country)--> Q1008
+Q1025 --P17 (country)--> Q1025
+Q822 --P17 (country)--> Q822
+Q7206608 --P131 (located in the administrative territorial entity)--> Q7206608
+Q784 --P17 (country)--> Q784
+Q6125816 --P131 (located in the administrative territorial entity)--> Q6125816
+Q2450110 --P36 (capital)--> Q2450110
+Q140006 --P1464 (category for people born here)--> Q140006
+Q320378 --P36 (capital)--> Q320378
+Q117 --P17 (country)--> Q117
+Q188712 --P17 (country)--> Q188712
+Q4671655 --P36 (capital)--> Q4671655
+Q3505608 --P36 (capital)--> Q3505608
+Q7642528 --P3450 (sports season of league or competition)--> Q7642528
+Q2733330 --P131 (located in the administrative territorial entity)--> Q2733330

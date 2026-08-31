@@ -1,0 +1,49 @@
+============================================================
+FINAL TRIPLE QUALITY AUDIT
+============================================================
+
+INPUTS
+------------------------------------------------------------
+Entities:
+dataset/semantic/cleaned/entities_final_clean.csv
+
+Relations:
+dataset/cleaned/relations.csv
+
+Triples:
+dataset/semantic/cleaned/triples_final.csv
+
+COUNTS
+------------------------------------------------------------
+Entities available:           4,813,491
+Relations available:          825
+Triples scanned:              20,598,520
+Unique triples:               20,598,520
+Duplicate triples:            0
+Self-loops:                   0
+Malformed triples:            0
+
+REFERENCE INTEGRITY
+------------------------------------------------------------
+Missing entity references:    0
+Missing source entit
+============================================================
+FINAL TRIPLE QUALITY REPORT
+============================================================
+
+Entities available:          4,813,491
+Relations available:         825
+Triples scanned:             20,598,520
+Unique triples:              20,598,520
+Duplicate triples:           0
+Self-loops:                  0
+Malformed triples:           0
+Missing entity references:   0
+Missing relation references: 0
+
+============================================================
+FINAL RESULT: PASS
+============================================================
+
+Report:
+  dataset/semantic/analysis/final_triple_quality_report.txt

@@ -1,0 +1,604 @@
+======================================================================
+FULLKG BASELINE EVALUATION
+======================================================================
+
+Timestamp: 2026-08-30T00:38:41.881195
+Database: fullkg-29-08
+Ollama model: llama3.1:8b
+Nodes: 4,814,316
+Relationships: 20,598,520
+Questions: 20
+
+
+TEST 1/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the capital of France?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("France")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+I don't have enough information to answer the question.
+
+
+TEST 2/20
+
+======================================================================
+QUESTION
+======================================================================
+What language is spoken in Brazil?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (b:Entity)-[r:RELATED_TO]->(l:Entity)
+WHERE toLower(b.Entity_Name) = toLower("Brazil")
+RETURN l.Entity_Name AS language, r.Relation_ID AS relation_id, r.Relation_Name AS relationship
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the graph results to answer the question.
+
+
+TEST 3/20
+
+======================================================================
+QUESTION
+======================================================================
+Who wrote Harry Potter?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Harry Potter")
+RETURN
+    t.Entity_Name AS author,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS book,
+    e.Entity_ID AS book_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 4/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the largest planet in the solar system?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Planet")
+  AND toLower(r.Relation_Name) = toLower("largest")
+RETURN
+  t.Entity_Name AS entity,
+  r.Relation_ID AS relation_id,
+  r.Relation_Name AS relationship,
+  e.Entity_Name AS related_entity,
+  e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The graph results do not contain enough information to answer the question.
+
+
+TEST 5/20
+
+======================================================================
+QUESTION
+======================================================================
+Who was Albert Einstein?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Albert Einstein")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Albert Einstein"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q937
+  e.Entity_Name: Albert Enstein
+  e.Entity_Description: None
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+Albert Einstein.
+
+
+TEST 6/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the currency of Japan?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Japan")
+RETURN
+    t.Entity_Name AS currency,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 7/20
+
+======================================================================
+QUESTION
+======================================================================
+Where is the Eiffel Tower?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Eiffel Tower")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Eiffel Tower"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q243
+  e.Entity_Name: La tour Eiffel
+  e.Entity_Description: The Eiffel Tower ( EYE-fəl; French: tour Eiffel [tuʁ‿ɛfɛl] (listen)) is a wrought-iron lattice tower on the Champ de Mars in Paris France. It is named after the engineer Gustave Eiffel whose company designed and built the tower.Constructed from 1887 to 1889 as the entrance to the 1889 World's Fair it was initially criticised by some of France's leading artists and intellectuals for its design but it has become a global cultural icon of France and one of the most recognisable structures in the world. The Eiffel Tower is the most-visited paid monument in the world; 6.91 million people ascended it in 2015.The tower is 324 metres (1063 ft) tall about the same height as an 81-storey building and the tallest structure in Paris. Its base is square measuring 125 metres (410 ft) on each side. During its construction the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. It was the first structure to reach a height of 300 metres. Due to the addition of a broadcasting aerial at the top of the tower in 1957 it is now taller than the Chrysler Building by 5.2 metres (17 ft). Excluding transmitters the Eiffel Tower is the second tallest free-standing structure in France after the Millau Viaduct.The tower has three levels for visitors with restaurants on the first and second levels. The top level's upper platform is 276 m (906 ft) above the ground – the highest observation deck accessible to the public in the European Union. Tickets can be purchased to ascend by stairs or lift to the first and second levels. The climb from ground level to the first level is over 300 steps as is the climb from the first level to the second. Although there is a staircase to the top level it is usually accessible only by lift.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The Eiffel Tower is located in Paris, France.
+
+
+TEST 8/20
+
+======================================================================
+QUESTION
+======================================================================
+Who painted the Mona Lisa?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Mona Lisa")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 9/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the capital of India?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("India")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 10/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the highest mountain in the world?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Mount Everest")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Mount Everest"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 1
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q513
+  e.Entity_Name: Mt. Everest
+  e.Entity_Description: Mount Everest (Nepali: Sagarmatha सगरमाथा; Tibetan: Chomolungma ཇོ་མོ་གླང་མ; Chinese Zhumulangma 珠穆朗玛) is Earth's highest mountain above sea level located in the Mahalangur Himal sub-range of the Himalayas. The international border between Nepal (Province No. 1) and China (Tibet Autonomous Region) runs across its summit point.The current official elevation of 8848 m (29029 ft) recognized by China and Nepal was established by a 1955 Indian survey and subsequently confirmed by a Chinese survey in 1975. In 2005 China remeasured the rock height of the mountain with a result of 8844.43 m (29017 ft). There followed an argument between China and Nepal as to whether the official height should be the rock height (8844 m China) or the snow height (8848 m Nepal). In 2010 an agreement was reached by both sides that the height of Everest is 8848 m and Nepal recognizes China's claim that the rock height of Everest is 8844 m.In 1865 Everest was given its official English name by the Royal Geographical Society upon a recommendation by Andrew Waugh the British Surveyor General of India. As there appeared to be several different local names Waugh chose to name the mountain after his predecessor in the post Sir George Everest despite Everest's objections.Mount Everest attracts many climbers some of them highly experienced mountaineers. There are two main climbing routes one approaching the summit from the southeast in Nepal (known as the standard route) and the other from the north in Tibet. While not posing substantial technical climbing challenges on the standard route Everest presents dangers such as altitude sickness weather and wind as well as significant hazards from avalanches and the Khumbu Icefall. As of 2017 nearly 300 people have died on Everest many of whose bodies remain on the mountain.The first recorded efforts to reach Everest's summit were made by British mountaineers. As Nepal did not allow foreigners into the country at the time the British made several attempts on the north ridge route from the Tibetan side. After the first reconnaissance expedition by the British in 1921 reached 7000 m (22970 ft) on the North Col the 1922 expedition pushed the north ridge route up to 8320 m (27300 ft) marking the first time a human had climbed above 8000 m (26247 ft). Seven porters were killed in an avalanche on the descent from the North Col. The 1924 expedition resulted in one of the greatest mysteries on Everest to this day: George Mallory and Andrew Irvine made a final summit attempt on 8 June but never returned sparking debate as to whether or not they were the first to reach the top. They had been spotted high on the mountain that day but disappeared in the clouds never to be seen again until Mallory's body was found in 1999 at 8155 m (26755 ft) on the north face. Tenzing Norgay and Edmund Hillary made the first official ascent of Everest in 1953 using the southeast ridge route. Norgay had reached 8595 m (28199 ft) the previous year as a member of the 1952 Swiss expedition. The Chinese mountaineering team of Wang Fuzhou Gonpo and Qu Yinhua made the first reported ascent of the peak from the north ridge on 25 May 1960.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The highest mountain in the world is Mt. Everest, with an official elevation of 8848 m (29029 ft) recognized by China and Nepal.
+
+
+TEST 11/20
+
+======================================================================
+QUESTION
+======================================================================
+Who discovered penicillin?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Penicillin")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the provided knowledge graph results to answer the question.
+
+
+TEST 12/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the official language of Germany?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Germany")
+RETURN
+    t.Entity_Name AS language,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS country,
+    e.Entity_ID AS country_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 13/20
+
+======================================================================
+QUESTION
+======================================================================
+Where is the Great Wall of China?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Great Wall of China")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Great Wall of China"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q12501
+  e.Entity_Name: chang cheng
+  e.Entity_Description: The Great Wall of China (Chinese: 萬里長城; pinyin: Wànlǐ Chángchéng) is the collective name of a series of fortification systems generally built across the historical northern borders of China to protect and consolidate territories of Chinese states and empires against various nomadic groups of the steppe and their polities. Several walls were being built from as early as the 7th century BC by ancient Chinese states; selective stretches were later joined together by Qin Shi Huang (220–206 BC) the first Emperor of China. Little of the Qin wall remains. Later on many successive dynasties have built and maintained multiple stretches of border walls. The most currently well-known of the walls were built by the Ming dynasty (1368–1644).Apart from defense other purposes of the Great Wall have included border controls allowing the imposition of duties on goods transported along the Silk Road regulation or encouragement of trade and the control of immigration and emigration. Furthermore the defensive characteristics of the Great Wall were enhanced by the construction of watch towers troop barracks garrison stations signaling capabilities through the means of smoke or fire and the fact that the path of the Great Wall also served as a transportation corridor.The frontier walls built by different dynasties have multiple courses. Collectively they stretch from Liaodong in the east to Lop Lake in the west from present-day Sino–Russian border in the north to Taohe River in the south; along an arc that roughly delineates the edge of Mongolian steppe. A comprehensive archaeological survey using advanced technologies has concluded that the walls built by the Ming dynasty measure 8850 km (5500 mi). This is made up of 6259 km (3889 mi) sections of actual wall 359 km (223 mi) of trenches and 2232 km (1387 mi) of natural defensive barriers such as hills and rivers. Another archaeological survey found that the entire wall with all of its branches measures out to be 21196 km (13171 mi). Today the defensive system of Great Wall is generally recognized as one of the most impressive architectural feats in history.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The Great Wall of China stretches from Liaodong in the east to Lop Lake in the west, and from the present-day Sino–Russian border in the north to the Taohe River in the south.
+
+
+TEST 14/20
+
+======================================================================
+QUESTION
+======================================================================
+Who wrote Romeo and Juliet?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Romeo and Juliet")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 15/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the largest ocean on Earth?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Earth")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    t.Entity_Name AS related_entity,
+    t.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The Pacific Ocean is the largest ocean on Earth.
+
+
+TEST 16/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the currency of the United States?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("United States")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    t.Entity_Name AS related_entity,
+    t.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The currency of the United States is the United States dollar.
+
+
+TEST 17/20
+
+======================================================================
+QUESTION
+======================================================================
+Who was Isaac Newton?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Isaac Newton")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Isaac Newton"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q935
+  e.Entity_Name: isaac newton's tooth
+  e.Entity_Description: Sir Isaac Newton (25 December 1642 – 20 March 1726/27) was an English mathematician physicist astronomer theologian and author (described in his own day as a natural philosopher) who is widely recognised as one of the most influential scientists of all time and a key figure in the scientific revolution. His book Philosophiæ Naturalis Principia Mathematica (Mathematical Principles of Natural Philosophy) first published in 1687 laid the foundations of classical mechanics. Newton also made seminal contributions to optics and shares credit with Gottfried Wilhelm Leibniz for developing the infinitesimal calculus.In Principia Newton formulated the laws of motion and universal gravitation that formed the dominant scientific viewpoint until it was superseded by the theory of relativity. Newton used his mathematical description of gravity to prove Kepler's laws of planetary motion account for tides the trajectories of comets the precession of the equinoxes and other phenomena eradicating doubt about the Solar System's heliocentricity. He demonstrated that the motion of objects on Earth and celestial bodies could be accounted for by the same principles. Newton's inference that the Earth is an oblate spheroid was later confirmed by the geodetic measurements of Maupertuis La Condamine and others convincing most European scientists of the superiority of Newtonian mechanics over earlier systems.Newton built the first practical reflecting telescope and developed a sophisticated theory of colour based on the observation that a prism separates white light into the colours of the visible spectrum. His work on light was collected in his highly influential book Opticks published in 1704. He also formulated an empirical law of cooling made the first theoretical calculation of the speed of sound and introduced the notion of a Newtonian fluid. In addition to his work on calculus as a mathematician Newton contributed to the study of power series generalised the binomial theorem to non-integer exponents developed a method for approximating the roots of a function and classified most of the cubic plane curves.Newton was a fellow of Trinity College and the second Lucasian Professor of Mathematics at the University of Cambridge. He was a devout but unorthodox Christian who privately rejected the doctrine of the Trinity. Unusually for a member of the Cambridge faculty of the day he refused to take holy orders in the Church of England. Beyond his work on the mathematical sciences Newton dedicated much of his time to the study of alchemy and biblical chronology but most of his work in those areas remained unpublished until long after his death. Politically and personally tied to the Whig party Newton served two brief terms as Member of Parliament for the University of Cambridge in 1689–90 and 1701–02. He was knighted by Queen Anne in 1705 and spent the last three decades of his life in London serving as Warden (1696–1700) and Master (1700–1727) of the Royal Mint as well as president of the Royal Society (1703–1727).
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+Sir Isaac Newton was an English mathematician, physicist, astronomer, theologian, and author who is widely recognized as one of the most influential scientists of all time. He is known for his work on classical mechanics, optics, and calculus, and his book "Philosophiæ Naturalis Principia Mathematica" laid the foundations of classical mechanics.
+
+
+TEST 18/20
+
+======================================================================
+QUESTION
+======================================================================
+What is the capital of Australia?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Australia")
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+No results.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+There is not enough information in the knowledge graph results to answer the question.
+
+
+TEST 19/20
+
+======================================================================
+QUESTION
+======================================================================
+Where is Mount Everest?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)
+WHERE toLower(e.Entity_Name) = toLower("Mount Everest")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("Mount Everest"))
+RETURN e.Entity_ID, e.Entity_Name, e.Entity_Description
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  e.Entity_ID: Q513
+  e.Entity_Name: Mt. Everest
+  e.Entity_Description: Mount Everest (Nepali: Sagarmatha सगरमाथा; Tibetan: Chomolungma ཇོ་མོ་གླང་མ; Chinese Zhumulangma 珠穆朗玛) is Earth's highest mountain above sea level located in the Mahalangur Himal sub-range of the Himalayas. The international border between Nepal (Province No. 1) and China (Tibet Autonomous Region) runs across its summit point.The current official elevation of 8848 m (29029 ft) recognized by China and Nepal was established by a 1955 Indian survey and subsequently confirmed by a Chinese survey in 1975. In 2005 China remeasured the rock height of the mountain with a result of 8844.43 m (29017 ft). There followed an argument between China and Nepal as to whether the official height should be the rock height (8844 m China) or the snow height (8848 m Nepal). In 2010 an agreement was reached by both sides that the height of Everest is 8848 m and Nepal recognizes China's claim that the rock height of Everest is 8844 m.In 1865 Everest was given its official English name by the Royal Geographical Society upon a recommendation by Andrew Waugh the British Surveyor General of India. As there appeared to be several different local names Waugh chose to name the mountain after his predecessor in the post Sir George Everest despite Everest's objections.Mount Everest attracts many climbers some of them highly experienced mountaineers. There are two main climbing routes one approaching the summit from the southeast in Nepal (known as the standard route) and the other from the north in Tibet. While not posing substantial technical climbing challenges on the standard route Everest presents dangers such as altitude sickness weather and wind as well as significant hazards from avalanches and the Khumbu Icefall. As of 2017 nearly 300 people have died on Everest many of whose bodies remain on the mountain.The first recorded efforts to reach Everest's summit were made by British mountaineers. As Nepal did not allow foreigners into the country at the time the British made several attempts on the north ridge route from the Tibetan side. After the first reconnaissance expedition by the British in 1921 reached 7000 m (22970 ft) on the North Col the 1922 expedition pushed the north ridge route up to 8320 m (27300 ft) marking the first time a human had climbed above 8000 m (26247 ft). Seven porters were killed in an avalanche on the descent from the North Col. The 1924 expedition resulted in one of the greatest mysteries on Everest to this day: George Mallory and Andrew Irvine made a final summit attempt on 8 June but never returned sparking debate as to whether or not they were the first to reach the top. They had been spotted high on the mountain that day but disappeared in the clouds never to be seen again until Mallory's body was found in 1999 at 8155 m (26755 ft) on the north face. Tenzing Norgay and Edmund Hillary made the first official ascent of Everest in 1953 using the southeast ridge route. Norgay had reached 8595 m (28199 ft) the previous year as a member of the 1952 Swiss expedition. The Chinese mountaineering team of Wang Fuzhou Gonpo and Qu Yinhua made the first reported ascent of the peak from the north ridge on 25 May 1960.
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+Mount Everest is located in the Mahalangur Himal sub-range of the Himalayas, on the international border between Nepal (Province No. 1) and China (Tibet Autonomous Region).
+
+
+TEST 20/20
+
+======================================================================
+QUESTION
+======================================================================
+Who composed The Four Seasons?
+
+GENERATED CYPHER
+----------------------------------------------------------------------
+MATCH (e:Entity)-[r:RELATED_TO]->(t:Entity)
+WHERE toLower(e.Entity_Name) = toLower("The Four Seasons")
+OR any(a IN coalesce(e.Entity_Aliases, [])
+WHERE toLower(a) = toLower("The Four Seasons"))
+RETURN
+    t.Entity_Name AS entity,
+    r.Relation_ID AS relation_id,
+    r.Relation_Name AS relationship,
+    e.Entity_Name AS related_entity,
+    e.Entity_ID AS related_entity_id
+LIMIT 100
+
+GRAPH RESULTS
+----------------------------------------------------------------------
+
+Result 1
+  entity: united stated
+  relation_id: P17
+  relationship: country
+  related_entity: Four Seasons Restaurant
+  related_entity_id: Q7735035
+
+Result 2
+  entity: Carinderia
+  relation_id: P31
+  relationship: instance of
+  related_entity: Four Seasons Restaurant
+  related_entity_id: Q7735035
+
+Result 3
+  entity: Manhattan (New York)
+  relation_id: P131
+  relationship: located in the administrative territorial entity
+  related_entity: Four Seasons Restaurant
+  related_entity_id: Q7735035
+
+Result 4
+  entity: new american cuisine
+  relation_id: P2012
+  relationship: cuisine
+  related_entity: Four Seasons Restaurant
+  related_entity_id: Q7735035
+
+NATURAL LANGUAGE ANSWER
+----------------------------------------------------------------------
+The knowledge graph results do not contain information about the composer of "The Four Seasons".
+
+
+======================================================================
+BASELINE EVALUATION COMPLETE
+======================================================================

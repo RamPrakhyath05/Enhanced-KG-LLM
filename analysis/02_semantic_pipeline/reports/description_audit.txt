@@ -1,0 +1,353 @@
+============================================================
+SEMANTIC DESCRIPTION AUDIT
+============================================================
+
+=== OVERVIEW ===
+Entities:                 4,813,491
+Empty descriptions:       129,351
+Descriptions <=50 chars:  275
+List/index-like pages:    138,974
+Wiki artifacts detected:  5,551
+Repetitive descriptions:  3,461
+Suspicious descriptions:  284,922
+
+=== DESCRIPTION LENGTH DISTRIBUTION ===
+          0: 129,351
+       1-20: 275
+      21-50: 23,982
+     51-100: 370,140
+    101-250: 1,511,781
+    251-500: 1,325,345
+   501-1000: 919,131
+  1001-5000: 530,501
+ 5001-10000: 2,629
+10001-50000: 347
+     50000+: 9
+
+=== 30 LONGEST DESCRIPTIONS ===
+
+147,340 chars | Q6592643 | list of omim disorder codes
+  This is a list of disorder codes in the Online Mendelian Inheritance in Man (OMIM) database. These are diseases that can be inherited via a Mendelian genetic mechanism. OMIM is one of the databases housed in the U.S. National Center for Biotechnology Information.Isolated 1720-lyase deficiency; 20211
+  ...
+
+117,363 chars | Q6573759 | IEC 61000
+  This is an incomplete list of standards published by the International Electrotechnical Commission (IEC).The numbers of older IEC standards were converted in 1997 by adding 60000; for example IEC 27 became IEC 60027.IEC standards often have multiple sub-part documents; only the main title for the st
+  ...
+
+106,728 chars | Q6608072 | Jacob Neusner bibliography
+  This is a list of books by Jacob Neusner. Articles reviews etc. are not included here. A Life of Yohanan ben Zakkai. Leiden 1962: Brill. Abraham Berliner Prize in Jewish History Jewish Theological Seminary of America 1962. Second edition completely revised 1970. A History of the Jews in Babylonia. L
+  ...
+
+81,514 chars | Q48528 | 1750-1759
+  The 1750s decade ran from January 1 1750 to December 31 1759.== Events ===== 1750 ======= January–March ====January 13 – The Treaty of Madrid between Spain and Portugal authorizes a larger Brazil than had the Treaty of Tordesillas of 1494 which originally established the boundaries of the Portuguese
+  ...
+
+72,753 chars | Q6625384 | List of lichens of Maryland
+  The following list of Lichens of Maryland is derived from the following sources: (1) lichens listed in the 1977 publication by Skorepa (Allen C. Skorepa) Norden [1] and Windler.(2) lichens listed in the 1979 publication by Skorepa Norden and Windler.(3) lichens listed in the 2002 publication by Biec
+  ...
+
+65,216 chars | Q44859 | 1770s
+  The 1770s decade ran from January 1 1770 to December 31 1779.== Events ===== 1770 ======= January– March ====January 1 – The foundation of Fort George Bombay is laid by Colonel Keating principal engineer on the site of the former Dongri Fort.February 1 – Thomas Jefferson's home at Shadwell Virginia 
+  ...
+
+64,423 chars | Q6560496 | List of Ace Titles in numeric series
+  In January 1969 Ace Books switched from a letter-series code for its books to a numeric series. The number does not indicate sequence of publication unlike the number in the letter series codes; instead it identifies the alphabetic position of the title. It was assigned by dividing the range 00001-9
+  ...
+
+63,775 chars | Q18628612 | List of Plants of Burkina Faso
+  Burkina Faso is a landlocked country in West Africa. Its natural vegetation mainly consists of savannas in the South there are also dry forests and gallery forests. The highest diversity of plant species can be found in the humid South-West.Abelmoschus esculentus (L.) MoenchAbelmoschus moschatus Med
+  ...
+
+52,606 chars | Q317411 | Pazhwak
+  Abdul Rahman Pazhwak (Persian: عبدالرحمن پژواک‎; born March 7 1919 – June 8 1995) was an Afghan poet and diplomat. He was educated in Afghanistan and started his career as a journalist but eventually joined the foreign ministry. During the 1950s he became ambassador to the United Nations and served 
+  ...
+
+45,036 chars | Q46050 | Sixteen-tens
+  The 1610s decade ran from January 1 1610 to December 31 1619.== Events ===== 1610 ======= January–June ====January 6 – Nossa Senhora da Graça incident: A Portuguese carrack sinks near Nagasaki after fighting Japanese samurai for four nights.January 7 – Galileo Galilei first observes the four Galilea
+  ...
+
+44,719 chars | Q4609835 | 2007 suicide bombings in Iraq
+  This article containst is a list of suicide bombings during 2007 in Iraq.January 8: A suicide truck bomber attacked a checkpoint in Ramadi killing two policemen.January 10: Two suicide bombers attacked separately in Tal Afar killing five people and wounding 15 others.January 15: A suicide bomber att
+  ...
+
+43,563 chars | Q6629297 | list of moths of south africa (noctuidae)
+  This is a list of moths of the family Noctuidae that are found in South Africa. It also acts as an index to the species articles and forms part of the full List of moths of South Africa.Ableptina nubifera (Hampson 1902)Abrostola brevipennis (Walker 1858)Abrostola oculea Dufay 1958Abrostola triopis H
+  ...
+
+41,473 chars | Q2329934 | List of compositions by Alan Hovhaness
+  This is a list of compositions by Alan Hovhaness (1911–2000) ordered by opus number. Composition dates shown in Roman font are as given at Hovhaness.com while conflicting dates from Kunze or New Grove are shown in italics. Similarly instrumentation shown in Roman font is as given at the Hovhaness.co
+  ...
+
+39,499 chars | Q16933113 | Mario Woods
+  The San Francisco Police Department began operations on August 13 1849 during the Gold Rush under the command of Captain Malachi Fallon. At the time Chief Fallon had a force of one deputy captain three sergeants and thirty officers.In 1851 Albert Bernard de Russailh wrote about the nascent San Franc
+  ...
+
+39,173 chars | Q20715928 | List of Greek exonyms in Turkey
+  This is the list of Greek exonyms for the places in Turkey.Çanakkale Province: Çanakkale ili (Greek: νομός Δαρδανέλλιων nomós Dardanélliōn; Katharevousa: νομὸς Δαρδανέλλιων nomòs Dardanélliōn).Bozcaada district: Bozcaada ilçesi (Greek: επαρχία Τενέδου eparchía Tenédou; Katharevousa: ἐπαρχία Τενέδου 
+  ...
+
+37,716 chars | Q7805690 | timeline of class i railroads (1977–present)
+  The following is a brief history of the North American rail system mainly through major changes to Class I railroads the largest class by operating revenue.1977The Virginia and Maryland Railroad replaces Conrail on most of the old New York Philadelphia and Norfolk Railroad. Operations are transferre
+  ...
+
+36,613 chars | Q15734042 | List of moths of Turkey (Noctuidae)
+  This is a list of moths of the family Noctuidae that are found in Turkey. It also acts as an index to the species articles and forms part of the full List of moths of Turkey.Abrostola agnorista Dufay 1956Abrostola asclepiadis Lang 1789Abrostola clarissa Staudinger 1900Abrostola trigemina Werneburg 1
+  ...
+
+35,845 chars | Q6567266 | List of Chthoniidae species
+  This is a list of the described species of the pseudoscorpion family Chthoniidae. The data is taken from Joel Hallan's Biology Catalog.Afrochthonius Beier 1930Afrochthonius brincki Beier 1955 — LesothoAfrochthonius ceylonicus Beier 1973 — Sri LankaAfrochthonius godfreyi (Ellingsen 1912) — Southern A
+  ...
+
+34,797 chars | Q6560465 | List of Ace SF Numeric-Series Single Titles
+  Ace Books have published hundreds of science fiction titles starting in 1953. Many of these were Ace Doubles (dos-à-dos format) but they also published many single volumes. Between 1953 and 1968 the books had a letter-series identifier; after that date they were given five digit numeric serial numbe
+  ...
+
+34,499 chars | Q6603256 | list of university of wisconsin-madison people in academics
+  List of University of Wisconsin–Madison notable alumni in academics:Julia Adams (sociologist) Professor Yale UniversityRobert Adair Professor Emeritus of Physics Yale UniversityDavid Adamany former President of Temple UniversityColin Adams Professor of Mathematics Williams CollegePaul C. Adams Assoc
+  ...
+
+33,942 chars | Q195923 | 1620-1629
+  The 1620s decade ran from January 1 1620 to December 31 1629.== Events ===== 1620 ======= January–June ====February 4 – Prince Bethlen Gabor signs a peace treaty with Ferdinand II Holy Roman Emperor.May 17 – The first merry-go-round is seen at a fair (Philippapolis Turkey).June 3 – The oldest stone 
+  ...
+
+33,895 chars | Q3753784 | frullaniaceae
+  Frullania is the only genus of liverworts in family Frullaniaceae. It contains the following species:AFrullania aculeata Taylor 1846Frullania acutata Caspary 1887Frullania acutiloba Gerola 1947Frullania akiyamae Hattori 1986Frullania albertii Stephani 1916Frullania allanii Hodgson 1949Frullania alli
+  ...
+
+32,585 chars | Q17091726 | List of moths of South Africa (Geometridae)
+  This is a list of moths of the family Geometridae that are found in South Africa. It also acts as an index to the species articles and forms part of the full List of moths of South Africa.Acanthovalva bilineata (Warren 1895)Acanthovalva capensis Krüger 2001Acanthovalva focularia (Geyer 1837)Acanthov
+  ...
+
+32,517 chars | Q17014034 | Timeline of women's ordination worldwide
+  This is a timeline of women's ordination.6th century BCE: Mahapajapati Gotami the aunt and foster mother of Buddha was the first woman to receive Buddhist ordination as a nun.1647-1651: Elizabeth Hooton met and was inspired by George Fox in 1647. By 1651 she was preaching and was imprisoned as a res
+  ...
+
+32,388 chars | Q43970 | 1740s
+  The 1740s decade ran from January 1 1740 to December 31 1749.== Events ===== 1740 ======= January–June ====February 20 – The North Carolina General Assembly incorporates the town of Newton as Wilmington North Carolina named for Spencer Compton 1st Earl of Wilmington and patron of Royal Governor Gabr
+  ...
+
+32,281 chars | Q2631819 | yumitori-shiki
+  The following words are terms used in sumo wrestling in Japan. azukari (預り)Hold. A kind of draw. After a mono-ii the gyōji or the shimpan holds the result if it was too close to call. In 1927 the system was abolished and a torinaoshi (rematch) now takes place instead.banzuke (番付)List of sumo wrestle
+  ...
+
+31,437 chars | Q6637496 | List of schools in France
+  This is a list of schools FranceLycée Saint-Louis-de-Gonzague ParisCanadian Bilingual School of Paris⎪École Canadienne Bilingue de ParisNotre-Dame International High School Verneuil-sur-SeineLEnsemble Scolaire Maurice-Tièche Collonges-sous-SalèveLycée Thiers MarseilleLa Martiniere Lyon LyonLycée Int
+  ...
+
+30,819 chars | Q6636205 | List of reef fish of the Red Sea
+  These Red Sea fish are listed as Reef-associated by Fishbase:AcanthuridaeAcanthurus mata Elongate surgeonfishAcanthurus nigricans Whitecheek surgeonfishAcanthurus nigrofuscus Brown surgeonfishAcanthurus sohal Sohal surgeonfishAcanthurus tennentii Doubleband surgeonfishAcanthurus xanthopterus Yellowf
+  ...
+
+30,603 chars | Q7805920 | Timeline of Skanderbeg
+  This timeline lists important events relevant to the life of George Kastrioti Skanderbeg (6 May 1405 – 17 January 1468) widely known as Skanderbeg.1405May 6 – George was born in one of the two villages owned by his grandfather Pal Kastrioti in Debar region (now along the border between Albania and N
+  ...
+
+29,348 chars | Q17098684 | list of new music america performances
+  This is a partial list of performances presented under the umbrella of the New Music America festival held from 1979 to 1990 and a different city each year compiled from Georges Dupuis' personal archives from travel to the 1984 to 1990 festivals during the latter years as a secretary to the New Musi
+  ...
+
+=== FIRST 50 SUSPICIOUS DESCRIPTIONS ===
+
+Q5196650 | Cut Your Hair | 984 chars
+  Flags: LIST/PAGE
+  Cut Your Hair is a song by American rock band Pavement from their second album Crooked Rain Crooked Rain. It was written by Pavement songwriter and lead singer Stephen Malkmus. The song snidely attacks the importance of image in the music industry. In one verse Malkmus sarcastically recites a fictitious ad looking for a musician to join a band: advertising looks and chops a must/ no big hair.The song was released as a single and became the band's best-selling and most popular song. Cut Your Hair
+
+Q17981446 | portal:current events/2013 december 12 | 0 chars
+  Flags: EMPTY
+  
+
+Q25460298 | The Thomas Gribalski Affair (Even Stevens) | 182 chars
+  Flags: LIST/PAGE
+  The following is a list of episodes for the Disney Channel Original Series Even Stevens. The series ran from June 17 2000 to June 2 2003 with 65 episodes produced spanning 3 seasons.
+
+Q154701 | 4808 ballaero | 0 chars
+  Flags: EMPTY
+  
+
+Q6623135 | sh781 | 38 chars
+  Flags: SHORT
+  Route 781 or Highway 781 may refer to:
+
+Q5384577 | List of equipment of the United States Navy | 121 chars
+  Flags: LIST/PAGE
+  The Equipment of the United States Navy have been subdivided into: watercraft aircraft munitions vehicles and small arms.
+
+Q6571683 | Nina Reeves | 458 chars
+  Flags: LIST/PAGE
+  General Hospital is the longest running American television serial drama airing on ABC. Created by Frank and Doris Hursley who originally set it in a general hospital (hence the title) in an unnamed fictional city. In the 1970s the city was named Port Charles New York. The series premiered on April 1 1963. This is a list of notable characters who significantly impacted storylines and began their run or significantly returned from 2010 to the present day.
+
+Q7409735 | sammy davis jr. discography | 254 chars
+  Flags: LIST/PAGE
+  The discography for American jazz singer Sammy Davis Jr.Davis recorded extensively throughout his career and most recordings remain in the catalogs as various reissues. The following is a selected list of albums in chronological order by date of release.
+
+Q6633974 | list of churches in eastbourne | 2,267 chars
+  Flags: LIST/PAGE
+  The borough of Eastbourne one of six local government districts in the English county of East Sussex has around 40 extant churches and other places of worship. Several other former places of worship are still in existence but are no longer in religious use. The borough is on the English Channel coast and encompasses the town of Eastbourne and its suburbs. Until the late 18th century the area was mostly farmland punctuated by four well-spread hamlets; but a fashionable seaside resort gradually de
+
+Q6598062 | 50 states in 50 Days | 108 chars
+  Flags: LIST/PAGE
+  This is a list of current and former SportsCenter segments seen since that show debuted on September 7 1979.
+
+Q22981557 | toyota prius+ | 71 chars
+  Flags: LIST/PAGE
+  This is a list of concept vehicles from Toyota for the years 2010–2019.
+
+Q233675 | list of municipalities in naâma | 200 chars
+  Flags: LIST/PAGE
+  Naâma Province (Arabic: ولاية النعامة‎) is a province (wilaya) of Algeria named after its provincial seat the town of Naâma. The region is dominated by a large sabkha. There is an airport in Mécheria.
+
+Q22663172 | August 4 2005 | 0 chars
+  Flags: EMPTY
+  
+
+Q1128321 | constitution party of indiana | 1,419 chars
+  Flags: LIST/PAGE
+  The Constitution Party previously known as the U.S. Taxpayers' Party is a national political party in the United States. The idea that the principles and intents of the U.S. Constitution remain relevant in human relations was the origin of the 1991 founding. Founding members included 2016 presidential candidate Darrell Castle and former acting Office of Economic Opportunity Director Howard Phillips. The party platform is based on originalist interpretations of the Constitution and shaped by prin
+
+Q3255657 | List of Ironside episodes | 280 chars
+  Flags: LIST/PAGE
+  Ironside is a Universal television series that ran on NBC from September 14 1967 to January 16 1975. The series starred Raymond Burr as a paraplegic Chief of Detectives Robert T. Ironside. Ironside consists of a movie-length pilot eight seasons of episodes and a reunion TV-movie.
+
+Q5042732 | Carlos Urrutia (Colombian diplomat) | 0 chars
+  Flags: EMPTY
+  
+
+Q6604541 | yeovil town f.c. internationals | 148 chars
+  Flags: LIST/PAGE
+  This is a list of all full international footballers to play for Yeovil Town. Players who were capped while a Yeovil Town player are marked in bold.
+
+Q359791 | charles jeremy jankel | 677 chars
+  Flags: LIST/PAGE
+  Charles Jeremy Jankel (born 16 April 1952) better known as Chaz Jankel is an English singer songwriter arranger composer multi-instrumentalist and record producer.In a music career spanning more than 40 years Jankel came to prominence in the late 1970s as the guitarist and keyboardist of the rock band Ian Dury and the Blockheads. With Dury Jankel co-wrote some of the band's best-known songs including Sex & Drugs & Rock & Roll Hit Me with Your Rhythm Stick and Reasons to be Cheerful Part 3.In add
+
+Q6568403 | captain square | 457 chars
+  Flags: LIST/PAGE
+  This is a list of characters in the British television comedy series Dad's Army. In addition to the seven main characters all members of the Walmington-on-Sea Home Guard platoon the series featured a large cast of recurring characters many of whom began to appear regularly in episodes particularly following the death of James Beck (who played Private Walker). In addition a number of characters appeared in significant roles in a single episode or series.
+
+Q6626362 | List of listed buildings in Olrig Highland | 79 chars
+  Flags: LIST/PAGE
+  This is a list of listed buildings in the parish of Olrig in Highland Scotland.
+
+Q20684340 | list of kentucky wildcats starting quarterbacks | 152 chars
+  Flags: LIST/PAGE
+  This is a year-by-year list of every Kentucky Wildcats football team quarterback and the years they participated on the Kentucky Wildcats football team.
+
+Q5246610 | list of deans of derby | 455 chars
+  Flags: LIST/PAGE
+  The Dean of Derby is the head (primus inter pares – first among equals) and chair of the chapter of canons the ruling body of Derby Cathedral. The dean and chapter are based at the Cathedral Church of All Saints in Derby. Before 2000 the post was designated as a provost which was then the equivalent of a dean at most English cathedrals. The cathedral is the mother church of the Diocese of Derby of the Church of England and seat of the Bishop of Derby.
+
+Q20886185 | Portal:Current events/2015 August 28 | 0 chars
+  Flags: EMPTY
+  
+
+Q868286 | intel core i3 6100te | 275 chars
+  Flags: LIST/PAGE
+  The following is a list of Intel Core i3 brand microprocessors. These processors are designed with cheap price points while still retaining the power of the Intel Core line. As such they (along with Intel's i5 series) are often found in laptops and low-end desktop computers.
+
+Q4759066 | Andrews Chapel | 0 chars
+  Flags: EMPTY
+  
+
+Q6600240 | list of thor and delta launches (1960–69) | 118 chars
+  Flags: LIST/PAGE
+  Between 1960 and 1969 there were 314 Thor missiles launched of which 272 were successful giving an 86.6% success rate.
+
+Q8063516 | Sayyad Zabiuddin | 806 chars
+  Flags: LIST/PAGE
+  Sayed Zabiuddin Ansari a.k.a. Abu Hamza or Abu Jundal is an Indian militant belonging to Indian Mujahideen and Lashkar-e-Taiba. He is accused of being involved in 2008 Mumbai attacks. Zabiuddin Ansari (Abu Hamza)'s name was listed in the list of 50 most wanted criminals sheltered in Pakistan released by India on 21 May 2011. He served as the handler of the 10 LeT terrorists during 2008 Mumbai attacks.He is a suspect in several cases such as the Kalupur station blast case of 9 February 2006 the A
+
+Q6562989 | list of australian television series premieres in 2011 | 212 chars
+  Flags: LIST/PAGE
+  This is a list of Australian television programs which first aired in 2011. The list is arranged chronological order. Where more than one program debuted on the same date those programs are listed alphabetically.
+
+Q6602937 | List of United States tornadoes in January 2012 | 2,416 chars
+  Flags: LIST/PAGE
+  In January and February 2012 the local weather forecast offices of the National Weather Service confirmed 134 tornadoes in the United States indicating an above-average period of tornadic activity. On average 64 tornadoes occur in the first two months of the year with 35 occurring in January and 29 in February. However in 2012 the count for the two months was 79 and 55 respectively. The first confirmed tornado in January (and 2012) was an EF0 tornado which struck Fort Bend County in Texas at 144
+
+Q2782615 | benzodiazapine table | 2,486 chars
+  Flags: LIST/PAGE
+  The below tables contain a sample list of benzodiazepines and benzodiazepine analogs that are commonly prescribed with their basic pharmacological characteristics such as half-life and equivalent doses to other benzodiazepines also listed along with their trade names and primary uses. The elimination half-life is how long it takes for half of the drug to be eliminated by the body. Time to peak refers to when maximum levels of the drug in the blood occur after a given dose. Benzodiazepines genera
+
+Q6605499 | list of aviation services in the okanagan | 1,916 chars
+  Flags: LIST/PAGE
+  The Okanagan is a region located in the British Columbia Interior of Canada that contains five airports six heliports and two water aerodromes. Of the five cities based in the Okanagan three of them contain aviation services. Vernon contains two: the Vernon Regional Airport and Vernon/Wildlife Water Aerodrome while Kelowna provides the same number: the Kelowna International Airport and Kelowna (General Hospital) Heliport. The Penticton Regional Airport and Penticton Water Aerodrome are situated 
+
+Q6608793 | list of canyons and gorges in utah | 151 chars
+  Flags: LIST/PAGE
+  This is a partial list of canyons in the U.S. state of Utah along with any rivers roads and other features (such as rail lines) that pass through them.
+
+Q6837504 | michigan compiled laws | 0 chars
+  Flags: EMPTY
+  
+
+Q1841211 | Cantons of the Haute-Marne departement | 162 chars
+  Flags: LIST/PAGE
+  The following is a list of the 17 cantons of the Haute-Marne department in France following the French canton reorganisation which came into effect in March 2015:
+
+Q5325837 | Earl D. Ehrhart | 6,008 chars
+  Flags: WIKI_ARTIFACT
+  Earl Day Ehrhart (born August 8 1959) is an American politician from the U.S. state of Georgia. As of 2007 he is a Republican member of the Georgia House of Representatives representing District 36 which encompasses parts of western Cobb County.Born in Miami Florida Ehrhart has lived in Cobb since 1964 and resides in Powder Springs. He graduated from the University of Georgia with a Bachelor of Arts in political science in 1980. While there he was a member of Pi Sigma Alpha the national politica
+
+Q6623961 | List of language names | 133 chars
+  Flags: LIST/PAGE
+  This article is a resource of how to say the native name of most of the major languages in the world. These are endonymic glossonyms.
+
+Q6575811 | list of katie and orbie episodes | 494 chars
+  Flags: LIST/PAGE
+  This is an episode list for the animated series Katie and Orbie. A total of 78 half-hour episodes (234 stories) were produced. The series premiered in 1994. The first 39 episodes were made by Lacewood Productions until 1996. From 2001-2002 another 39 episodes were made by Amberwood Entertainment. Each half-hour episode consists of 3 7-minute different stories. The episodes' original Canadian air dates are currently unknown but their US airings on PBS for the first three seasons are listed.
+
+Q2085580 | list of ×××holic episodes | 2,438 chars
+  Flags: LIST/PAGE
+  The anime series xxxHolic and its sequels are based on Clamp's manga series with the same name and were developed by Production I.G. It revolves around Kimihiro Watanuki a high-school student disturbed by his ability to see the supernatural. He meets Yūko Ichihara a powerful witch who owns a wish-granting shop. Watanuki requests to have his ability to see spirits removed and as payment Yūko hires him to work in the shop resulting in his encounter with various supernatural adventures.The first se
+
+Q407579 | R.5/39 | 1,314 chars
+  Flags: LIST/PAGE
+  This is a partial list of the British Air Ministry (AM) specifications for aircraft. A specification stemmed from an Operational Requirement abbreviated OR describing what the aircraft would be used for. This in turn led to the specification itself e.g. a two-engined fighter with 4 machine guns. So for example OR.40 for a heavy bomber led to Specification B.12/36. Aircraft manufacturers would be invited to present design proposals to the Ministry following which prototypes of one or more of the 
+
+Q3091306 | Futurinô | 0 chars
+  Flags: EMPTY
+  
+
+Q2119410 | ruine puxer-loch | 47 chars
+  Flags: SHORT
+  Ruine Puxer-Loch is a castle in Styria Austria.
+
+Q564486 | list of aeromexico destinations | 127 chars
+  Flags: LIST/PAGE
+  Aeroméxico and Aeroméxico Connect which are both commercialized as Aeroméxico serve the following destinations as of July 2019.
+
+Q15979424 | st marys nantwich | 1,190 chars
+  Flags: LIST/PAGE
+  St Mary's Church is in the centre of the market town of Nantwich Cheshire England. The church is recorded in the National Heritage List for England as a designated Grade I listed building. It has been called the Cathedral of South Cheshire and it is considered by some to be one of the finest medieval churches not only in Cheshire but in the whole of England. The architectural writer Raymond Richards described it as one of the great architectural treasures of Cheshire and Alec Clifton-Taylor incl
+
+Q2004986 | Óliver (Björk song) | 537 chars
+  Flags: LIST/PAGE
+  Björk is the only studio album by Icelandic singer Björk Guðmundsdóttir as a child singer released on 18 December 1977 by Fálkinn. In 1976 Björk appeared on Icelandic radio singing I Love to Love through the music school she attended which led her to a record deal and the release with the help of stepfather Sævar of her first solo album in 1977.The album is reputed to be juvenilia work and it is not included in the singer's official solo discography hence the 1993 release Debut is widely conside
+
+Q11722614 | List of people executed in Texas 1982-89 | 284 chars
+  Flags: LIST/PAGE
+  The following is a list of people executed by the U.S. state of Texas between 1982 (when the state resumed executions) to 1989. All of the 33 individuals during this period were convicted of murder and have been executed by lethal injection at the Huntsville Unit in Huntsville Texas.
+
+Q28209821 | Oestradiol ether | 246 chars
+  Flags: LIST/PAGE
+  This is a list of estrogen esters or ester prodrugs of estrogens. It includes esters as well as ethers of steroidal estrogens like estradiol estrone and estriol and of nonsteroidal estrogens like the stilbestrols diethylstilbestrol and hexestrol.
+
+Q27676222 | list of play to the whistle episodes | 864 chars
+  Flags: LIST/PAGE
+  Play to the Whistle is a British comedy panel game television programme which premiered on ITV on 11 April 2015 and is produced by Hungry Bear Media. In each regular episode two teams of three members – one member being a regular captain – compete in sports knowledge rounds and physical games to earn points the team with the most points at the end is declared the winner. The show is presented by Holly Willoughby and the teams are captained by Bradley Walsh and Frank Lampard; the latter is joined
+
+Q6625588 | list of listed buildings in birnie moray | 77 chars
+  Flags: LIST/PAGE
+  This is a list of listed buildings in the parish of Birnie in Moray Scotland.
+
+Q1683648 | lenstra–lenstra–lovász lattice basis reduction algorithm | 1,135 chars
+  Flags: WIKI_ARTIFACT
+  The Lenstra–Lenstra–Lovász (LLL) lattice basis reduction algorithm is a polynomial time lattice reduction algorithm invented by Arjen Lenstra Hendrik Lenstra and László Lovász in 1982. Given a basis B = { b 1 b 2 … b d } {\displaystyle \mathbf {B} =\{\mathbf {b} _{1}\mathbf {b} _{2}\dots \mathbf {b} _{d}\}} with n-dimensional integer coordinates for a lattice L (a discrete subgroup of Rn) with d ≤ n {\displaystyle \ d\leq n} the LLL algorithm calculates an LLL-reduced (short nearly orthogonal) l
+
+Q21624075 | Portal:Communism/Selected picture archive | 0 chars
+  Flags: EMPTY
+  
+
+============================================================
+AUDIT COMPLETE
+============================================================

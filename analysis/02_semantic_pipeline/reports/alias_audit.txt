@@ -1,0 +1,638 @@
+============================================================
+ALIAS COMPOSITION ANALYSIS
+============================================================
+
+=== OVERVIEW ===
+Entities:                    4,813,491
+Total aliases:               19,208,447
+Average aliases/entity:      3.99
+Entities with duplicate aliases: 2,564,019
+Entities with name as alias: 4,782,886
+
+=== ALIAS COUNT DISTRIBUTION ===
+         0: 11,705
+         1: 2,227,367
+       2-5: 1,775,165
+      6-10: 461,013
+     11-25: 273,183
+     26-50: 48,790
+    51-100: 12,933
+   101-500: 3,232
+  501-1000: 85
+     1000+: 18
+
+=== TOP 30 ALIAS OUTLIERS ===
+
+48,762 aliases | Q630961 | Reference desk/Archives/Language/2015 October 29
+  - reference desk/archives/language/2013 december 24
+  - Reference desk/Archives/Entertainment/2009 October 15
+  - Reference desk/Archives/Language/2011 October 17
+  - Reference desk/Archives/Miscellaneous/2012 January 23
+  - Reference desk/Archives/Computing/2011 October 26
+  - Reference desk/Archives/Computing/2011 March 21
+  - Reference desk/Archives/Miscellaneous/2018 February 1
+  - wikiproject articles for creation/help desk/archives/2014 december 8
+  - reference desk/archives/science/2011 october 16
+  - Reference desk/Archives/Miscellaneous/2013 January 16
+  ... 48,752 more
+
+7,065 aliases | Q8222 | 썻
+  - 똦
+  - 믫
+  - ᇔ
+  - 뭒
+  - ᇕ
+  - ᆵ
+  - korean script
+  - 솣
+  - 듌
+  - 뻥
+  ... 7,055 more
+
+6,999 aliases | Q2055062 | help desk/archives/2018 june 20
+  - help desk/archives/2017 november 21
+  - Help desk/Archives/2011 January 22
+  - help desk/archives/2015 may 27
+  - help desk/archives/2014 june 15
+  - help desk/archives/2013 december 18
+  - help desk/archives/2009 march 4
+  - help desk/archives/2017 august 5
+  - Help desk/Archives/2012 November 23
+  - help desk/archives/2009 august 26
+  - help desk/archives/2016 april 16
+  ... 6,989 more
+
+1,797 aliases | Q1767873 | chlaenius rysonotus
+  - Chlaenius ripicola
+  - chlaenius dilatatus
+  - Chlaenius multicolor
+  - Chlaenius erythrocnemis
+  - Chlaenius insularis
+  - chlaenius indutus
+  - Chlaenius ducalis
+  - Chlaenius montanus
+  - chlaenius momboensis
+  - Chlaenius senegalensis
+  ... 1,787 more
+
+1,559 aliases | Q392302 | Matthew 17:11
+  - matthew 10:17
+  - matthew 24:9
+  - matthew 22:11
+  - Matthew 15:5
+  - Matthew 12:48
+  - matthew 13:55
+  - Matthew 16:12
+  - Matthew 25:1
+  - matthew 25:11
+  - Matthew 13:13
+  ... 1,549 more
+
+1,337 aliases | Q3245450 | Manaty
+  - Porigon
+  - koratta
+  - kokuun
+  - miniryu
+  - ワンリキー
+  - Beedrill (Pokémon)
+  - ivysaur (pokemon)
+  - charmeleon (pokémon)
+  - lickitung (pokémon)
+  - Koil (Pokemon)
+  ... 1,327 more
+
+1,314 aliases | Q7427165 | guantanamo captive 66
+  - Anwar Al Nurr
+  - Abdul Rahman Owaid Mohammad al Juaid
+  - Guantanamo captive 245
+  - majid al-joudi
+  - Saleh al-Oshan
+  - Abdul Mohammed
+  - muhammad surur dakhil allah al utaybi
+  - abdullah majeed al-jodi
+  - guantanamo captive 258
+  - slah muhamed salih al zabe
+  ... 1,304 more
+
+1,280 aliases | Q855630 | Ten yoctometers
+  - 1 E -19 m
+  - 1 e -20 m
+  - Zeptometre
+  - 100 Mm
+  - 100 femtometres
+  - 1E-11 m
+  - lengths between 1 e-10 m and 1 e-9 m
+  - one zettametre
+  - 1 e -8 m
+  - 1E-13 m
+  ... 1,270 more
+
+1,253 aliases | Q57055 | rivalgyl
+  - Tempra Chewable Tablets
+  - paldesic
+  - Pedric
+  - Conacetol
+  - aspirin free anacin maximum strength caplets
+  - febro-gesic
+  - Tylenol Children'S Elixir
+  - Dolorstop
+  - Aminofen
+  - paradrops
+  ... 1,243 more
+
+1,221 aliases | Q13223069 | tarassus
+  - Rhacodinella
+  - Polybiocyptera
+  - Parapexopsis
+  - ruiziella
+  - trinitodexia
+  - neomasiphya
+  - protonotodytes
+  - oxymedoria
+  - Neomyostoma
+  - Telothyria
+  ... 1,211 more
+
+1,181 aliases | Q2365866 | Demon King Dabura
+  - chiaotzu
+  - Veggetto
+  - coola (dragon ball)
+  - List of monsters in Dragon Ball
+  - Oceanus Shenron
+  - list of dragons in dragon ball
+  - master pogi
+  - baba (dragon ball)
+  - ox-king(dragon ball z)
+  - pilaf (dragonball)
+  ... 1,171 more
+
+1,144 aliases | Q459938 | the counterattacking raiga (naruto episode)
+  - Bushy Brow's Jutsu: Sasuke Style
+  - Negotiation breakdown (Naruto episode)
+  - Stop being a ninja! Tsunade's notice (Naruto episode)
+  - list of naruto! episodes
+  - itachi and sasuke the far away existence (naruto episode)
+  - despair the torn heart
+  - Dig here woof woof! Search for buried treasure
+  - eat or be eaten: panic in the forest
+  - sharingan vs sharingan!
+  - The Scroll's Secret: No Peeking Allowed (Naruto episode)
+  ... 1,134 more
+
+1,132 aliases | Q27949002 | ranch road 12
+  - fm 96 (tx)
+  - Texas Farm to Market Road 99
+  - Ranch Road 12
+  - farm to market road 69
+  - farm to market road 39
+  - Farm to Market Road 40
+  - FM 97 (TX)
+  - fm 71
+  - Texas Farm to Market Road 40
+  - farm to market road 7 (texas)
+  ... 1,122 more
+
+1,089 aliases | Q5423517 | Gringauz (crater)
+  - Bluff (Martian crater)
+  - batoka (martian crater)
+  - Butte (crater)
+  - Gander (Martian crater)
+  - Cartago (crater)
+  - espino (crater)
+  - chauk (martian crater)
+  - Calahorra (Martian crater)
+  - chefu (crater)
+  - Byala (crater)
+  ... 1,079 more
+
+1,073 aliases | Q6614541 | rong (crater)
+  - zuni (martian crater)
+  - tomari (crater)
+  - Palana (Martian crater)
+  - Voo (crater)
+  - tile (martian crater)
+  - Rimac (Martian crater)
+  - Voeykov (crater)
+  - wassamu (crater)
+  - Santaca (Martian crater)
+  - Peta (crater)
+  ... 1,063 more
+
+1,053 aliases | Q2491447 | Fjare
+  - Villåttinge
+  - naes
+  - rönneberg hundred
+  - joenaker hundred
+  - kålland
+  - Inland Fräkne Hundred
+  - Torna Hundred
+  - Mockleby
+  - rönö hundred
+  - viste hundred
+  ... 1,043 more
+
+1,035 aliases | Q3245451 | Shieldon
+  - lisyan
+  - Cherubi (Pokémon)
+  - List of Pokémon (421–440)
+  - Mojumbo
+  - ambipom (pokémon)
+  - zugaidos
+  - Skunp
+  - Dosydon
+  - Bronzor
+  - mirakuge
+  ... 1,025 more
+
+1,021 aliases | Q6560317 | amd a6-4400m
+  - amd a6 6400k
+  - AMD A10 7300
+  - AMD A4 6320
+  - FX 9800P
+  - a6 3430mx
+  - A6 3400M
+  - A8-5600K
+  - List of amd apu processors
+  - amd a8-6500t
+  - amd a4 3305m
+  ... 1,011 more
+
+991 aliases | Q7574735 | kosaburō shinichi
+  - Katuhiro Tukioka
+  - hiko seijuuroo
+  - Su-shin
+  - su shin
+  - Sanjou Tsubame
+  - sekihara taé
+  - Sadojima Hôji
+  - chô sawagejô
+  - Ei'ichiro Mishima
+  - Kuziranami Hyôgo
+  ... 981 more
+
+985 aliases | Q6614530 | kampot (martian crater)
+  - Kāid (Martian crater)
+  - Leighton (Martian crater)
+  - nain (crater)
+  - Littleton (crater)
+  - Johannesburg (crater)
+  - madrid (crater)
+  - Nune (Martian crater)
+  - moss (martian crater)
+  - Kamativi (crater)
+  - manah (crater)
+  ... 975 more
+
+982 aliases | Q6598744 | Maralyn Mad Dog hershey
+  - nick brown (survivor contestant)
+  - Baylor Wilson
+  - Lisi Linares
+  - Joel Klug
+  - Stacey stillman
+  - melinda hyder
+  - Dirk Been
+  - Jaclyn Schultz
+  - Lindsey richter
+  - Lex van Den berghe
+  ... 972 more
+
+966 aliases | Q3245454 | Gorebyss
+  - Spheal (Pokémon)
+  - wailord
+  - mightyena (pokémon)
+  - Guraadon
+  - list of generation III Pokémon
+  - list of pokemon (361-380)
+  - kaiorca
+  - todogura
+  - Cradily (Pokémon)
+  - list of pokemon (281-300)
+  ... 956 more
+
+963 aliases | Q6644203 | Foklása language
+  - guasaroca language
+  - bamu (singer)
+  - cajatambo language
+  - Qurigma language
+  - Orí language
+  - Unclassified language of South America
+  - chincha language
+  - Yamesi language
+  - macuja language
+  - Isolados do Tanarú language
+  ... 953 more
+
+937 aliases | Q6608454 | london buses route 483
+  - london bus route r70
+  - london buses route 440
+  - London Buses route 371
+  - London Buses route 440
+  - London Buses route E10
+  - London Buses route E11
+  - London Buses route W12
+  - london buses route 685
+  - London Buses route 359
+  - london buses route 399
+  ... 927 more
+
+908 aliases | Q4689122 | Guantanamo captive 834
+  - khiali gul
+  - Asad Ullah (child detainee)
+  - isn 949
+  - isn 1165
+  - ISN 972
+  - Mahbub Rahman
+  - Nahir Shah
+  - mohammad nasim (guantánamo detainee 958)
+  - Guantanamo captive 460
+  - Guantanamo captive 644
+  ... 898 more
+
+905 aliases | Q2712858 | Jokim
+  - Ahiezer (biblical figure)
+  - jaareshiah
+  - Izri
+  - Jeuel
+  - Ephlal
+  - list of minor biblical figures
+  - adna (biblical figure)
+  - Ispah
+  - gaddi (bible)
+  - elmodam
+  ... 895 more
+
+896 aliases | Q193884 | Digimon card game
+  - jumbogamemon
+  - truiemon
+  - yukidarumon
+  - Monochromon
+  - Digimans
+  - PetitMamon
+  - Maildramon
+  - Torikaraballmon
+  - tsukaimon
+  - volcamon
+  ... 886 more
+
+888 aliases | Q407579 | R.5/39
+  - f.5/34
+  - specification 2/46
+  - Air Ministry Specification C.26/43
+  - f.10/41
+  - F.37/34
+  - Specification 13/29
+  - G.7/34
+  - Air Ministry specification P.27/32
+  - t.7/45
+  - specification 24/34
+  ... 878 more
+
+888 aliases | Q760000 | Erase in Line (ANSI)
+  - Save Cursor Position (ANSI)
+  - end of selected area (ansi)
+  - Cancel Previous Character (ANSI)
+  - ANSI Preceding Page
+  - private use 1 (ansi)
+  - ANSI Cursor Tab Control
+  - ANSI SGR
+  - ANSI Restore Cursor Position
+  - ANSI PU2
+  - cursor preceding line (ansi)
+  ... 878 more
+
+873 aliases | Q6730287 | Operation Swashbuckle
+  - Operation Lightning Blitz
+  - Operation Tangerine Squeeze
+  - Operation Eagle Dive I
+  - Operation Powder River
+  - operation saber turner ii
+  - Operation Diyala Border Police Audit
+  - operation pitchfork
+  - Operation Rock Slide
+  - operation falcon sweep
+  - operation dragon fox
+  ... 863 more
+
+=== SUSPICIOUS ALIAS EXAMPLES ===
+
+Q8222 | 썻 | 7,065 aliases
+  - PUNCTUATION: ㄰
+  - PUNCTUATION: ㆏
+
+Q2055062 | help desk/archives/2018 june 20 | 6,999 aliases
+  - PUNCTUATION: 🛈
+
+Q760000 | Erase in Line (ANSI) | 888 aliases
+  - PUNCTUATION: 
+
+Q2479183 | ᔏ | 665 aliases
+  - PUNCTUATION: ᙮
+  - PUNCTUATION: ᐀
+  - PUNCTUATION: ᙭
+
+Q198614 | MOS:QUOTATIONMARKS | 533 aliases
+  - PUNCTUATION: \
+  - PUNCTUATION: !--
+
+Q400857 | %dircmd% | 432 aliases
+  - PUNCTUATION: %/%
+
+Q174565 | ascii 40 | 394 aliases
+  - PUNCTUATION: ⟨
+  - PUNCTUATION: ⎹
+  - PUNCTUATION: ⟪
+  - PUNCTUATION: ⦗
+  - PUNCTUATION: 〕
+
+Q257634 | ፮ | 358 aliases
+  - PUNCTUATION: ፠
+  - PUNCTUATION: ፨
+  - PUNCTUATION: ፥
+  - PUNCTUATION: ፤
+  - PUNCTUATION: ፡
+
+Q523078 | ꘔ | 313 aliases
+  - PUNCTUATION: ꘏
+  - PUNCTUATION: ꘍
+  - PUNCTUATION: ꘎
+
+Q718147 | sgci (control code) | 276 aliases
+  - PUNCTUATION: 
+  - PUNCTUATION: ␓
+  - PUNCTUATION: ^\
+  - PUNCTUATION: ␔
+  - PUNCTUATION: ␑
+
+Q30 | united stated | 274 aliases
+  - PUNCTUATION: 🇺🇸
+
+Q1337 | nrop | 253 aliases
+  - PUNCTUATION: /\/\
+  - PUNCTUATION: \/\/
+  - PUNCTUATION: @$$
+
+Q2493845 | 𝂰 | 243 aliases
+  - PUNCTUATION: 𝀠
+  - PUNCTUATION: 𝃬
+  - PUNCTUATION: 𝁧
+  - PUNCTUATION: 𝀆
+  - PUNCTUATION: 𝂧
+
+Q3235424 | ䷯ | 226 aliases
+  - PUNCTUATION: ䷶
+  - PUNCTUATION: ䷔
+  - PUNCTUATION: ䷮
+  - PUNCTUATION: ䷵
+  - PUNCTUATION: ䷉
+
+Q2134 | lulz | 214 aliases
+  - PUNCTUATION: 🤣
+
+Q46861 | ࿎ | 204 aliases
+  - PUNCTUATION: ༹
+  - PUNCTUATION: ྺ
+  - PUNCTUATION: ྪ
+  - PUNCTUATION: ༿
+  - PUNCTUATION: ེ
+
+Q1139519 | ↗ | 201 aliases
+  - PUNCTUATION: 🡸
+  - PUNCTUATION: ↤
+  - PUNCTUATION: ⇃
+  - PUNCTUATION: ⇾
+  - PUNCTUATION: ➥
+
+Q5293 | Micro-Floppy | 181 aliases
+  - PUNCTUATION: 🖪
+  - PUNCTUATION: 🖫
+  - PUNCTUATION: 🖬
+  - PUNCTUATION: 💾
+
+Q8043 | ❠ | 177 aliases
+  - PUNCTUATION: ' '
+  - PUNCTUATION: \
+  - PUNCTUATION: ｣
+  - PUNCTUATION: 🙸
+  - PUNCTUATION: 「
+
+Q3884 | Amazon Inc. | 176 aliases
+  - PUNCTUATION: .
+
+Q5316025 | 𛲆 | 175 aliases
+  - PUNCTUATION: 𛲟
+  - PUNCTUATION: 𛲜
+  - PUNCTUATION: 𛲝
+  - PUNCTUATION: 𛲞
+
+Q865 | tâi-oân | 172 aliases
+  - PUNCTUATION: 🇹🇼
+
+Q106631 | Rock Paper Scissors (drinking game) | 171 aliases
+  - PUNCTUATION: ✊✋✌
+  - PUNCTUATION: ✊ ✋ ✌
+  - PUNCTUATION: ✊-✋-✌
+  - PUNCTUATION: ✊ ✋ ✌
+
+Q220656 | Right side of the road | 170 aliases
+  - PUNCTUATION: ⛕
+
+Q148 | prc (china) | 170 aliases
+  - PUNCTUATION: 🇨🇳
+
+Q215292 | domestic ac power plugs & sockets | 167 aliases
+  - PUNCTUATION: 🔌
+
+Q216530 | Litter receptacle | 163 aliases
+  - PUNCTUATION: 🗑
+
+Q843 | Pakistani nation-state | 161 aliases
+  - PUNCTUATION: 🇵🇰
+
+Q4439 | external hard disk drive | 160 aliases
+  - PUNCTUATION: 🖴
+
+Q974 | République démocratique du Congo | 159 aliases
+  - PUNCTUATION: 🇨🇩
+
+Q134768 | Serbian Guerilla Fighter (drink) | 158 aliases
+  - PUNCTUATION: 🍹
+
+Q813 | kyrgysztan | 158 aliases
+  - PUNCTUATION: 🇰🇬
+
+Q145 | royaume-uni | 158 aliases
+  - PUNCTUATION: 🇬🇧
+
+Q8646 | Hong Kong Special Administrative Region | 157 aliases
+  - PUNCTUATION: 🇭🇰
+
+Q9687 | car accidents | 155 aliases
+  - PUNCTUATION: ⛌
+
+Q221 | fyro macedonia | 151 aliases
+  - PUNCTUATION: 🇲🇰
+
+Q11352 | complementary angle | 146 aliases
+  - PUNCTUATION: ⦟
+  - PUNCTUATION: ⦫
+  - PUNCTUATION: ⦮
+  - PUNCTUATION: ∢
+  - PUNCTUATION: ⦩
+
+Q423 | Korea (DPRK) | 144 aliases
+  - PUNCTUATION: 🇰🇵
+
+Q321083 | ⳙ | 143 aliases
+  - PUNCTUATION: ⳻
+  - PUNCTUATION: ⳿
+  - PUNCTUATION: ⳹
+  - PUNCTUATION: ⳺
+  - PUNCTUATION: ⳱
+
+Q181508 | Alien life form | 143 aliases
+  - PUNCTUATION: 👽
+
+Q31963 | 8-( | 143 aliases
+  - PUNCTUATION: ;)
+  - PUNCTUATION: ):
+  - PUNCTUATION: );
+  - PUNCTUATION: ^-^
+  - PUNCTUATION: ~.~
+
+Q25362 | Saint-Barthelemy (French West Indies) | 137 aliases
+  - PUNCTUATION: 🇧🇱
+
+Q127076 | Emetic | 133 aliases
+  - PUNCTUATION: 🤮
+
+Q227 | azerbajani | 133 aliases
+  - PUNCTUATION: 🇦🇿
+
+Q1488974 | ᵓ | 131 aliases
+  - PUNCTUATION: ⁽
+  - PUNCTUATION: ⁾
+  - PUNCTUATION: ₍
+  - PUNCTUATION: ₋
+  - PUNCTUATION: ₌
+
+Q14773 | ou3 mun4 | 130 aliases
+  - PUNCTUATION: 🇲🇴
+
+Q7987 | Sichtgerät SIG 100 | 129 aliases
+  - PUNCTUATION: 🖱
+  - PUNCTUATION: 🖯
+  - PUNCTUATION: 🖰
+
+Q7889 | Leisure software | 128 aliases
+  - PUNCTUATION: 🎮
+
+Q17517 | Hand Phone | 127 aliases
+  - PUNCTUATION: 📲
+  - PUNCTUATION: 📱
+
+Q1183 | puertorriquena | 126 aliases
+  - PUNCTUATION: 🇵🇷
+
+============================================================
+ANALYSIS COMPLETE
+============================================================

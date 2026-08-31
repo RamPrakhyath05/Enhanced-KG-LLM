@@ -1,0 +1,238 @@
+FULL KNOWLEDGE GRAPH SANITY CHECK
+======================================================================
+This is a final structural and semantic-quality audit of the cleaned KG.
+
+Inputs:
+  Entities:  dataset/semantic/cleaned/entities_final_clean.csv
+  Relations: dataset/cleaned/relations.csv
+  Triples:   dataset/semantic/cleaned/triples_final.csv
+
+======================================================================
+ENTITY AUDIT
+======================================================================
+Total entities:                  4,813,491
+Unique Entity_IDs:               4,813,491
+Duplicate Entity_ID rows:        0
+Blank Entity_IDs:                0
+Malformed Entity_IDs:             0
+Blank Entity_Names:               0
+Unique normalized names:          4,810,822
+Names occurring >1 time:          2,661
+Duplicate name rows:              2,669
+
+ALIASES
+Entities with no aliases:         2,354,816
+Rows containing duplicate aliases: 0
+Duplicate alias occurrences:      0
+Aliases identical to entity name: 0
+Identifier-like aliases:          101,936
+
+DESCRIPTIONS
+Non-empty descriptions:            4,587,764
+Empty descriptions:                225,727
+Descriptions <=50 chars:           79,952
+Descriptions >10,000 chars:        28
+Navigation/list-like descriptions: 1,481
+Wiki artifacts:                    3,877
+Repetitive descriptions:           2
+Minimum description length:        2
+Maximum description length:        30,819
+Average description length:        474.01
+
+Sample duplicate Entity_IDs
+  None detected.
+
+Sample malformed Entity_IDs
+  None detected.
+
+Sample duplicate entity names
+  None detected.
+
+Sample empty descriptions
+  Q5196650
+  Q17981446
+  Q25460298
+  Q154701
+  Q6623135
+  Q12800734
+  Q6571683
+  Q7409735
+  Q6598062
+  Q22981557
+  Q22663172
+  Q1128321
+  Q6604541
+  Q359791
+  Q6568403
+  Q6626362
+  Q20684340
+  Q20886185
+  Q868286
+  Q4759066
+
+Sample navigation/list descriptions
+  Q1865 | Kuala Lumpur (Malaysian pronunciation: [ˈkualə -a ˈlumpo(r) -ʊ(r)]) officially the Federal Territory of Kuala Lumpur (Malay: Wilayah Persekutuan Kuala Lumpur) and commonly known as
+  Q3242790 | This is a comprehensive index of commercial role-playing video games sorted chronologically by year. Information regarding date of release developer publisher operating system subg
+  Q2116322 | This article serves as an index of major characters in the fictional setting of Robert Jordan's The Wheel of Time series with a description of their main roles or feats in the seri
+  Q7063363 | Notre Dame Academy is an all-girls Catholic high school located in Toledo Ohio. It is within the Roman Catholic Diocese of Toledo and is sponsored by the Sisters of Notre Dame. The
+  Q1256188 | Ping An Insurance known also as Ping An of China (Chinese: 中国平安; pinyin: Zhōngguó Píng Ān) full name Ping An Insurance (Group) Company of China Ltd. is a Chinese holding conglomera
+  Q3123377 | Henry Frederick Fritz Schaefer III (born June 8 1944) is a computational and theoretical chemist. He is one of the most highly cited chemists in the world with a Thomson Reuters H-
+  Q5210913 | Daliah Wachs is an American radio personality host of the Doctor Daliah show. Wachs is a board certified family physician who started a radio show to allow callers to receive free 
+  Q1367365 | Atmospheric optics is the study of the optical characteristics of the atmosphere or products of atmospheric processes .... [including] temporal and spatial resolutions beyond those
+  Q7728683 | The Nation Publishing Co. Limited is the publisher of the Nation Newspaper which is the dominant daily newspaper in the country of Barbados. First established in 1973 the Daily Nat
+  Q8062 | The economy of the Republic of Ireland is a knowledge economy focused on services into high-tech life sciences and financial services industries. Ireland is an open economy (6th on
+  Q618236 | The Onion is an American satirical digital media company and newspaper organization that publishes articles on international national and local news. Based in Chicago the company o
+  Q162 | An optical fiber is a flexible transparent fiber made by drawing glass (silica) or plastic to a diameter slightly thicker than that of a human hair. Optical fibers are used most of
+  Q4668339 | Aboriginal History is an annual peer-reviewed academic journal published as an open access journal by Aboriginal History Inc. It was established in 1977 (co-founded and edited by D
+  Q3896905 | This is an index of Welsh peers and baronets whose primary peerage life peerage and baronetcy titles include a Welsh place-name origin or its territorial qualification is within th
+  Q7158658 | This is the Index of Advanced Dungeons & Dragons 1st edition monsters an important element of that role-playing game. This list only includes monsters from official Advanced Dungeo
+  Q493078 | The World's Billionaires is an annual ranking by documented net worth of the wealthiest billionaires in the world compiled and published in March annually by the American business 
+  Q895360 | The Bovespa Index (Portuguese: Índice Bovespa) best known as Ibovespa is the benchmark index of about 60 stocks that are traded on the B3 (Brasil Bolsa Balcão).
+  Q7295145 | Rasmussen Reports is an American polling company founded in 2003. The company engages in the collection publication and distribution of public opinion polling information. Rasmusse
+  Q5276237 | Digitcom Canada Inc. is a Canadian business phone systems and data networks distributor. Primarily serving the greater Toronto Montreal and Southern Ontario small and midsize enter
+  Q184 | Belarus (; Belarusian: Беларусь IPA: [bʲɛlaˈrusʲ]) officially the Republic of Belarus (Belarusian: Рэспубліка Беларусь Russian: Республика Беларусь) formerly known by its Russian n
+
+Sample wiki artifacts
+  Q1790102 | Krugle is a search engine that allows computer programmers and other developers to search Open Source repositories to locate open source code and quickly share the code with other 
+  Q1564106 | Mörsenbroich is an urban borough of Düsseldorf. It borders on Unterrath Rath Derendorf Grafenberg and Düsselthal.Mörsenbroich has about 14000 inhabitants. In the region around Düss
+  Q14942924 | Wikipedia project
+  Q21830302 | Wikipedia project
+  Q21829763 | Wikipedia project about Cincinnati.
+  Q1002238 | Criticism of Wikipedia has been directed at its content its procedures the character and practices of the Wikipedia community and its nature as an open-source encyclopedia that any
+  Q21830673 | A Wikipedia project.
+  Q881495 | Wittlaer is an urban borough of Düsseldorf. It borders Stockum Kalkum Angermund and the city of Duisburg. It is close to Düsseldorf Airport. Wittlaer has the lowest point in Düssel
+  Q17033198 | This article lists songs about Puerto Rico set there or named after a location or feature of the island.Because Wikipedia is in written rather than audio format the lyrics and musi
+  Q6312865 | Wikipedia article about selected anniversaries on August 22
+  Q97932 | This article has been translated from the German Wikipedia article.August Stauch (* January 15 1878 in Ettenhausen † May 6 1947 in Eisenach) is considered the discoverer of the dia
+  Q14597171 | John Springer Walmsley Jr. (7 January 1920 – 14 September 1951) was a bomber pilot in the United States Army Air Forces after World War II and the United States Air Force during th
+  Q6368271 | Wikipedia feature
+  Q409202 | In inorganic chemistry bicarbonate (IUPAC-recommended nomenclature: hydrogencarbonate) is an intermediate form in the deprotonation of carbonic acid. It is a polyatomic anion with 
+  Q15884794 | Wikipedia project
+  Q11913 | The Bulgarian Wikipedia (Bulgarian: Българоезичната Уикипедия) is the Bulgarian-language edition of Wikipedia. It is written in Bulgarian (Cyrillic) Alphabet. As of 30 July 2019 it
+  Q1922230 | Villaescusa is a Spanish municipality in the province of Zamora Castile and León. It has a population of 352 (2004) and an area of 4312 km² .This article contains information from 
+  Q15298853 | Wikipedia project for role-playing games
+  Q21830762 | Wikipedia project for Scottish Gaelic
+  Q857180 | This is an incomplete alphabetical list by surname of notable economists experts in the social science of economics past and present. For a history of economics see the article His
+
+Sample repetitive descriptions
+  Q6627809 | Dx - DiagnosisSx - SymptomsFx - FractureTx - TreatmentHx - History
+  Q5102947 | Chlorine acid can refer to:Hydrochloric acid HClHypochlorous acid HClOChlorous acid HClO2Chloric acid HClO3Perchloric acid HClO4
+
+Sample identifier-like aliases
+  Q1138408 | AER
+  Q20937 | KR-41
+  Q6623135 | SH-781
+  Q6623135 | sr781
+  Q6623135 | SR-781
+  Q1184780 | dl191
+  Q1507550 | T18E2
+  Q3344199 | PSNH
+  Q3344199 | WMECO
+  Q16986212 | VA-56
+  Q16986212 | va56
+  Q630961 | RDTK
+  Q630961 | REFD
+  Q630961 | RDMISC
+  Q630961 | REFERENCEDESK
+  Q630961 | REFDESK
+  Q64138 | NET
+  Q6782285 | zion2000
+  Q1543343 | IEC7942
+  Q1543343 | ISO7942
+
+======================================================================
+RELATION AUDIT
+======================================================================
+Total relations:                 825
+Unique relation IDs:             825
+Duplicate relation ID rows:      0
+Blank relation IDs:              0
+Malformed relation IDs:          0
+Blank relation names:             0
+Names occurring >1 time:         0
+Duplicate relation name rows:    0
+
+======================================================================
+TRIPLE AUDIT
+======================================================================
+Total triples:                  20,598,520
+Unique triples:                 20,598,520
+Duplicate triples:              0
+Self-loops:                     0
+Malformed triples:              0
+Invalid ID-format triples:      0
+Missing entity references:      0
+Missing relation references:    0
+
+GRAPH COVERAGE
+Entities referenced by triples: 4,589,269
+Isolated entities:              224,222
+Relations used:                 816
+Unused relations:               9
+
+DEGREE STATISTICS
+Minimum degree:                 1
+Maximum degree:                 1,517,998
+Average degree:                 8.98
+
+TOP RELATIONS BY USAGE
+  P31: 3,835,581
+  P17: 1,372,951
+  P27: 1,145,560
+  P106: 1,100,324
+  P54: 919,269
+  P131: 918,191
+  P19: 855,458
+  P735: 837,698
+  P161: 513,750
+  P641: 485,287
+  P69: 439,643
+  P47: 429,752
+  P421: 404,532
+  P105: 374,150
+  P136: 369,893
+  P171: 348,579
+  P20: 278,946
+  P495: 260,464
+  P1412: 238,575
+  P1344: 222,577
+
+Sample duplicate triples
+  None detected.
+
+Sample self-loops
+  None detected.
+
+Sample missing entity references
+  None detected.
+
+Sample missing relation references
+  None detected.
+
+Sample malformed triples
+  None detected.
+
+======================================================================
+FINAL SANITY CHECK
+======================================================================
+STRUCTURAL FAILURES
+  None.
+
+NON-BLOCKING WARNINGS
+  WARN: Duplicate entity names exist: 2,669 rows
+  WARN: Entities still without descriptions: 225,727
+  WARN: Navigation/list-like descriptions remain: 1,481
+  WARN: Possible wiki artifacts remain: 3,877
+  WARN: Possible repetitive descriptions remain: 2
+  WARN: Unused relations: 9
+  WARN: Isolated entities: 224,222
+
+FINAL RESULT
+  PASS WITH WARNINGS
+
+The graph is structurally valid. Remaining warnings are data-quality observations rather than broken references or malformed graph structure.
+
+DATASET FILES AUDITED
+  Entities:  dataset/semantic/cleaned/entities_final_clean.csv
+  Relations: dataset/cleaned/relations.csv
+  Triples:   dataset/semantic/cleaned/triples_final.csv

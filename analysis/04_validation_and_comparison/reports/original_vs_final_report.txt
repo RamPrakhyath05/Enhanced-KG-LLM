@@ -1,0 +1,116 @@
+ORIGINAL VS FINAL DATASET COMPARISON
+======================================================================
+Original:
+  Entities:  dataset/entities.csv
+  Relations: dataset/relations.csv
+  Triples:   dataset/triples.csv
+
+Final:
+  Entities:  dataset/final/entities.csv
+  Relations: dataset/final/relations.csv
+  Triples:   dataset/final/triples.csv
+
+======================================================================
+ENTITY COMPARISON
+======================================================================
+Original entity rows:              4,813,491
+Final entity rows:                 4,813,491
+Entity rows added:                 0
+Entity rows removed:               0
+Common Entity_IDs:                 4,813,491
+Duplicate IDs - original:          0
+Duplicate IDs - final:             0
+Names changed:                     0
+Aliases changed:                   4,800,419
+Descriptions added:                62,830
+Descriptions removed:              159,206
+Descriptions changed:              0
+Descriptions unchanged:            4,524,934
+Original empty descriptions:       129,351
+Final empty descriptions:          225,727
+Original non-empty descriptions:   4,684,140
+Final non-empty descriptions:      4,587,764
+
+DESCRIPTION COVERAGE
+Original coverage:                 97.31%
+Final coverage:                    95.31%
+Coverage change:                   -2.00 percentage points
+
+======================================================================
+RELATION COMPARISON
+======================================================================
+Original relation rows:            825
+Final relation rows:               825
+Relation rows added:               0
+Relation rows removed:             0
+Common Relation_IDs:               825
+Relation names changed:            0
+Duplicate IDs - original:          0
+Duplicate IDs - final:             0
+Duplicate names - original:        0
+Duplicate names - final:           0
+
+======================================================================
+TRIPLE COMPARISON
+======================================================================
+Original triple rows:               20,614,279
+Final triple rows:                  20,598,520
+Original unique triples:            20,614,279
+Final unique triples:               20,598,520
+Triples added:                      0
+Triples removed:                    15,759
+Triples preserved:                  20,598,520
+Duplicate triples - original:       0
+Duplicate triples - final:          0
+Self-loops - original:              758
+Self-loops - final:                 0
+Malformed triples - original:       0
+Malformed triples - final:          0
+
+TRIPLE PRESERVATION
+Original triples preserved:         99.9236%
+Final triples originating from old: 100.0000%
+
+======================================================================
+CROSS-FILE CONSISTENCY
+======================================================================
+Entities referenced by triples:    4,589,269
+Isolated entities:                  224,222
+Relations used by triples:          816
+Unused relations:                   9
+Missing entity references:          0
+Missing relation references:        0
+
+======================================================================
+FINAL ORIGINAL VS FINAL SUMMARY
+======================================================================
+
+ENTITY CHANGES
+  Added:                         0
+  Removed:                       0
+  Names changed:                 0
+  Aliases changed:               4,800,419
+  Descriptions added:            62,830
+  Descriptions removed:          159,206
+  Descriptions changed:          0
+
+RELATION CHANGES
+  Added:                         0
+  Removed:                       0
+  Names changed:                 0
+
+TRIPLE CHANGES
+  Added:                         0
+  Removed:                       15,759
+  Preserved:                     20,598,520
+
+CROSS-FILE INTEGRITY
+  Missing entity refs:           0
+  Missing relation refs:         0
+  Isolated entities:             224,222
+  Unused relations:              9
+
+FINAL COMPARISON STATUS
+  PASS
+  No unexpected entity/relation additions or removals.
+  All triple references remain valid.

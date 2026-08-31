@@ -1,0 +1,43 @@
+WIKIDATA5M DATASET CLEANING REPORT
+============================================================
+
+INPUT
+------------------------------------------------------------
+Entities:        4,813,491
+Relations:       825
+Triples:         20,614,279
+
+CLEANING RULES
+------------------------------------------------------------
+1. Remove triples with a missing source entity.
+2. Remove triples with a missing target entity.
+3. Remove triples with a missing relation.
+4. Preserve self-loops.
+
+MISSING ENTITY REFERENCES
+------------------------------------------------------------
+Missing source references:       13,529
+Missing target references:       650
+Both endpoints missing:          56
+
+MISSING RELATION REFERENCES
+------------------------------------------------------------
+Missing relation references:     878
+
+SELF-LOOPS
+------------------------------------------------------------
+Self-loops preserved:            758
+
+RESULT
+------------------------------------------------------------
+Original triples:                20,614,279
+Cleaned triples:                 20,599,278
+Removed triples:                 15,001
+
+Removal percentage:              0.072770%
+
+OUTPUT
+------------------------------------------------------------
+dataset/cleaned/entities.csv
+dataset/cleaned/relations.csv
+dataset/cleaned/triples.csv
