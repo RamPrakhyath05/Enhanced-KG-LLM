@@ -1,10 +1,3 @@
-"""T10-inspired path scoring constrained to retrieved KG partitions.
-
-This module is intentionally additive. It receives the entity IDs selected by
-the existing partition retriever and never changes partitioning or retrieval
-artifacts. It returns complete, scored evidence paths rather than bare nodes.
-"""
-
 from __future__ import annotations
 
 import math
@@ -82,12 +75,15 @@ class PathScoringConfig:
     relation_weight: float = 0.20
     relation_novelty_weight: float = 0.10
     hop_penalty: float = 0.05
+    filter_mode: str = "auto"  # "auto", "partition_id", or "entity_id"
 
     def __post_init__(self) -> None:
         if self.max_hops < 1 or self.beam_width < 1 or self.max_paths < 1 or self.max_neighbors_per_node < 1:
             raise ValueError("Traversal bounds must be positive.")
         if min(self.dense_weight, self.lexical_weight, self.relation_weight, self.relation_novelty_weight, self.hop_penalty) < 0:
             raise ValueError("Traversal weights must be non-negative.")
+        if self.filter_mode not in ("auto", "partition_id", "entity_id"):
+            raise ValueError(f"Invalid filter_mode '{self.filter_mode}'. Must be 'auto', 'partition_id', or 'entity_id'.")
 
 
 class PathScoringTraverser:
@@ -120,16 +116,18 @@ class PathScoringTraverser:
         self,
         query: str,
         seed_entity_ids: Iterable[str],
-        allowed_entity_ids: Iterable[str],
+        allowed_entity_ids: Iterable[str] | None = None,
+        allowed_partition_ids: Iterable[int] | None = None,
     ) -> TraversalResult:
         seeds = tuple(dict.fromkeys(entity_id for entity_id in seed_entity_ids if entity_id))
-        allowed = frozenset(entity_id for entity_id in allowed_entity_ids if entity_id)
+        allowed_entities = frozenset(entity_id for entity_id in (allowed_entity_ids or []) if entity_id)
+        allowed_partitions = tuple(int(pid) for pid in (allowed_partition_ids or []) if pid is not None)
         if not query.strip():
             raise ValueError("query must not be empty")
         if not seeds:
             raise ValueError("At least one seed entity ID is required")
-        if not allowed:
-            raise ValueError("allowed_entity_ids must contain the retrieved partition scope")
+        if not allowed_entities and not allowed_partitions:
+            raise ValueError("allowed_entity_ids or allowed_partition_ids must be provided")
 
         query_embedding = self._encode([query])[0]
         beam: list[tuple[float, str, tuple[KGEdge, ...], frozenset[str], frozenset[str]]] = [
@@ -140,7 +138,7 @@ class PathScoringTraverser:
 
         for _depth in range(self.config.max_hops):
             frontier = [node for _, node, _, _, _ in beam]
-            neighbors = self._fetch_neighbors(frontier, allowed)
+            neighbors = self._fetch_neighbors(frontier, allowed_entities, allowed_partitions)
             by_source: dict[str, list[KGEdge]] = {}
             for edge in neighbors:
                 by_source.setdefault(edge.source_id, []).append(edge)
@@ -175,21 +173,50 @@ class PathScoringTraverser:
         return TraversalResult(
             query=query,
             seed_entity_ids=seeds,
-            scoped_entity_count=len(allowed),
+            scoped_entity_count=len(allowed_entities) if allowed_entities else len(allowed_partitions),
             paths=tuple(selected),
             edges_examined=examined,
             candidate_answer_ids=answers,
         )
 
-    def _fetch_neighbors(self, source_ids: Sequence[str], allowed: frozenset[str]) -> list[KGEdge]:
+    def _fetch_neighbors(
+        self,
+        source_ids: Sequence[str],
+        allowed: frozenset[str],
+        allowed_partitions: Sequence[int] = (),
+    ) -> list[KGEdge]:
         if not source_ids:
             return []
-        cypher = """
-        UNWIND $source_ids AS source_id
-        CALL {
-            WITH source_id
-            MATCH (source:Entity {Entity_ID: source_id})-[rel:RELATED_TO]->(target:Entity)
-            WHERE target.Entity_ID IN $allowed_entity_ids
+
+        # Determine whether to filter by partition_id property or fallback to Entity_ID
+        if self.config.filter_mode == "partition_id":
+            use_partition_id = bool(allowed_partitions)
+        elif self.config.filter_mode == "entity_id":
+            use_partition_id = False
+        else:  # "auto"
+            use_partition_id = bool(allowed_partitions)
+
+        if use_partition_id:
+            where_clause = "WHERE target.partition_id IN $allowed_partition_ids"
+            params = {
+                "source_ids": list(dict.fromkeys(source_ids)),
+                "allowed_partition_ids": list(allowed_partitions),
+                "per_source_limit": self.config.max_neighbors_per_node,
+            }
+        else:
+            where_clause = "WHERE target.Entity_ID IN $allowed_entity_ids"
+            params = {
+                "source_ids": list(dict.fromkeys(source_ids)),
+                "allowed_entity_ids": list(allowed),
+                "per_source_limit": self.config.max_neighbors_per_node,
+            }
+
+        cypher = f"""
+        UNWIND $source_ids AS sid
+        CALL {{
+            WITH sid
+            MATCH (source:Entity {{Entity_ID: sid}})-[rel:RELATED_TO]->(target:Entity)
+            {where_clause}
             RETURN source.Entity_ID AS source_id,
                    source.Entity_Name AS source_name,
                    rel.Relation_ID AS relation_id,
@@ -199,15 +226,11 @@ class PathScoringTraverser:
                    target.Entity_Description AS target_description
             ORDER BY target.Entity_ID, rel.Relation_ID
             LIMIT $per_source_limit
-        }
+        }}
         RETURN source_id, source_name, relation_id, relation_name,
                target_id, target_name, target_description
         """
-        records = self.client.run_query(cypher, {
-            "source_ids": list(dict.fromkeys(source_ids)),
-            "allowed_entity_ids": list(allowed),
-            "per_source_limit": self.config.max_neighbors_per_node,
-        })
+        records = self.client.run_query(cypher, params)
         return [
             KGEdge(
                 source_id=str(row["source_id"]),

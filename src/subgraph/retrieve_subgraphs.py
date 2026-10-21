@@ -9,9 +9,10 @@ import time
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from rank_bm25 import BM25Okapi
-import re
+import os
+import torch
 
-SUBG_DIR = "/home/pesu-rf/Documents/Capstone_Team165/partition/subg"
+SUBG_DIR = os.getenv("SUBG_DIR", "data/subg")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 
@@ -47,8 +48,9 @@ def main():
 
     # Load embedding model
     t0 = time.time()
-    log(f"Loading model: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME, device="cuda")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    log(f"Loading model: {MODEL_NAME} on {device}")
+    model = SentenceTransformer(MODEL_NAME, device=device)
     log(f"Model loaded in {time.time() - t0:.2f}s")
 
     log(f"Total initialization time: {time.time() - t_start:.2f}s")

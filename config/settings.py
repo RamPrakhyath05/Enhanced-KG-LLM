@@ -5,5 +5,12 @@ load_dotenv()
 
 NEO4J_URI = os.getenv("NEO4J_URI", "neo4j://127.0.0.1:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "Admin@123")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "PES2UG23CS465")
 NEO4J_DATABASE = os.getenv("NEO4J_DATABASE", "neo4j")
+
+# Subgraph Partition Artifacts Directory (Loose coupling for swapping partition versions)
+SUBG_DIR = os.getenv("SUBG_DIR", "data/subg")
+
+# Ollama LLM Configuration
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2")

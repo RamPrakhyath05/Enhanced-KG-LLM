@@ -1,5 +1,3 @@
-"""Adapter between existing partition retrieval and partition-bounded traversal."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -49,9 +47,14 @@ class PartitionRAGTraversalAdapter:
             for entity_id in hit.get("entity_ids", [])
             if entity_id
         }
-        if not allowed_entity_ids:
-            raise ValueError("partition_hits must contain non-empty entity_ids")
-        result = self.traverser.traverse(query, seed_entity_ids, allowed_entity_ids)
+        if not allowed_entity_ids and not partition_ids:
+            raise ValueError("partition_hits must contain non-empty entity_ids or community_id")
+        result = self.traverser.traverse(
+            query=query,
+            seed_entity_ids=seed_entity_ids,
+            allowed_entity_ids=allowed_entity_ids,
+            allowed_partition_ids=partition_ids,
+        )
         return PartitionTraversalResponse(
             bundle=self.context_builder.build(result),
             selected_partition_ids=partition_ids,

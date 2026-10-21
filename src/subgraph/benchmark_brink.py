@@ -22,12 +22,15 @@ from sentence_transformers import SentenceTransformer
 from rank_bm25 import BM25Okapi
 from datasets import load_dataset
 from collections import defaultdict
+import os
+import torch
+import argparse
 import re
 import json
 
-SUBG_DIR = "/home/pesu-rf/Documents/Capstone_Team165/partition/subg"
+SUBG_DIR = os.getenv("SUBG_DIR", "data/subg")
 MODEL_NAME = "all-MiniLM-L6-v2"
-RESULTS_DIR = "/home/pesu-rf/Documents/Capstone_Team165/partition/subg/results"
+RESULTS_DIR = os.getenv("RESULTS_DIR", os.path.join(SUBG_DIR, "results"))
 
 
 def tokenize(text):
@@ -39,7 +42,10 @@ def log(msg):
 
 
 def main():
-    import os
+    parser = argparse.ArgumentParser(description="BRINK-Wikidata5m Subgraph Retrieval Benchmark")
+    parser.add_argument("--limit", type=int, default=None, help="Number of test questions to evaluate (default: all)")
+    args = parser.parse_args()
+
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
     # ---- Load subgraph index ----
@@ -67,13 +73,16 @@ def main():
     bm25 = BM25Okapi(tokenized_docs)
 
     # Load embedding model
-    log(f"Loading model: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME, device="cuda")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    log(f"Loading model: {MODEL_NAME} on {device}")
+    model = SentenceTransformer(MODEL_NAME, device=device)
 
     # ---- Load BRINK dataset ----
     log("Loading BRINK-Wikidata5m...")
     ds = load_dataset("ZDZR/BRINK-Wikidata5m")
     test_data = ds["test"]
+    if args.limit:
+        test_data = test_data.select(range(min(args.limit, len(test_data))))
     log(f"Test set: {len(test_data)} questions")
 
     # ---- Build gold partition mapping ----

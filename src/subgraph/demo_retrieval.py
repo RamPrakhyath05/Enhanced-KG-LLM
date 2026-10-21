@@ -10,7 +10,10 @@ from sentence_transformers import SentenceTransformer
 from rank_bm25 import BM25Okapi
 import re
 
-SUBG_DIR = "/home/pesu-rf/Documents/Capstone_Team165/partition/subg"
+import os
+import torch
+
+SUBG_DIR = os.getenv("SUBG_DIR", "data/subg")
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 
@@ -33,8 +36,9 @@ def main():
     tokenized_docs = [tokenize(doc) for doc in bm25_docs]
     bm25 = BM25Okapi(tokenized_docs)
 
-    print(f"Loading model: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME, device="cuda")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Loading model: {MODEL_NAME} on {device}")
+    model = SentenceTransformer(MODEL_NAME, device=device)
 
     queries = [
         "machine learning algorithms",
