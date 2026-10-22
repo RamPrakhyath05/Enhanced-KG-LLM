@@ -20,7 +20,7 @@ from typing import Any, List, Optional, Sequence
 
 from src.db.neo4j_client import Neo4jClient
 from src.generation.ollama_client import GroundedAnswer, OllamaClient
-from src.subgraph.subgraph_retriever import SubgraphRetriever
+from src.query_subgraph.subgraph_retriever import SubgraphRetriever
 from src.traversal.evidence_context import EvidenceBundle, EvidenceContextBuilder
 from src.traversal.partition_rag_adapter import PartitionRAGTraversalAdapter
 from src.traversal.path_scoring_traverser import PathScoringConfig, PathScoringTraverser
