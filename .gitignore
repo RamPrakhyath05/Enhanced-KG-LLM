@@ -6,13 +6,16 @@ __pycache__/
 # Large data and index directories
 indexes/
 data/
+models/
 
-# Binary artifact and matrix files
+# Binary artifact and model weight files
 *.pkl
 *.npy
 *.pth
 *.pt
 *.onnx
+*.safetensors
+*.bin
 
 # OS metadata
 .DS_Store

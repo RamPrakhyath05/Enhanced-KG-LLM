@@ -1,9 +1,3 @@
-"""Unified Subgraph Retriever for Leiden 2,835-partition scheme.
-
-Integrates embedding similarity + BM25 scoring over precomputed partition docs
-and provides seamless output dictionary compatibility for PartitionRAGTraversalAdapter.
-"""
-
 from __future__ import annotations
 
 import os
@@ -21,20 +15,26 @@ def tokenize(text: str) -> List[str]:
     return re.findall(r"\w+", text.lower())
 
 
+def _resolve_file(subg_dir: str, candidates: list[str]) -> str:
+    """Find the first matching file among candidate filenames in subg_dir."""
+    for name in candidates:
+        p = os.path.join(subg_dir, name)
+        if os.path.exists(p):
+            return p
+    raise FileNotFoundError(f"None of {candidates} found in '{subg_dir}'")
+
+
 def validate_partition_artifacts(subg_dir: str) -> dict[str, Any]:
     """Validate that a partition directory contains all necessary files and matching dimensions.
 
-    Useful when swapping in new partition outputs from Rahul's experiments.
+    Supports both current naming ('centroids.npy', 'bm25_docs.pkl') and legacy ('subgraph_*').
     """
     files = {
-        "embeddings": os.path.join(subg_dir, "subgraph_embeddings.npy"),
-        "bm25_docs": os.path.join(subg_dir, "subgraph_bm25_docs.pkl"),
-        "partition_ids": os.path.join(subg_dir, "subgraph_partition_ids.pkl"),
-        "entity_map": os.path.join(subg_dir, "subgraph_entity_map.pkl"),
+        "embeddings": _resolve_file(subg_dir, ["centroids.npy", "subgraph_embeddings.npy"]),
+        "bm25_docs": _resolve_file(subg_dir, ["bm25_docs.pkl", "subgraph_bm25_docs.pkl"]),
+        "partition_ids": _resolve_file(subg_dir, ["partition_ids.pkl", "subgraph_partition_ids.pkl"]),
+        "entity_map": _resolve_file(subg_dir, ["entity_map.pkl", "subgraph_entity_map.pkl"]),
     }
-    missing = [name for name, path in files.items() if not os.path.exists(path)]
-    if missing:
-        raise FileNotFoundError(f"Missing partition artifact files in '{subg_dir}': {missing}")
 
     embeddings = np.load(files["embeddings"], mmap_mode="r")
     with open(files["partition_ids"], "rb") as f:
@@ -48,6 +48,7 @@ def validate_partition_artifacts(subg_dir: str) -> dict[str, Any]:
         "partition_count": len(pids),
         "embedding_shape": embeddings.shape,
         "files_verified": list(files.keys()),
+        "resolved_paths": files,
     }
 
 
@@ -83,20 +84,22 @@ class SubgraphRetriever:
 
         t0 = time.perf_counter()
         meta = validate_partition_artifacts(self.subg_dir)
-        embeddings_path = os.path.join(self.subg_dir, "subgraph_embeddings.npy")
-        bm25_path = os.path.join(self.subg_dir, "subgraph_bm25_docs.pkl")
-        pids_path = os.path.join(self.subg_dir, "subgraph_partition_ids.pkl")
-        map_path = os.path.join(self.subg_dir, "subgraph_entity_map.pkl")
+        paths = meta["resolved_paths"]
 
-        self.embeddings = np.load(embeddings_path)
-        with open(bm25_path, "rb") as f:
+        self.embeddings = np.load(paths["embeddings"])
+        with open(paths["bm25_docs"], "rb") as f:
             self.bm25_docs = pickle.load(f)
-        with open(pids_path, "rb") as f:
+        with open(paths["partition_ids"], "rb") as f:
             self.partition_ids = pickle.load(f)
-        with open(map_path, "rb") as f:
+        with open(paths["entity_map"], "rb") as f:
             self.entity_map = pickle.load(f)
 
-        tokenized_docs = [tokenize(doc) for doc in self.bm25_docs]
+        # Support pre-tokenized lists of tokens or raw document strings
+        if self.bm25_docs and isinstance(self.bm25_docs[0], list):
+            tokenized_docs = self.bm25_docs
+        else:
+            tokenized_docs = [tokenize(doc) for doc in self.bm25_docs]
+
         self.bm25 = BM25Okapi(tokenized_docs)
 
         self.model = SentenceTransformer(self.model_name, device=self.device)
@@ -109,13 +112,15 @@ class SubgraphRetriever:
         
         Returns hit dicts adhering to the contract expected by PartitionRAGTraversalAdapter:
         {
+            'partition_id': int(pid),
             'community_id': int(pid),
             'score': float(combined_score),
             'bm25_score': float(bm25_norm),
             'vector_similarity': float(emb_norm),
             'size': int(num_entities),
-            'entity_ids': list[str],
-            'top_entities': list[str]
+            'seed_nodes': list[str],
+            'top_entities': list[str],
+            'entity_ids': list[str]
         }
         """
         if not self._is_loaded:
@@ -150,14 +155,17 @@ class SubgraphRetriever:
         for idx in top_indices:
             pid = int(self.partition_ids[idx])
             entities = self.entity_map.get(pid, [])
+            seed_nodes = entities[:5]
             results.append({
+                "partition_id": pid,
                 "community_id": pid,
                 "score": float(combined[idx]),
                 "bm25_score": float(bm25_norm[idx]),
                 "vector_similarity": float(emb_norm[idx]),
                 "size": len(entities),
+                "seed_nodes": seed_nodes,
+                "top_entities": seed_nodes,
                 "entity_ids": entities,
-                "top_entities": entities[:5],
             })
 
         return results

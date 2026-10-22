@@ -43,13 +43,21 @@ class PipelineResult:
         return sum(self.timings_ms.values())
 
     def summary(self) -> str:
+        partition_details = []
+        for rank, p in enumerate(self.partition_hits, 1):
+            pid = p.get("partition_id", p.get("community_id"))
+            score = p.get("score", 0.0)
+            seeds = p.get("seed_nodes", p.get("top_entities", []))[:5]
+            partition_details.append(f"  • #{rank} Partition ID: {pid:<6} (Score: {score:.4f}) | Seed Nodes: {seeds}")
+
         lines = [
             "=" * 75,
             f"ENHANCED-KG-LLM PIPELINE EXECUTION SUMMARY",
             "=" * 75,
             f"Query: '{self.query}'",
-            f"Seed Entities: {list(self.seed_entity_ids)}",
-            f"Selected Partitions: {list(self.selected_partition_ids)}",
+            f"Top-{len(self.partition_hits)} Retrieved Partitions & Seed Nodes:",
+            *partition_details,
+            f"Traversal Seed Entities: {list(self.seed_entity_ids)}",
             f"Candidate Answer IDs: {list(self.bundle.candidate_answer_ids)}",
             f"Evidence Paths Found: {len(self.bundle.paths)}",
             "-" * 75,
@@ -146,7 +154,7 @@ class EnhancedKGRAGPipeline:
     def run(
         self,
         query: str,
-        seed_entity_ids: Sequence[str],
+        seed_entity_ids: Optional[Sequence[str]] = None,
         top_k_partitions: int = 5,
         filter_mode: Optional[str] = None,
     ) -> PipelineResult:
@@ -157,6 +165,11 @@ class EnhancedKGRAGPipeline:
         t0 = time.perf_counter()
         hits = self.retriever.search(query, top_k=top_k_partitions)
         timings["retrieval_ms"] = (time.perf_counter() - t0) * 1000
+
+        # Auto-seed from top partition if no seeds provided
+        if not seed_entity_ids and hits:
+            top_seeds = hits[0].get("seed_nodes") or hits[0].get("top_entities") or []
+            seed_entity_ids = tuple(top_seeds[:1]) if top_seeds else ("Q408",)
 
         # 2. Partition-Bounded Traversal
         if filter_mode:
