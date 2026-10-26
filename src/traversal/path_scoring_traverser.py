@@ -13,6 +13,32 @@ from sentence_transformers import SentenceTransformer
 TOKEN_RE = re.compile(r"[a-z0-9]+")
 STOPWORDS = {"a", "an", "and", "for", "from", "is", "of", "the", "to", "what", "which", "who"}
 STRUCTURAL_TERMS = {"administrative", "described", "given", "instance", "source", "subclass", "taxon", "time", "timezone"}
+RELATION_INTENTS = {
+    "author": {"author", "authored", "creator", "wrote", "writes", "written", "writer"},
+    "place of birth": {"birthplace", "born", "birth"},
+    "date of birth": {"birthdate", "birthday", "born", "birth"},
+    "capital": {"capital", "city"},
+    "located in": {"located", "location", "where"},
+}
+
+
+def relation_intent_name(relation: str) -> str | None:
+    """Return the normalized intent family for a KG relation, when known."""
+    relation_terms = set(TOKEN_RE.findall(relation.lower()))
+    for intent in RELATION_INTENTS:
+        if relation_terms & set(TOKEN_RE.findall(intent)):
+            return intent
+    return None
+
+
+def relation_matches_query(relation: str, query: str) -> bool:
+    """Match common question wording to a KG relation intent."""
+    relation_terms = set(TOKEN_RE.findall(relation.lower()))
+    query_terms = set(TOKEN_RE.findall(query.lower())) - STOPWORDS
+    if relation_terms & query_terms:
+        return True
+    intent = relation_intent_name(relation)
+    return bool(intent and query_terms & RELATION_INTENTS[intent])
 
 
 class QueryClient(Protocol):
@@ -296,7 +322,7 @@ class PathScoringTraverser:
     def _relation_relevance(self, relation: str, query: str) -> float:
         relation_terms = set(self._tokens(relation))
         query_terms = set(self._tokens(query))
-        if relation_terms & query_terms:
+        if relation_matches_query(relation, query):
             return 1.0
         return 0.0 if relation_terms & STRUCTURAL_TERMS else 0.25
 

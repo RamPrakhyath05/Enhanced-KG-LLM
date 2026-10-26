@@ -30,8 +30,19 @@ STOP_WORDS = {
     "weren't", "what", "when", "where", "which", "while", "who", "whom", "why",
     "with", "won't", "would", "wouldn't", "you", "your", "yours", "yourself",
     "yourselves", "tell", "show", "find", "give", "name", "list", "present",
-    "according", "work", "works"
+    "according", "work", "works", "write", "writes", "wrote", "written",
+    "author", "authored", "city", "birthplace", "born"
 }
+
+# Query verbs and relation/type words describe what the user is asking about;
+# they should not become entity mentions (e.g. "the founder" or "capital").
+QUERY_TERMS = {
+    "direct", "directed", "director", "directing", "made", "make", "makes",
+    "manufacturer", "manufactured", "found", "founder", "founded", "capital",
+    "located", "location", "country", "film", "movie", "book", "company",
+    "produced", "producer", "created", "creator", "wrote", "write", "written",
+}
+MENTION_STOP_WORDS = STOP_WORDS | QUERY_TERMS
 
 
 @dataclass(frozen=True)
@@ -53,55 +64,31 @@ class EntitySeedResolver:
         self.db_client = db_client
 
     def extract_mentions(self, query: str) -> list[str]:
-        """Extract candidate entity mention phrases from the query string."""
+        """Extract likely subject names, excluding question and relation wording."""
         cleaned = re.sub(r"[^\w\s]", " ", query).strip()
         words = cleaned.split()
         if not words:
             return []
 
+        # Remove question words and relation intent first. Joining the remaining
+        # tokens still permits names such as "Lord of the Rings" to be matched.
+        significant = [w for w in words if w.lower() not in MENTION_STOP_WORDS and len(w) >= 2]
+        if not significant:
+            return []
+
         candidates: list[str] = []
+        for gram_size in range(min(4, len(significant)), 0, -1):
+            for i in range(len(significant) - gram_size + 1):
+                phrase = " ".join(significant[i : i + gram_size]).strip()
+                candidates.extend((phrase, phrase.title()))
 
-        # 1. Title-cased / Proper noun sequences (e.g. "King Yima", "Persian Literature", "Commonwealth Australia")
-        capitalized_chunks: list[str] = []
-        current_chunk: list[str] = []
-        for w in words:
-            if w[0].isupper() and w.lower() not in STOP_WORDS:
-                current_chunk.append(w)
-            else:
-                if current_chunk:
-                    capitalized_chunks.append(" ".join(current_chunk))
-                    current_chunk = []
-        if current_chunk:
-            capitalized_chunks.append(" ".join(current_chunk))
-
-        candidates.extend(capitalized_chunks)
-
-        # 2. Multi-word n-grams (2-grams, 3-grams, 4-grams)
-        n = len(words)
-        for gram_size in (4, 3, 2):
-            for i in range(n - gram_size + 1):
-                gram_words = words[i : i + gram_size]
-                # Filter out n-grams that are purely stopwords
-                non_stops = [w for w in gram_words if w.lower() not in STOP_WORDS]
-                if non_stops:
-                    phrase = " ".join(gram_words)
-                    candidates.append(phrase)
-
-        # 3. Individual significant words (length >= 3, not in stopwords)
-        for w in words:
-            if w.lower() not in STOP_WORDS and len(w) >= 3:
-                candidates.append(w)
-
-        # De-duplicate preserving order
-        seen = set()
+        # De-duplicate exact strings while retaining both input and title case.
+        seen: set[str] = set()
         unique_candidates = []
-        for c in candidates:
-            c_clean = c.strip()
-            c_lower = c_clean.lower()
-            if c_lower not in seen and len(c_clean) >= 2:
-                seen.add(c_lower)
-                unique_candidates.append(c_clean)
-
+        for candidate in candidates:
+            if candidate not in seen:
+                seen.add(candidate)
+                unique_candidates.append(candidate)
         return unique_candidates
 
     def resolve(
@@ -135,36 +122,39 @@ class EntitySeedResolver:
 
         # Query Neo4j / DB Client for candidate entities
         cypher = """
-        UNWIND $candidates AS term
         MATCH (e:Entity)
-        WHERE toLower(e.Entity_Name) = toLower(term)
-           OR toLower(term) IN [a IN coalesce(e.Entity_Aliases, []) | toLower(a)]
-           OR (size(term) >= 4 AND toLower(e.Entity_Name) CONTAINS toLower(term))
-        RETURN DISTINCT e.Entity_ID AS id,
+        WHERE e.Entity_Name IN $candidates
+        RETURN e.Entity_ID AS id,
                         e.Entity_Name AS name,
                         e.Entity_Description AS description,
                         e.partition_id AS partition_id,
-                        term AS matched_term
+                        e.Entity_Name AS matched_term
         LIMIT 40
         """
         try:
-            records = self.db_client.run_query(cypher, {"candidates": candidates[:15]})
+            records = self.db_client.run_query(cypher, {"candidates": candidates[:80]})
         except Exception:
             records = []
 
-        if not records and hasattr(self.db_client, "run_query"):
-            # Try single-term search fallback if bulk UNWIND unsupported
-            for term in candidates[:5]:
-                try:
-                    fallback_records = self.db_client.run_query(
-                        "MATCH (e:Entity) WHERE toLower(e.Entity_Name) CONTAINS toLower($term) "
-                        "RETURN e.Entity_ID AS id, e.Entity_Name AS name, e.Entity_Description AS description, "
-                        "e.partition_id AS partition_id, $term AS matched_term LIMIT 5",
-                        {"term": term, "candidates": [term]},
-                    )
-                    records.extend(fallback_records)
-                except Exception:
-                    pass
+        # Always supplement exact-name hits with aliases. A generic exact hit
+        # (such as "the founder") must not suppress a relevant alias hit (Apple).
+        alias_terms = list(dict.fromkeys(term.casefold() for term in candidates))
+        alias_query = " OR ".join(
+            '"' + term.replace("\\", "\\\\").replace('"', '\\"') + '"'
+            for term in alias_terms[:40]
+        )
+        try:
+            alias_records = self.db_client.run_query(
+                "CALL db.index.fulltext.queryNodes('entity_alias_lookup', $query, {limit: 3000}) "
+                "YIELD node, score "
+                "RETURN node.Entity_ID AS id, node.Entity_Name AS name, "
+                "node.Entity_Description AS description, node.partition_id AS partition_id, "
+                "node.Entity_Aliases AS aliases, score",
+                {"query": alias_query},
+            )
+            records.extend(alias_records)
+        except Exception:
+            pass
 
         # Score and rank candidates
         scored_seeds: dict[str, ResolvedSeed] = {}
@@ -173,7 +163,20 @@ class EntitySeedResolver:
             name = str(rec.get("name") or eid)
             desc = str(rec.get("description") or "")
             pid = rec.get("partition_id")
-            term = str(rec.get("matched_term", ""))
+            aliases = {str(alias).casefold() for alias in (rec.get("aliases") or [])}
+            term = str(rec.get("matched_term") or "")
+            if term.lower() == name.lower():
+                term = next(
+                    (candidate for candidate in candidates if candidate.casefold() == name.casefold()),
+                    name,
+                )
+            else:
+                term = next(
+                    (candidate for candidate in candidates if candidate.casefold() in aliases),
+                    "",
+                )
+            if not term:
+                continue
 
             if not eid:
                 continue
@@ -182,7 +185,7 @@ class EntitySeedResolver:
             name_lower = name.lower()
 
             # Base score from matching quality
-            if term_lower == name_lower:
+            if term_lower == name_lower or term_lower in aliases:
                 base_score = 1.0
             elif term_lower in name_lower:
                 base_score = 0.5 + 0.4 * (len(term) / max(len(name), 1))
@@ -208,7 +211,9 @@ class EntitySeedResolver:
             if eid not in scored_seeds or total_confidence > scored_seeds[eid].confidence:
                 scored_seeds[eid] = ResolvedSeed(
                     entity_id=eid,
-                    entity_name=name,
+                    # Show the user-facing mention when the KG's canonical label
+                    # is a poor alias (e.g. Q2766 is labelled "Jesus phone").
+                    entity_name=name if term_lower == name_lower else term.title(),
                     description=desc,
                     confidence=total_confidence,
                     matched_term=term,
@@ -216,4 +221,17 @@ class EntitySeedResolver:
                 )
 
         ranked = sorted(scored_seeds.values(), key=lambda s: s.confidence, reverse=True)
-        return ranked[:max_seeds]
+        # A single mention can match several unrelated entities (e.g. the
+        # company and fruit named Apple). Keep only its strongest entity while
+        # still allowing distinct mentions in multi-entity questions.
+        selected: list[ResolvedSeed] = []
+        seen_mentions: set[str] = set()
+        for seed in ranked:
+            mention_key = seed.matched_term.casefold()
+            if mention_key in seen_mentions:
+                continue
+            selected.append(seed)
+            seen_mentions.add(mention_key)
+            if len(selected) >= max_seeds:
+                break
+        return selected
