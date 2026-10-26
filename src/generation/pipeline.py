@@ -1,16 +1,3 @@
-"""Master End-to-End KG-RAG Pipeline.
-
-Orchestrates:
-  1. SubgraphRetriever: Hybrid dense + sparse partition routing (<35ms).
-  2. PartitionRAGTraversalAdapter + PathScoringTraverser: Partition-bounded T10 path scoring on Neo4j.
-  3. EvidenceContextBuilder: Compact context formulation with [P1.E1] citations.
-  4. OllamaClient: Grounded LLM response generation.
-
-Designed with loose coupling:
-  - Subgraph directories can be swapped dynamically (via subg_dir or $SUBG_DIR).
-  - Traversal filtering supports both native property index ('partition_id') and entity fallback ('entity_id').
-"""
-
 from __future__ import annotations
 
 import os
@@ -75,6 +62,7 @@ class PipelineResult:
             "-" * 75,
             f"LATENCY BREAKDOWN:",
             f"  • Subgraph Retrieval: {self.timings_ms.get('retrieval_ms', 0):.2f} ms",
+            f"  • Retrieval Expansion: {self.timings_ms.get('retrieval_expansion_ms', 0):.2f} ms",
             f"  • Partition Traversal: {self.timings_ms.get('traversal_ms', 0):.2f} ms",
             f"  • LLM Grounding:      {self.timings_ms.get('llm_ms', 0):.2f} ms",
             f"  • Total Pipeline Time: {self.total_latency_ms:.2f} ms",
@@ -222,13 +210,15 @@ class EnhancedKGRAGPipeline:
         traversal_config: Optional[PathScoringConfig] = None,
         ollama_client: Optional[OllamaClient] = None,
         filter_mode: str = "auto",
+        allow_offline_fallback: bool = False,
     ) -> None:
-        default_dir = "data/Partitions" if os.path.exists("data/Partitions") else "data/subg"
+        default_dir = "data/Partitions" if os.path.exists(os.path.join("data/Partitions", "centroids.npy")) else "data/subg"
         self.subg_dir = subg_dir or os.getenv("SUBG_DIR", default_dir)
         self.retriever = SubgraphRetriever(subg_dir=self.subg_dir)
         
         # Lazy/managed DB client with graceful offline fallback
         self._db_client = db_client
+        self.allow_offline_fallback = allow_offline_fallback
         self._seed_resolver = None
         self.traversal_config = traversal_config or PathScoringConfig(
             max_hops=2, beam_width=3, max_paths=3, filter_mode=filter_mode
@@ -246,14 +236,23 @@ class EnhancedKGRAGPipeline:
     def db_client(self) -> Any:
         if self._db_client is None:
             try:
+                if not os.getenv("NEO4J_PASSWORD"):
+                    raise RuntimeError("NEO4J_PASSWORD is not set")
                 client = Neo4jClient()
                 res = client.run_query("RETURN 1 AS ping")
                 if res and res[0].get("ping") == 1:
                     self._db_client = client
                 else:
-                    self._db_client = FallbackGraphClient()
-            except Exception:
-                print("[EnhancedKGRAGPipeline] Live Neo4j offline. Using offline graph client for traversal.")
+                    client.close()
+                    raise ConnectionError("Neo4j health check did not return the expected ping result")
+            except Exception as exc:
+                if not self.allow_offline_fallback:
+                    raise ConnectionError(
+                        "Could not connect to Neo4j. Check NEO4J_URI, NEO4J_USER, "
+                        "NEO4J_PASSWORD, and NEO4J_DATABASE. For a clearly labeled "
+                        "mock run, pass allow_offline_fallback=True."
+                    ) from exc
+                print(f"[EnhancedKGRAGPipeline] Neo4j unavailable ({exc}). Using explicit offline graph fallback.")
                 self._db_client = FallbackGraphClient()
         return self._db_client
 
@@ -306,8 +305,54 @@ class EnhancedKGRAGPipeline:
             "elapsed_ms": timings["seed_resolution_ms"],
         })
 
+        seed_partition_ids = {
+            int(seed.partition_id)
+            for seed in resolved_seeds
+            if seed.partition_id is not None
+        }
+        if not resolved_seeds and seed_entity_ids and not self.allow_offline_fallback:
+            seed_rows = self.db_client.run_query(
+                "MATCH (e:Entity) WHERE e.Entity_ID IN $entity_ids "
+                "RETURN DISTINCT e.partition_id AS partition_id",
+                {"entity_ids": list(seed_entity_ids)},
+            )
+            seed_partition_ids.update(
+                int(row["partition_id"])
+                for row in seed_rows
+                if row.get("partition_id") is not None
+            )
+
+        def include_seed_partitions(base_hits: list[dict]) -> list[dict]:
+            """Keep traversal bounded while ensuring its seed nodes are in scope."""
+            traversal_hits = list(base_hits)
+            included_partition_ids = {
+                int(hit.get("partition_id", hit.get("community_id")))
+                for hit in traversal_hits
+                if hit.get("partition_id", hit.get("community_id")) is not None
+            }
+            for partition_id in sorted(seed_partition_ids - included_partition_ids):
+                entity_ids = self.retriever.entity_map.get(partition_id, [])
+                if not entity_ids:
+                    continue
+                entity_id_set = set(entity_ids)
+                seed_nodes = [eid for eid in seed_entity_ids if eid in entity_id_set][:5]
+                traversal_hits.append({
+                    "partition_id": partition_id,
+                    "community_id": partition_id,
+                    "score": 0.0,
+                    "bm25_score": 0.0,
+                    "vector_similarity": 0.0,
+                    "size": len(entity_ids),
+                    "seed_nodes": seed_nodes,
+                    "top_entities": seed_nodes,
+                    "entity_ids": entity_ids,
+                })
+            return traversal_hits
+
+        traversal_hits = include_seed_partitions(hits)
+
         # 3. Partition-Bounded Multi-Seed Traversal
-        _notify("traversal_start", {"seeds": seed_entity_ids, "partition_hits": hits})
+        _notify("traversal_start", {"seeds": seed_entity_ids, "partition_hits": traversal_hits})
         if filter_mode:
             self.traversal_config = PathScoringConfig(
                 max_hops=self.traversal_config.max_hops,
@@ -316,16 +361,37 @@ class EnhancedKGRAGPipeline:
                 filter_mode=filter_mode,
             )
 
-        traverser = PathScoringTraverser(client=self.db_client, config=self.traversal_config)
+        # Retrieval has already loaded the sentence encoder; reuse it for edge
+        # scoring instead of loading the same weights a second time.
+        traverser = PathScoringTraverser(
+            client=self.db_client,
+            config=self.traversal_config,
+            model=self.retriever.model,
+        )
         adapter = PartitionRAGTraversalAdapter(traverser, context_builder=self.context_builder)
 
         t0 = time.perf_counter()
         traversal_resp = adapter.retrieve(
             query=query,
             seed_entity_ids=seed_entity_ids,
-            partition_hits=hits,
+            partition_hits=traversal_hits,
         )
         timings["traversal_ms"] = (time.perf_counter() - t0) * 1000
+        if not traversal_resp.bundle.paths:
+            expanded_top_k = min(max(top_k_partitions * 4, 20), 50)
+            if expanded_top_k > len(hits):
+                _notify("retrieval_expansion_start", {"top_k": expanded_top_k})
+                t0 = time.perf_counter()
+                expanded_hits = self.retriever.search(query, top_k=expanded_top_k)
+                timings["retrieval_expansion_ms"] = (time.perf_counter() - t0) * 1000
+                traversal_hits = include_seed_partitions(expanded_hits)
+                t0 = time.perf_counter()
+                traversal_resp = adapter.retrieve(
+                    query=query,
+                    seed_entity_ids=seed_entity_ids,
+                    partition_hits=traversal_hits,
+                )
+                timings["traversal_ms"] += (time.perf_counter() - t0) * 1000
         _notify("traversal_done", {
             "response": traversal_resp,
             "elapsed_ms": timings["traversal_ms"],
@@ -338,7 +404,11 @@ class EnhancedKGRAGPipeline:
         # 5. Grounded LLM Generation
         _notify("llm_start", {"bundle": bundle, "model": self.ollama.model_name})
         t0 = time.perf_counter()
-        grounded_answer = self.ollama.answer_with_evidence(query=query, bundle=bundle)
+        grounded_answer = self.ollama.answer_with_evidence(
+            query=query,
+            bundle=bundle,
+            mock_if_unavailable=self.allow_offline_fallback,
+        )
         timings["llm_ms"] = (time.perf_counter() - t0) * 1000
         _notify("llm_done", {
             "grounded_answer": grounded_answer,

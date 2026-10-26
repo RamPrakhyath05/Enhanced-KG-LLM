@@ -33,6 +33,8 @@ def main():
                         help="Path to subgraph partition artifacts directory (loose coupling)")
     parser.add_argument("--filter-mode", type=str, default="auto", choices=["auto", "partition_id", "entity_id"],
                         help="Traversal Cypher filter mode: 'partition_id', 'entity_id', or 'auto'")
+    parser.add_argument("--offline-fallback", action="store_true",
+                        help="Use mock graph/answer fallbacks if Neo4j or Ollama is unavailable")
     parser.add_argument("--model", type=str, default=None,
                         help="Ollama LLM model name (default: from $OLLAMA_MODEL or llama3.2)")
     parser.add_argument("--ollama-url", type=str, default=None,
@@ -49,7 +51,7 @@ def main():
             print("No query provided. Exiting.")
             return
 
-    console = Console()
+    console = Console(legacy_windows=False)
 
     # 1. Header Panel
     header_content = (
@@ -58,13 +60,14 @@ def main():
         f"[bold cyan]Top-K Partitions:[/bold cyan] [green]{args.top_k}[/green]   "
         f"[bold cyan]Filter Mode:[/bold cyan] [magenta]{args.filter_mode}[/magenta]\n"
         f"[bold cyan]Partition Artifacts:[/bold cyan] [dim]{args.subg_dir}[/dim]\n"
-        f"[bold cyan]LLM Engine:[/bold cyan] [blue]{args.model or os.getenv('OLLAMA_MODEL', 'llama3.2')}[/blue] @ [dim]{args.ollama_url or os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434')}[/dim]"
+        f"[bold cyan]LLM Engine:[/bold cyan] [blue]{args.model or os.getenv('OLLAMA_MODEL', 'llama3.2:1b')}[/blue] @ [dim]{args.ollama_url or os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434')}[/dim]"
     )
-    console.print(Panel(header_content, title="[bold green]🚀 ENHANCED-KG-LLM : MASTER RAG PIPELINE[/bold green]", box=box.ROUNDED, expand=False))
+    console.print(Panel(header_content, title="[bold green]ENHANCED-KG-LLM : MASTER RAG PIPELINE[/bold green]", box=box.ROUNDED, expand=False))
 
     pipeline = EnhancedKGRAGPipeline(
         subg_dir=args.subg_dir,
         filter_mode=args.filter_mode,
+        allow_offline_fallback=args.offline_fallback,
     )
     if args.model or args.ollama_url:
         pipeline.ollama.model_name = args.model or pipeline.ollama.model_name
@@ -76,10 +79,15 @@ def main():
             console.rule("[bold blue]Stage 1: Parallel Hybrid Partition Retrieval[/bold blue]")
             console.print("  [cyan]• Routing query across 3,625 partition summaries (Dense Centroids + BM25Okapi)...[/cyan]")
 
+        elif event == "retrieval_expansion_start":
+            console.print(
+                f"  [yellow]• No path found in the initial scope; expanding retrieval to top-{data.get('top_k', 20)} partitions...[/yellow]"
+            )
+
         elif event == "retrieval_done":
             hits = data.get("hits", [])
             elapsed = data.get("elapsed_ms", 0.0)
-            console.print(f"  [green]✔ Retrieved Top-{len(hits)} Subgraphs in {elapsed:.2f} ms[/green]")
+            console.print(f"  [green][OK] Retrieved Top-{len(hits)} Subgraphs in {elapsed:.2f} ms[/green]")
 
             table = Table(title="Top Retrieved Partitions", box=box.SIMPLE_HEAVY, show_lines=False)
             table.add_column("Rank", justify="center", style="bold yellow")
@@ -109,7 +117,7 @@ def main():
             resolved = data.get("resolved_seeds", [])
             seeds = data.get("seeds", [])
             elapsed = data.get("elapsed_ms", 0.0)
-            console.print(f"  [green]✔ Resolved {len(seeds)} Traversal Seed(s) in {elapsed:.2f} ms[/green]")
+            console.print(f"  [green][OK] Resolved {len(seeds)} Traversal Seed(s) in {elapsed:.2f} ms[/green]")
 
             if resolved:
                 table = Table(title="Resolved Query Seed Entities", box=box.SIMPLE_HEAVY)
@@ -143,7 +151,7 @@ def main():
             resp = data.get("response")
             elapsed = data.get("elapsed_ms", 0.0)
             paths = resp.bundle.paths if resp and resp.bundle else ()
-            console.print(f"  [green]✔ Found {len(paths)} High-Scoring Evidence Paths in {elapsed:.2f} ms[/green]")
+            console.print(f"  [green][OK] Found {len(paths)} High-Scoring Evidence Paths in {elapsed:.2f} ms[/green]")
 
             table = Table(title="Extracted Knowledge Graph Evidence Paths", box=box.SIMPLE_HEAVY)
             table.add_column("Path #", justify="center", style="bold yellow")
@@ -170,13 +178,20 @@ def main():
         elif event == "llm_start":
             console.rule("[bold green]Stage 5: Grounded LLM Generation (Ollama)[/bold green]")
             model = data.get("model", "llama3.2")
-            console.print(f"  [cyan]• Feeding structured evidence bundle to {model}...[/cyan]")
+            bundle = data.get("bundle")
+            if bundle and not bundle.paths:
+                console.print("  [yellow]• No evidence paths; skipping the Ollama request.[/yellow]")
+            else:
+                console.print(f"  [cyan]• Checking for a direct KG answer, then using {model} if needed...[/cyan]")
 
         elif event == "llm_done":
             answer_obj = data.get("grounded_answer")
             elapsed = data.get("elapsed_ms", 0.0)
-            status_text = "[yellow](Offline Grounded Fallback)[/yellow]" if answer_obj.is_mock else "[green](Live Ollama Response)[/green]"
-            console.print(f"  [green]✔ LLM Generation Complete in {elapsed:.2f} ms {status_text}[/green]")
+            if answer_obj.was_skipped:
+                status_text = f"[yellow](Skipped: {answer_obj.skip_reason})[/yellow]"
+            else:
+                status_text = "[yellow](Offline Grounded Fallback)[/yellow]" if answer_obj.is_mock else "[green](Live Ollama Response)[/green]"
+            console.print(f"  [green][OK] LLM Generation Complete in {elapsed:.2f} ms {status_text}[/green]")
 
     with Progress(
         SpinnerColumn(),
@@ -188,12 +203,16 @@ def main():
     ) as progress:
         task = progress.add_task("[bold cyan]Executing Enhanced-KG-LLM Pipeline...", total=None)
         
-        result = pipeline.run(
-            query=args.query,
-            seed_entity_ids=[args.seed] if args.seed else None,
-            top_k_partitions=args.top_k,
-            on_progress=progress_callback,
-        )
+        try:
+            result = pipeline.run(
+                query=args.query,
+                seed_entity_ids=[args.seed] if args.seed else None,
+                top_k_partitions=args.top_k,
+                on_progress=progress_callback,
+            )
+        except (ConnectionError, RuntimeError) as exc:
+            console.print(f"[bold red]Pipeline stopped:[/bold red] {exc}")
+            raise SystemExit(2) from exc
 
     # Final Formatted Output Panel
     console.print()
@@ -215,6 +234,7 @@ def main():
     total_time = result.total_latency_ms
     stage_names = {
         "retrieval_ms": "1. Subgraph Partition Retrieval",
+        "retrieval_expansion_ms": "1b. Retrieval Scope Expansion",
         "seed_resolution_ms": "2. Entity Seed Resolution",
         "traversal_ms": "3. Partition-Bounded Traversal",
         "llm_ms": "4. Grounded LLM Generation",

@@ -9,7 +9,7 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "")
 NEO4J_DATABASE = os.getenv("NEO4J_DATABASE", "neo4j")
 
 # Subgraph Partition Artifacts Directory (Loose coupling for swapping partition versions)
-DEFAULT_SUBG_DIR = "data/Partitions" if os.path.exists("data/Partitions") else "data/subg"
+DEFAULT_SUBG_DIR = "data/subg" if os.path.exists("data/subg/centroids.npy") else "data/Partitions"
 SUBG_DIR = os.getenv("SUBG_DIR", DEFAULT_SUBG_DIR)
 
 # Ollama LLM Configuration

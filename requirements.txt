@@ -2,6 +2,8 @@ neo4j
 python-dotenv
 numpy
 igraph
+requests
+rich
 # Core data handling
 pandas>=2.0.0
 numpy>=1.24.0
@@ -22,3 +24,4 @@ rank_bm25>=0.2.2
 
 # Progress bars / utilities
 tqdm>=4.66.0
+

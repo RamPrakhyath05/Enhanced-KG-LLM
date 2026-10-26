@@ -1,10 +1,3 @@
-"""Ollama Client for Grounded LLM Generation with Citation Provenance.
-
-Interfaces with a local or remote Ollama server (default: http://localhost:11434).
-Feeds structured EvidenceBundle contexts from traversal and enforces strict
-grounding policies and citation provenance tags ([P1.E1]).
-"""
-
 from __future__ import annotations
 
 import json
@@ -22,6 +15,7 @@ except ImportError:
     requests = None
 
 from src.traversal.evidence_context import EvidenceBundle
+from src.traversal.path_scoring_traverser import relation_intent_name, relation_matches_query
 
 
 CITATION_REGEX = re.compile(r"\[P\d+\.E\d+\]")
@@ -38,6 +32,8 @@ class GroundedAnswer:
     is_mock: bool = False
     latency_ms: float = 0.0
     raw_context: str = ""
+    was_skipped: bool = False
+    skip_reason: str = ""
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -47,6 +43,8 @@ class GroundedAnswer:
             "model_name": self.model_name,
             "is_mock": self.is_mock,
             "latency_ms": self.latency_ms,
+            "was_skipped": self.was_skipped,
+            "skip_reason": self.skip_reason,
         }
 
 
@@ -60,7 +58,7 @@ class OllamaClient:
         timeout: float = 60.0,
     ) -> None:
         self.base_url = (base_url or os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")).rstrip("/")
-        self.model_name = model_name or os.getenv("OLLAMA_MODEL", "llama3.2")
+        self.model_name = model_name or os.getenv("OLLAMA_MODEL", "llama3.2:1b")
         self.timeout = timeout
 
     def is_available(self) -> bool:
@@ -140,11 +138,39 @@ class OllamaClient:
         If Ollama is not running and mock_if_unavailable=True, synthesizes a clean,
         grounded mock response referencing bundle edges so tests and pipelines don't crash.
         """
+        if not bundle.paths:
+            return GroundedAnswer(
+                query=query,
+                answer=(
+                    "No supporting evidence was found in the retrieved partition scope. "
+                    "Unable to ground an answer from the available knowledge graph evidence."
+                ),
+                citations_used=(),
+                model_name=f"{self.model_name} (skipped: no evidence)",
+                raw_context=bundle.context,
+                was_skipped=True,
+                skip_reason="no evidence",
+            )
+
+        direct_answer = self._answer_from_relation_evidence(query, bundle)
+        if direct_answer:
+            answer, citations = direct_answer
+            return GroundedAnswer(
+                query=query,
+                answer=answer,
+                citations_used=citations,
+                model_name=f"{self.model_name} (direct KG evidence)",
+                raw_context=bundle.context,
+                was_skipped=True,
+                skip_reason="direct relation in KG evidence",
+            )
+
         system_instruction = (
             "You are a factual knowledge-graph reasoning assistant. "
             "You must answer the user's question using ONLY the provided knowledge-graph evidence. "
             "For every factual assertion in your answer, you MUST cite the corresponding citation tag "
             "exactly as provided (e.g. [P1.E1]). "
+            "Answer concisely and put the citation immediately after each supported fact. "
             "If the evidence does not contain sufficient facts to answer, explicitly state that. "
             "Do not infer or hallucinate relationships not shown in the evidence."
         )
@@ -157,6 +183,11 @@ class OllamaClient:
                 raw_response = self.generate(prompt=user_prompt, system=system_instruction)
                 latency_ms = (time.perf_counter() - t0) * 1000
                 citations = tuple(dict.fromkeys(CITATION_REGEX.findall(raw_response)))
+                valid_citations = self._matching_evidence_citations(query, raw_response, bundle)
+                if not citations:
+                    citations = valid_citations
+                    if citations:
+                        raw_response = f"{raw_response.rstrip()} {' '.join(f'[{c}]' for c in citations)}"
                 return GroundedAnswer(
                     query=query,
                     answer=raw_response,
@@ -213,3 +244,64 @@ class OllamaClient:
             f"Based strictly on verified Knowledge Graph evidence:\n{body}\n\n"
             f"(Note: Generated via offline grounded synthesizer. To run live LLM inference, start Ollama via 'ollama serve')."
         )
+
+    @staticmethod
+    def _matching_evidence_citations(
+        query: str,
+        answer: str,
+        bundle: EvidenceBundle,
+    ) -> tuple[str, ...]:
+        """Attach citations when the answer names the target of an edge whose source is queried."""
+        normalize = lambda value: re.sub(r"[^a-z0-9]+", "", value.lower())
+        query_text = normalize(query)
+        answer_text = normalize(answer)
+        matched: list[str] = []
+        for path_number, path in enumerate(bundle.paths, start=1):
+            for edge_number, edge in enumerate(path.edges, start=1):
+                source = normalize(edge.source_name)
+                target = normalize(edge.target_name)
+                if (
+                    source
+                    and target
+                    and source in query_text
+                    and target in answer_text
+                    and relation_matches_query(edge.relation_name, query)
+                ):
+                    matched.append(f"P{path_number}.E{edge_number}")
+        return tuple(dict.fromkeys(matched))
+
+    @staticmethod
+    def _answer_from_relation_evidence(
+        query: str,
+        bundle: EvidenceBundle,
+    ) -> tuple[str, tuple[str, ...]] | None:
+        """Build a short, cited answer from a direct edge when the query names its source."""
+        normalize = lambda value: re.sub(r"[^a-z0-9]+", "", value.lower())
+        query_text = normalize(query)
+        candidates = []
+        for path_number, path in enumerate(bundle.paths, start=1):
+            for edge_number, edge in enumerate(path.edges, start=1):
+                source = normalize(edge.source_name)
+                if source and source in query_text and relation_matches_query(edge.relation_name, query):
+                    label = f"P{path_number}.E{edge_number}"
+                    candidates.append((path.score, edge, label))
+        if not candidates:
+            return None
+
+        _, edge, label = max(candidates, key=lambda candidate: candidate[0])
+        intent = relation_intent_name(edge.relation_name)
+        if intent == "author":
+            answer = (
+                f"The KG lists {edge.target_name} ({edge.target_id}) as the author of "
+                f"{edge.source_name}. [{label}]"
+            )
+        elif intent == "place of birth":
+            answer = f"{edge.source_name} was born in {edge.target_name}. [{label}]"
+        elif intent == "capital":
+            answer = f"The capital of {edge.source_name} is {edge.target_name}. [{label}]"
+        else:
+            answer = (
+                f"The KG evidence links {edge.source_name} to {edge.target_name} "
+                f"through '{edge.relation_name}'. [{label}]"
+            )
+        return answer, (label,)
