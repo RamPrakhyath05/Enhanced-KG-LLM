@@ -7,6 +7,7 @@ __pycache__/
 indexes/
 data/
 models/
+diagrams/
 
 # Binary artifact and model weight files
 *.pkl
