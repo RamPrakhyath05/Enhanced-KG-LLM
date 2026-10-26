@@ -136,6 +136,9 @@ class PathScoringTraverser:
         completed: list[EvidencePath] = []
         examined = 0
 
+        # Adjust effective beam width when multiple seeds are present so each seed gets explored
+        effective_beam_width = max(self.config.beam_width, len(seeds) * 3)
+
         for _depth in range(self.config.max_hops):
             frontier = [node for _, node, _, _, _ in beam]
             neighbors = self._fetch_neighbors(frontier, allowed_entities, allowed_partitions)
@@ -164,7 +167,7 @@ class PathScoringTraverser:
             if not proposals:
                 break
             proposals.sort(key=lambda item: item[0], reverse=True)
-            beam = proposals[: self.config.beam_width]
+            beam = proposals[: effective_beam_width]
             completed.extend(EvidencePath(score, path) for score, _, path, _, _ in beam)
 
         completed.sort(key=lambda item: item.score, reverse=True)

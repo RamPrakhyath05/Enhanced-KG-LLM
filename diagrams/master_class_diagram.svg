@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1750" height="1200" viewBox="0 0 1750 1200">
+    
+    <defs>
+      <!-- Arrow markers -->
+      <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569" />
+      </marker>
+      <marker id="open_arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9" fill="none" stroke="#475569" stroke-width="1.5" />
+      </marker>
+      <marker id="hollow_triangle" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+        <path d="M 0 1 L 12 6 L 0 11 z" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+      </marker>
+      <marker id="diamond_filled" viewBox="0 0 16 10" refX="16" refY="5" markerWidth="11" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 5 L 8 1 L 16 5 L 8 9 z" fill="#1e293b" stroke="#1e293b" stroke-width="1.2"/>
+      </marker>
+      <marker id="diamond_hollow" viewBox="0 0 16 10" refX="16" refY="5" markerWidth="11" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 5 L 8 1 L 16 5 L 8 9 z" fill="#ffffff" stroke="#1e293b" stroke-width="1.4"/>
+      </marker>
+    </defs>
+    
+    <rect width="1750" height="1200" fill="#f1f5f9"/>
+    
+    <text x="875.0" y="42" fill="#0f172a" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Enhanced-KG-LLM: Master Architecture Class Diagram</text>
+    
+    
+    <rect x="50" y="70" width="400" height="1060" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="70" y="105" fill="#1e3a8a" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">Data Layer &amp; Preprocessing</text>
+    
+    <rect x="490" y="70" width="440" height="1060" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="510" y="105" fill="#4338ca" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">Hybrid Routing Subsystem</text>
+
+    <rect x="955" y="70" width="420" height="1060" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="975" y="105" fill="#9d174d" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">Query-Guided Traversal Subsystem</text>
+
+    <rect x="1390" y="70" width="340" height="1060" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="1405" y="105" fill="#0f172a" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">Grounded Generation Subsystem</text>
+    
+    <line x1="250" y1="360" x2="250" y2="270" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="246.0" y="304.0" width="94.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="252.0" y="315.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">extracts from</text>
+<line x1="250" y1="560" x2="250" y2="480" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="246.0" y="509.0" width="120.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="252.0" y="520.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">clusters topology</text>
+<line x1="685" y1="550" x2="685" y2="275" stroke="#475569" stroke-width="1.6"  marker-start="url(#diamond_hollow)" marker-end="url(#open_arrow)"/>
+<rect x="681.0" y="401.5" width="107.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="687.0" y="412.5" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">1..* aggregates</text>
+<line x1="685" y1="550" x2="685" y2="465" stroke="#475569" stroke-width="1.6"  marker-start="url(#diamond_hollow)" marker-end="url(#open_arrow)"/>
+<rect x="681.0" y="496.5" width="107.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="687.0" y="507.5" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">1..* aggregates</text>
+<line x1="520" y1="840" x2="420" y2="240" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="466.0" y="529.0" width="81.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="472.0" y="540.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">live lookup</text>
+<line x1="685" y1="800" x2="685" y2="690" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="681.0" y="734.0" width="88.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="687.0" y="745.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">uses indices</text>
+<line x1="980" y1="840" x2="900" y2="840" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="936.0" y="829.0" width="94.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="942.0" y="840.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">consumes hits</text>
+<line x1="1165" y1="800" x2="1165" y2="620" stroke="#475569" stroke-width="1.6"   marker-end="url(#open_arrow)"/>
+<rect x="1161.0" y="699.0" width="133.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1167.0" y="710.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">delegates traversal</text>
+<polyline points="1165,800 1165,300" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="1161.0" y="539.0" width="101.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1167.0" y="550.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">builds context</text>
+<polyline points="980,500 450,500 420,240" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="711.0" y="489.0" width="166.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="717.0" y="500.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">queries within partition</text>
+<line x1="1350" y1="240" x2="1400" y2="240" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="1371.0" y="229.0" width="62.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1377.0" y="240.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">produces</text>
+<polyline points="1400,720 900,880" fill="none" stroke="#475569" stroke-width="1.6"   marker-end="url(#open_arrow)"/>
+<rect x="1146.0" y="789.0" width="107.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1152.0" y="800.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">1. routes query</text>
+<line x1="1400" y1="800" x2="1350" y2="830" stroke="#475569" stroke-width="1.6"   marker-end="url(#open_arrow)"/>
+<rect x="1371.0" y="804.0" width="88.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1377.0" y="815.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">2. traverses</text>
+<line x1="1560" y1="800" x2="1560" y2="940" stroke="#475569" stroke-width="1.6"   marker-end="url(#open_arrow)"/>
+<rect x="1556.0" y="859.0" width="75.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="1562.0" y="870.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">3. invokes</text>
+    <filter id="shadow_4415007648" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="80" y="140" width="340" height="136" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415007648)"/>
+<path d="M 80 146 Q 80 140 86 140 L 414 140 Q 420 140 420 146 L 420 172 L 80 172 Z" fill="#1e3a8a"/>
+<text x="250.0" y="162" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Neo4jClient</text>
+<line x1="80" y1="172" x2="420" y2="172" stroke="#64748b" stroke-width="1"/>
+<text x="92" y="188" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- driver: neo4j.Driver</text>
+<line x1="80" y1="200" x2="420" y2="200" stroke="#cbd5e1" stroke-width="1"/>
+<text x="92" y="216" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __init__()</text>
+<text x="92" y="232" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ run_query(query: str, params: dict): list[dict]</text>
+<text x="92" y="248" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ stream_query(query: str, params: dict, batch: int): Generator</text>
+<text x="92" y="264" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ close(): void</text>
+<filter id="shadow_4414284624" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="80" y="360" width="340" height="120" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414284624)"/>
+<path d="M 80 366 Q 80 360 86 360 L 414 360 Q 420 360 420 366 L 420 392 L 80 392 Z" fill="#0f766e"/>
+<text x="250.0" y="382" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">WeightedGraphBuilder</text>
+<line x1="80" y1="392" x2="420" y2="392" stroke="#64748b" stroke-width="1"/>
+<text x="92" y="408" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ HUB_RELATIONS: set[str]</text>
+<text x="92" y="424" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- chunk_size: int = 500000</text>
+<line x1="80" y1="436" x2="420" y2="436" stroke="#cbd5e1" stroke-width="1"/>
+<text x="92" y="452" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ filter_hub_relations(df: DataFrame): DataFrame</text>
+<text x="92" y="468" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ build_from_embeddings(df, embs, id_map): tuple[Graph, list]</text>
+<filter id="shadow_4414277264" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="80" y="560" width="340" height="152" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414277264)"/>
+<path d="M 80 566 Q 80 560 86 560 L 414 560 Q 420 560 420 566 L 420 592 L 80 592 Z" fill="#0f766e"/>
+<text x="250.0" y="582" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">LeidenPartitioner</text>
+<line x1="80" y1="592" x2="420" y2="592" stroke="#64748b" stroke-width="1"/>
+<text x="92" y="608" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- resolution: float = 1.0</text>
+<text x="92" y="624" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- n_iterations: int = 2</text>
+<text x="92" y="640" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- seed: int = 42</text>
+<text x="92" y="656" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- method: str = 'rb'</text>
+<line x1="80" y1="668" x2="420" y2="668" stroke="#cbd5e1" stroke-width="1"/>
+<text x="92" y="684" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ partition(entities, edges): tuple[dict, dict, float]</text>
+<text x="92" y="700" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ split_oversized_communities(g, membership): list</text>
+<filter id="shadow_4413529904" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="520" y="140" width="330" height="136" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4413529904)"/>
+<path d="M 520 146 Q 520 140 526 140 L 844 140 Q 850 140 850 146 L 850 172 L 520 172 Z" fill="#4338ca"/>
+<text x="685.0" y="162" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">BM25Retriever</text>
+<line x1="520" y1="172" x2="850" y2="172" stroke="#64748b" stroke-width="1"/>
+<text x="532" y="188" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- bm25: BM25Okapi</text>
+<text x="532" y="204" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- documents: list[dict]</text>
+<line x1="520" y1="216" x2="850" y2="216" stroke="#cbd5e1" stroke-width="1"/>
+<text x="532" y="232" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ tokenize(text: str): list[str]</text>
+<text x="532" y="248" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ build(documents: list[dict]): void</text>
+<text x="532" y="264" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ search(query: str, top_k: int): list[dict]</text>
+<filter id="shadow_4413528688" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="520" y="340" width="330" height="136" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4413528688)"/>
+<path d="M 520 346 Q 520 340 526 340 L 844 340 Q 850 340 850 346 L 850 372 L 520 372 Z" fill="#4338ca"/>
+<text x="685.0" y="362" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">DenseRetriever</text>
+<line x1="520" y1="372" x2="850" y2="372" stroke="#64748b" stroke-width="1"/>
+<text x="532" y="388" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- model: SentenceTransformer</text>
+<text x="532" y="404" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- embeddings: ndarray</text>
+<text x="532" y="420" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- documents: list[dict]</text>
+<line x1="520" y1="432" x2="850" y2="432" stroke="#cbd5e1" stroke-width="1"/>
+<text x="532" y="448" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ build(documents: list[dict], batch_size: int): void</text>
+<text x="532" y="464" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ search(query: str, top_k: int): list[dict]</text>
+<filter id="shadow_4414919824" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="520" y="550" width="330" height="152" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414919824)"/>
+<path d="M 520 556 Q 520 550 526 550 L 844 550 Q 850 550 850 556 L 850 582 L 520 582 Z" fill="#4338ca"/>
+<text x="685.0" y="572" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">HybridRetriever</text>
+<line x1="520" y1="582" x2="850" y2="582" stroke="#64748b" stroke-width="1"/>
+<text x="532" y="598" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- bm25_retriever: BM25Retriever</text>
+<text x="532" y="614" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- dense_retriever: DenseRetriever</text>
+<text x="532" y="630" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- fusion_method: str = 'rrf'</text>
+<text x="532" y="646" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- rrf_k: int = 60</text>
+<line x1="520" y1="658" x2="850" y2="658" stroke="#cbd5e1" stroke-width="1"/>
+<text x="532" y="674" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ search(query: str, top_k: int): list[dict]</text>
+<text x="532" y="690" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _fuse_rrf(dense_res, bm25_res, top_k): list[dict]</text>
+<filter id="shadow_4415508816" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="520" y="800" width="380" height="184" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415508816)"/>
+<path d="M 520 806 Q 520 800 526 800 L 894 800 Q 900 800 900 806 L 900 832 L 520 832 Z" fill="#6b21a8"/>
+<text x="710.0" y="822" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">PartitionRetriever</text>
+<line x1="520" y1="832" x2="900" y2="832" stroke="#64748b" stroke-width="1"/>
+<text x="532" y="848" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- centroids: ndarray</text>
+<text x="532" y="864" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- bm25: BM25Okapi</text>
+<text x="532" y="880" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- community_id_order: list[int]</text>
+<text x="532" y="896" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- community_entities: dict[int, list[str]]</text>
+<text x="532" y="912" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- rrf_k: int = 60</text>
+<line x1="520" y1="924" x2="900" y2="924" stroke="#cbd5e1" stroke-width="1"/>
+<text x="532" y="940" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ load_full_scale(indexes_dir, data_dir): void</text>
+<text x="532" y="956" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ search(query: str, top_k: int, client: Neo4jClient): list[dict]</text>
+<text x="532" y="972" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _search_full_scale(query, top_k, client): list[dict]</text>
+<filter id="shadow_4415509360" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="980" y="800" width="370" height="104" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415509360)"/>
+<path d="M 980 806 Q 980 800 986 800 L 1344 800 Q 1350 800 1350 806 L 1350 832 L 980 832 Z" fill="#9d174d"/>
+<text x="1165.0" y="822" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">PartitionRAGTraversalAdapter</text>
+<line x1="980" y1="832" x2="1350" y2="832" stroke="#64748b" stroke-width="1"/>
+<text x="992" y="848" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- traverser: PathScoringTraverser</text>
+<text x="992" y="864" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- context_builder: EvidenceContextBuilder</text>
+<line x1="980" y1="876" x2="1350" y2="876" stroke="#cbd5e1" stroke-width="1"/>
+<text x="992" y="892" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ retrieve(query, seeds, hits): PartitionTraversalResponse</text>
+<filter id="shadow_4414781520" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="980" y="430" width="370" height="168" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414781520)"/>
+<path d="M 980 436 Q 980 430 986 430 L 1344 430 Q 1350 430 1350 436 L 1350 462 L 980 462 Z" fill="#9d174d"/>
+<text x="1165.0" y="452" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">PathScoringTraverser</text>
+<line x1="980" y1="462" x2="1350" y2="462" stroke="#64748b" stroke-width="1"/>
+<text x="992" y="478" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- client: QueryClient</text>
+<text x="992" y="494" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- config: PathScoringConfig</text>
+<text x="992" y="510" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- model: SentenceTransformer</text>
+<line x1="980" y1="522" x2="1350" y2="522" stroke="#cbd5e1" stroke-width="1"/>
+<text x="992" y="538" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ traverse(query, seeds, allowed_eids): TraversalResult</text>
+<text x="992" y="554" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _fetch_neighbors(sources, allowed): list[KGEdge]</text>
+<text x="992" y="570" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _score_candidates(q, emb, cands): list[tuple]</text>
+<text x="992" y="586" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _local_bm25(query, docs): ndarray</text>
+<filter id="shadow_4415721040" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="980" y="180" width="370" height="104" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415721040)"/>
+<path d="M 980 186 Q 980 180 986 180 L 1344 180 Q 1350 180 1350 186 L 1350 212 L 980 212 Z" fill="#9d174d"/>
+<text x="1165.0" y="202" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">EvidenceContextBuilder</text>
+<line x1="980" y1="212" x2="1350" y2="212" stroke="#64748b" stroke-width="1"/>
+<text x="992" y="228" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- max_description_chars: int = 240</text>
+<line x1="980" y1="240" x2="1350" y2="240" stroke="#cbd5e1" stroke-width="1"/>
+<text x="992" y="256" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ build(result: TraversalResult): EvidenceBundle</text>
+<text x="992" y="272" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">- _citation(label: str, edge: KGEdge): dict</text>
+<filter id="shadow_4415078960" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="1400" y="180" width="300" height="162" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415078960)"/>
+<path d="M 1400 186 Q 1400 180 1406 180 L 1694 180 Q 1700 180 1700 186 L 1700 222 L 1400 222 Z" fill="#0369a1"/>
+<text x="1550.0" y="196" fill="#cbd5e1" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" text-anchor="middle">&lt;&lt;dataclass&gt;&gt;</text>
+<text x="1550.0" y="214" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">EvidenceBundle</text>
+<line x1="1400" y1="222" x2="1700" y2="222" stroke="#64748b" stroke-width="1"/>
+<text x="1412" y="238" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ context: str</text>
+<text x="1412" y="254" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ candidate_answer_ids: tuple[str, ...]</text>
+<text x="1412" y="270" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ paths: tuple[EvidencePath, ...]</text>
+<text x="1412" y="286" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ citations: tuple[dict, ...]</text>
+<text x="1412" y="302" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ traversal_metadata: dict[str, int]</text>
+<line x1="1400" y1="314" x2="1700" y2="314" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1412" y="330" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ as_dict(): dict</text>
+<filter id="shadow_4415086880" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="1400" y="650" width="320" height="146" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415086880)"/>
+<path d="M 1400 656 Q 1400 650 1406 650 L 1714 650 Q 1720 650 1720 656 L 1720 692 L 1400 692 Z" fill="#1e293b"/>
+<text x="1560.0" y="666" fill="#cbd5e1" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" text-anchor="middle">&lt;&lt;facade / orchestrator&gt;&gt;</text>
+<text x="1560.0" y="684" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">EnhancedKGRAGPipeline</text>
+<line x1="1400" y1="692" x2="1720" y2="692" stroke="#64748b" stroke-width="1"/>
+<text x="1412" y="708" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- partition_retriever: PartitionRetriever</text>
+<text x="1412" y="724" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- traversal_adapter: PartitionRAGTraversalAdapter</text>
+<text x="1412" y="740" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- llm_client: LLMClient</text>
+<line x1="1400" y1="752" x2="1720" y2="752" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1412" y="768" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ answer_query(query: str, seed_eids: list[str]): dict</text>
+<text x="1412" y="784" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ retrieve_context(query: str, seed_eids: list[str]): EvidenceBundle</text>
+<filter id="shadow_4414870864" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="1400" y="940" width="320" height="114" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414870864)"/>
+<path d="M 1400 946 Q 1400 940 1406 940 L 1714 940 Q 1720 940 1720 946 L 1720 982 L 1400 982 Z" fill="#334155"/>
+<text x="1560.0" y="956" fill="#cbd5e1" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" text-anchor="middle">&lt;&lt;boundary / external&gt;&gt;</text>
+<text x="1560.0" y="974" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">LLMClient</text>
+<line x1="1400" y1="982" x2="1720" y2="982" stroke="#64748b" stroke-width="1"/>
+<text x="1412" y="998" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- model_name: str</text>
+<text x="1412" y="1014" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- temperature: float = 0.0</text>
+<line x1="1400" y1="1026" x2="1720" y2="1026" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1412" y="1042" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ generate_grounded_response(prompt: str): str</text>
+    </svg>

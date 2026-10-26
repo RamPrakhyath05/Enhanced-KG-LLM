@@ -65,7 +65,8 @@ class SubgraphRetriever:
         model_name: str = "all-MiniLM-L6-v2",
         device: Optional[str] = None,
     ) -> None:
-        self.subg_dir = subg_dir or os.getenv("SUBG_DIR", "data/subg")
+        default_dir = "data/Partitions" if os.path.exists("data/Partitions") else "data/subg"
+        self.subg_dir = subg_dir or os.getenv("SUBG_DIR", default_dir)
         self.model_name = model_name
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         

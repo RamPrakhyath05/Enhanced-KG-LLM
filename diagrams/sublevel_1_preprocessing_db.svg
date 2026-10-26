@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="920" viewBox="0 0 1350 920">
+    
+    <defs>
+      <!-- Arrow markers -->
+      <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569" />
+      </marker>
+      <marker id="open_arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9" fill="none" stroke="#475569" stroke-width="1.5" />
+      </marker>
+      <marker id="hollow_triangle" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+        <path d="M 0 1 L 12 6 L 0 11 z" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+      </marker>
+      <marker id="diamond_filled" viewBox="0 0 16 10" refX="16" refY="5" markerWidth="11" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 5 L 8 1 L 16 5 L 8 9 z" fill="#1e293b" stroke="#1e293b" stroke-width="1.2"/>
+      </marker>
+      <marker id="diamond_hollow" viewBox="0 0 16 10" refX="16" refY="5" markerWidth="11" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 5 L 8 1 L 16 5 L 8 9 z" fill="#ffffff" stroke="#1e293b" stroke-width="1.4"/>
+      </marker>
+    </defs>
+    
+    <rect width="1350" height="920" fill="#f8fafc"/>
+    
+    <text x="675.0" y="48" fill="#0f172a" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle">Sub-Level 1: Database &amp; Graph Preprocessing Class Diagram</text>
+    <text x="675.0" y="76" fill="#64748b" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">Extraction, Topological Sanitization, Semantic Weighting, and Leiden Community Decomposition</text>
+    
+    <line x1="300" y1="520" x2="300" y2="320" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="296.0" y="409.0" width="133.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="302.0" y="420.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">streams records via</text>
+<polyline points="520,600 570,600 570,240 620,240" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="566.0" y="409.0" width="185.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="572.0" y="420.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">provides triples &amp; entities</text>
+<line x1="845" y1="300" x2="845" y2="420" stroke="#475569" stroke-width="1.6"   marker-end="url(#open_arrow)"/>
+<rect x="841.0" y="349.0" width="166.0" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="847.0" y="360.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">produces weighted igraph</text>
+<line x1="845" y1="590" x2="845" y2="700" stroke="#475569" stroke-width="1.6" stroke-dasharray="6,4"  marker-end="url(#open_arrow)"/>
+<rect x="841.0" y="634.0" width="172.5" height="15" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="847.0" y="645.0" fill="#334155" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="600">serializes partition maps</text>
+    <filter id="shadow_4414870864" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="80" y="140" width="440" height="168" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414870864)"/>
+<path d="M 80 146 Q 80 140 86 140 L 514 140 Q 520 140 520 146 L 520 172 L 80 172 Z" fill="#1e3a8a"/>
+<text x="300.0" y="162" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Neo4jClient</text>
+<line x1="80" y1="172" x2="520" y2="172" stroke="#64748b" stroke-width="1"/>
+<text x="92" y="188" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- driver: neo4j.Driver</text>
+<line x1="80" y1="200" x2="520" y2="200" stroke="#cbd5e1" stroke-width="1"/>
+<text x="92" y="216" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __init__()</text>
+<text x="92" y="232" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ close(): void</text>
+<text x="92" y="248" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ run_query(query: str, parameters: dict = None): list[dict]</text>
+<text x="92" y="264" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ stream_query(query: str, parameters: dict = None, batch_size: int = 10000): Generator</text>
+<text x="92" y="280" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __enter__(): Neo4jClient</text>
+<text x="92" y="296" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __exit__(exc_type, exc_val, exc_tb): void</text>
+<filter id="shadow_4414957184" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="80" y="520" width="440" height="146" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4414957184)"/>
+<path d="M 80 526 Q 80 520 86 520 L 514 520 Q 520 520 520 526 L 520 562 L 80 562 Z" fill="#1e3a8a"/>
+<text x="300.0" y="536" fill="#cbd5e1" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" text-anchor="middle">&lt;&lt;module / utility&gt;&gt;</text>
+<text x="300.0" y="554" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">GraphExtractor</text>
+<line x1="80" y1="562" x2="520" y2="562" stroke="#64748b" stroke-width="1"/>
+<text x="92" y="578" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- batch_size: int = 10000</text>
+<text x="92" y="594" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- chunk_size: int = 2000</text>
+<line x1="80" y1="606" x2="520" y2="606" stroke="#cbd5e1" stroke-width="1"/>
+<text x="92" y="622" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ extract_entities(client: Neo4jClient, limit: int): dict[str, dict]</text>
+<text x="92" y="638" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ extract_edges_for_entities(client: Neo4jClient, entity_ids: set): list[tuple]</text>
+<text x="92" y="654" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ extract_all_edges(client: Neo4jClient, batch_size: int): list[tuple]</text>
+<filter id="shadow_4415869712" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="620" y="140" width="450" height="136" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415869712)"/>
+<path d="M 620 146 Q 620 140 626 140 L 1064 140 Q 1070 140 1070 146 L 1070 172 L 620 172 Z" fill="#0f766e"/>
+<text x="845.0" y="162" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">WeightedGraphBuilder</text>
+<line x1="620" y1="172" x2="1070" y2="172" stroke="#64748b" stroke-width="1"/>
+<text x="632" y="188" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">+ HUB_RELATIONS: set[str] = {'P31','P17','P27','P131','P19','P20','P21','P106'}</text>
+<text x="632" y="204" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- chunk_size: int = 500000</text>
+<line x1="620" y1="216" x2="1070" y2="216" stroke="#cbd5e1" stroke-width="1"/>
+<text x="632" y="232" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __init__(chunk_size: int = 500000)</text>
+<text x="632" y="248" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ filter_hub_relations(triples_df: DataFrame): DataFrame</text>
+<text x="632" y="264" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ build_from_embeddings(triples_df, embeddings, id_to_row): tuple[ig.Graph, list]</text>
+<filter id="shadow_4415869520" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="620" y="420" width="450" height="168" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4415869520)"/>
+<path d="M 620 426 Q 620 420 626 420 L 1064 420 Q 1070 420 1070 426 L 1070 452 L 620 452 Z" fill="#0f766e"/>
+<text x="845.0" y="442" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">LeidenPartitioner</text>
+<line x1="620" y1="452" x2="1070" y2="452" stroke="#64748b" stroke-width="1"/>
+<text x="632" y="468" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- resolution: float = 1.0</text>
+<text x="632" y="484" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- n_iterations: int = 2</text>
+<text x="632" y="500" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- seed: int = 42</text>
+<text x="632" y="516" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- method: str = 'rb'</text>
+<line x1="620" y1="528" x2="1070" y2="528" stroke="#cbd5e1" stroke-width="1"/>
+<text x="632" y="544" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ __init__(resolution=1.0, n_iterations=2, seed=42, method='rb')</text>
+<text x="632" y="560" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ partition(entities: dict, edges: list): tuple[dict, dict, float]</text>
+<text x="632" y="576" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ split_oversized_communities(g: ig.Graph, membership: list): list</text>
+<filter id="shadow_4416091456" x="-5%" y="-5%" width="115%" height="115%"><feDropShadow dx="3" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+<rect x="620" y="700" width="450" height="114" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow_4416091456)"/>
+<path d="M 620 706 Q 620 700 626 700 L 1064 700 Q 1070 700 1070 706 L 1070 742 L 620 742 Z" fill="#0f766e"/>
+<text x="845.0" y="716" fill="#cbd5e1" font-family="Helvetica, Arial, sans-serif" font-size="11" font-style="italic" text-anchor="middle">&lt;&lt;module / persistence&gt;&gt;</text>
+<text x="845.0" y="734" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">PartitionStorage</text>
+<line x1="620" y1="742" x2="1070" y2="742" stroke="#64748b" stroke-width="1"/>
+<text x="632" y="758" fill="#1e293b" font-family="Consolas, Monaco, monospace" font-size="11">- output_dir: str = 'data/partitions'</text>
+<line x1="620" y1="770" x2="1070" y2="770" stroke="#cbd5e1" stroke-width="1"/>
+<text x="632" y="786" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ save_partitions(partition_map: dict, metadata: dict, output_dir: str): void</text>
+<text x="632" y="802" fill="#0f172a" font-family="Consolas, Monaco, monospace" font-size="11">+ load_partitions(input_dir: str): tuple[dict, dict]</text>
+    </svg>

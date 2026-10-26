@@ -11,9 +11,15 @@ import json
 import os
 import re
 import time
+import urllib.error
+import urllib.request
 from dataclasses import dataclass, field
 from typing import Any, List, Optional
-import requests
+
+try:
+    import requests
+except ImportError:
+    requests = None
 
 from src.traversal.evidence_context import EvidenceBundle
 
@@ -60,18 +66,29 @@ class OllamaClient:
     def is_available(self) -> bool:
         """Check if the Ollama service is active and reachable."""
         try:
-            resp = requests.get(f"{self.base_url}/api/tags", timeout=3.0)
-            return resp.status_code == 200
+            if requests is not None:
+                resp = requests.get(f"{self.base_url}/api/tags", timeout=3.0)
+                return resp.status_code == 200
+            req = urllib.request.Request(f"{self.base_url}/api/tags", headers={"User-Agent": "Enhanced-KG-LLM"})
+            with urllib.request.urlopen(req, timeout=3.0) as resp:
+                return resp.status == 200
         except Exception:
             return False
 
     def list_models(self) -> list[str]:
         """List models installed in the local Ollama instance."""
         try:
-            resp = requests.get(f"{self.base_url}/api/tags", timeout=3.0)
-            if resp.status_code == 200:
-                data = resp.json()
-                return [m.get("name", "") for m in data.get("models", [])]
+            if requests is not None:
+                resp = requests.get(f"{self.base_url}/api/tags", timeout=3.0)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    return [m.get("name", "") for m in data.get("models", [])]
+            else:
+                req = urllib.request.Request(f"{self.base_url}/api/tags", headers={"User-Agent": "Enhanced-KG-LLM"})
+                with urllib.request.urlopen(req, timeout=3.0) as resp:
+                    if resp.status == 200:
+                        data = json.loads(resp.read().decode("utf-8"))
+                        return [m.get("name", "") for m in data.get("models", [])]
         except Exception:
             pass
         return []
@@ -95,10 +112,22 @@ class OllamaClient:
         if system:
             payload["system"] = system
 
-        resp = requests.post(url, json=payload, timeout=self.timeout)
-        resp.raise_for_status()
-        data = resp.json()
-        return data.get("response", "").strip()
+        if requests is not None:
+            resp = requests.post(url, json=payload, timeout=self.timeout)
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("response", "").strip()
+
+        data_bytes = json.dumps(payload).encode("utf-8")
+        req = urllib.request.Request(
+            url,
+            data=data_bytes,
+            headers={"Content-Type": "application/json", "User-Agent": "Enhanced-KG-LLM"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data.get("response", "").strip()
 
     def answer_with_evidence(
         self,
