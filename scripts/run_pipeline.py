@@ -4,7 +4,7 @@ import sys
 import time
 
 # Ensure repository root is on sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Set offline mode default for huggingface to use cached models seamlessly
 os.environ.setdefault("HF_HUB_OFFLINE", "1")

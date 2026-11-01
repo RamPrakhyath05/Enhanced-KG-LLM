@@ -88,20 +88,29 @@ class SubgraphRetriever:
         paths = meta["resolved_paths"]
 
         self.embeddings = np.load(paths["embeddings"])
-        with open(paths["bm25_docs"], "rb") as f:
-            self.bm25_docs = pickle.load(f)
         with open(paths["partition_ids"], "rb") as f:
             self.partition_ids = pickle.load(f)
         with open(paths["entity_map"], "rb") as f:
             self.entity_map = pickle.load(f)
 
-        # Support pre-tokenized lists of tokens or raw document strings
-        if self.bm25_docs and isinstance(self.bm25_docs[0], list):
-            tokenized_docs = self.bm25_docs
+        # Fast startup using pre-serialized BM25 index (<1s vs ~7s)
+        bm25_index_path = os.path.join(self.subg_dir, "bm25_index.pkl")
+        if os.path.exists(bm25_index_path):
+            with open(bm25_index_path, "rb") as f:
+                self.bm25 = pickle.load(f)
         else:
-            tokenized_docs = [tokenize(doc) for doc in self.bm25_docs]
-
-        self.bm25 = BM25Okapi(tokenized_docs)
+            with open(paths["bm25_docs"], "rb") as f:
+                self.bm25_docs = pickle.load(f)
+            if self.bm25_docs and isinstance(self.bm25_docs[0], list):
+                tokenized_docs = self.bm25_docs
+            else:
+                tokenized_docs = [tokenize(doc) for doc in self.bm25_docs]
+            self.bm25 = BM25Okapi(tokenized_docs)
+            try:
+                with open(bm25_index_path, "wb") as f:
+                    pickle.dump(self.bm25, f, protocol=pickle.HIGHEST_PROTOCOL)
+            except Exception:
+                pass
 
         self.model = SentenceTransformer(self.model_name, device=self.device)
         self._is_loaded = True

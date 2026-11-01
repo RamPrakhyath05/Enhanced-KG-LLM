@@ -19,26 +19,40 @@ RELATION_INTENTS = {
     "date of birth": {"birthdate", "birthday", "born", "birth"},
     "capital": {"capital", "city"},
     "located in": {"located", "location", "where"},
+    "founder": {"founder", "founded", "founding", "co-founder", "co-founded", "established"},
+    "manufacturer": {"manufacturer", "manufactured", "manufacturing", "developer", "developed"},
+    "director": {"director", "directed", "directing"},
 }
 
 
 def relation_intent_name(relation: str) -> str | None:
     """Return the normalized intent family for a KG relation, when known."""
     relation_terms = set(TOKEN_RE.findall(relation.lower()))
-    for intent in RELATION_INTENTS:
-        if relation_terms & set(TOKEN_RE.findall(intent)):
+    for intent, terms in RELATION_INTENTS.items():
+        if relation_terms & terms or relation_terms & set(TOKEN_RE.findall(intent)):
             return intent
     return None
 
 
 def relation_matches_query(relation: str, query: str) -> bool:
-    """Match common question wording to a KG relation intent."""
-    relation_terms = set(TOKEN_RE.findall(relation.lower()))
+    """Match common question wording to a KG relation intent without intent cross-talk."""
+    r_intent = relation_intent_name(relation)
     query_terms = set(TOKEN_RE.findall(query.lower())) - STOPWORDS
+
+    q_intent = None
+    for intent, terms in RELATION_INTENTS.items():
+        if query_terms & terms:
+            q_intent = intent
+            break
+
+    # If both query and relation have recognized intents, they must match
+    if r_intent and q_intent:
+        return r_intent == q_intent
+
+    relation_terms = set(TOKEN_RE.findall(relation.lower()))
     if relation_terms & query_terms:
         return True
-    intent = relation_intent_name(relation)
-    return bool(intent and query_terms & RELATION_INTENTS[intent])
+    return bool(r_intent and query_terms & RELATION_INTENTS[r_intent])
 
 
 class QueryClient(Protocol):
@@ -242,8 +256,7 @@ class PathScoringTraverser:
 
         cypher = f"""
         UNWIND $source_ids AS sid
-        CALL {{
-            WITH sid
+        CALL (sid) {{
             MATCH (source:Entity {{Entity_ID: sid}})-[rel:RELATED_TO]->(target:Entity)
             {where_clause}
             RETURN source.Entity_ID AS source_id,

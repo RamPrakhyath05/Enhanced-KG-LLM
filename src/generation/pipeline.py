@@ -10,7 +10,11 @@ from src.generation.ollama_client import GroundedAnswer, OllamaClient
 from src.query_subgraph.subgraph_retriever import SubgraphRetriever
 from src.traversal.evidence_context import EvidenceBundle, EvidenceContextBuilder
 from src.traversal.partition_rag_adapter import PartitionRAGTraversalAdapter
-from src.traversal.path_scoring_traverser import PathScoringConfig, PathScoringTraverser
+from src.traversal.path_scoring_traverser import (
+    PathScoringConfig,
+    PathScoringTraverser,
+    relation_matches_query,
+)
 from src.traversal.seed_resolver import EntitySeedResolver, ResolvedSeed
 
 
@@ -226,6 +230,45 @@ class EnhancedKGRAGPipeline:
         self.ollama = ollama_client or OllamaClient()
         self.context_builder = EvidenceContextBuilder()
 
+    def warmup(self, verbose: bool = True) -> None:
+        """Pre-load all models, indexes, database connection pool, and GPU caches upfront.
+
+        Ensures that every subsequent user query executes with minimal latency.
+        """
+        t0 = time.perf_counter()
+        if verbose:
+            print("[EnhancedKGRAGPipeline] Warming up pipeline components upfront...")
+
+        # 1. Load SubgraphRetriever artifacts (centroids, BM25 index, entity map)
+        if verbose:
+            print("  • Loading subgraph partition artifacts (centroids.npy, BM25 index, entity map)...")
+        self.retriever.load()
+
+        # 2. Warm up SentenceTransformer with a dummy encode to initialize CUDA kernels/JIT
+        if self.retriever.model is not None:
+            if verbose:
+                print(f"  • Warming up SentenceTransformer ({self.retriever.model_name}) on {self.retriever.device}...")
+            _ = self.retriever.model.encode(["warmup query"], normalize_embeddings=True)
+
+        # 3. Warm up database connection & SeedResolver
+        if verbose:
+            print("  • Initializing Neo4j database connection pool & entity seed resolver...")
+        try:
+            _ = self.db_client
+            _ = self.seed_resolver
+        except Exception as e:
+            if verbose:
+                print(f"  • [Warning] Neo4j warm-up check: {e}")
+
+        # 4. Preload Ollama model weights into GPU VRAM
+        if verbose:
+            print(f"  • Preloading Ollama model '{self.ollama.model_name}' into GPU memory...")
+        self.ollama.preload()
+
+        elapsed = time.perf_counter() - t0
+        if verbose:
+            print(f"[EnhancedKGRAGPipeline] Ready! All models and indexes warmed up in {elapsed:.2f}s.\n")
+
     @property
     def seed_resolver(self) -> EntitySeedResolver:
         if self._seed_resolver is None:
@@ -255,6 +298,10 @@ class EnhancedKGRAGPipeline:
                 print(f"[EnhancedKGRAGPipeline] Neo4j unavailable ({exc}). Using explicit offline graph fallback.")
                 self._db_client = FallbackGraphClient()
         return self._db_client
+
+    def close(self) -> None:
+        if self._db_client is not None and hasattr(self._db_client, "close"):
+            self._db_client.close()
 
     def run(
         self,
@@ -313,27 +360,59 @@ class EnhancedKGRAGPipeline:
         if not resolved_seeds and seed_entity_ids and not self.allow_offline_fallback:
             seed_rows = self.db_client.run_query(
                 "MATCH (e:Entity) WHERE e.Entity_ID IN $entity_ids "
-                "RETURN DISTINCT e.partition_id AS partition_id",
+                "RETURN e.Entity_ID AS id, e.Entity_Name AS name, "
+                "       e.Entity_Description AS description, e.partition_id AS partition_id",
                 {"entity_ids": list(seed_entity_ids)},
             )
+            resolved_seeds = [
+                ResolvedSeed(
+                    entity_id=str(row["id"]),
+                    entity_name=str(row.get("name") or row["id"]),
+                    description=str(row.get("description") or ""),
+                    confidence=1.0,
+                    matched_term=str(row.get("name") or row["id"]),
+                    partition_id=int(row["partition_id"]) if row.get("partition_id") is not None else None,
+                )
+                for row in seed_rows
+            ]
             seed_partition_ids.update(
                 int(row["partition_id"])
                 for row in seed_rows
                 if row.get("partition_id") is not None
             )
 
+        # Fix 1: Seed-relation boundary expansion (bridge expansion).
+        # When seed entities connect across community boundaries via relations that match
+        # the query intent or keywords, include those target partitions in traversal scope.
+        bridge_partition_ids: set[int] = set()
+        if seed_entity_ids and not self.allow_offline_fallback:
+            try:
+                rel_rows = self.db_client.run_query(
+                    "MATCH (source:Entity)-[rel:RELATED_TO]-(target:Entity) "
+                    "WHERE source.Entity_ID IN $seed_ids "
+                    "RETURN DISTINCT rel.Relation_Name AS rel_name, target.partition_id AS target_partition_id",
+                    {"seed_ids": list(seed_entity_ids)},
+                )
+                for row in rel_rows:
+                    rel_name = row.get("rel_name") or ""
+                    tgt_pid = row.get("target_partition_id")
+                    if tgt_pid is not None and relation_matches_query(rel_name, query):
+                        bridge_partition_ids.add(int(tgt_pid))
+            except Exception:
+                pass
+
+        all_scope_partition_ids = seed_partition_ids | bridge_partition_ids
+
         def include_seed_partitions(base_hits: list[dict]) -> list[dict]:
-            """Keep traversal bounded while ensuring its seed nodes are in scope."""
+            """Keep traversal bounded while ensuring its seed and bridge nodes are in scope."""
             traversal_hits = list(base_hits)
             included_partition_ids = {
                 int(hit.get("partition_id", hit.get("community_id")))
                 for hit in traversal_hits
                 if hit.get("partition_id", hit.get("community_id")) is not None
             }
-            for partition_id in sorted(seed_partition_ids - included_partition_ids):
+            for partition_id in sorted(all_scope_partition_ids - included_partition_ids):
                 entity_ids = self.retriever.entity_map.get(partition_id, [])
-                if not entity_ids:
-                    continue
                 entity_id_set = set(entity_ids)
                 seed_nodes = [eid for eid in seed_entity_ids if eid in entity_id_set][:5]
                 traversal_hits.append({
@@ -375,6 +454,7 @@ class EnhancedKGRAGPipeline:
             query=query,
             seed_entity_ids=seed_entity_ids,
             partition_hits=traversal_hits,
+            seed_entities=resolved_seeds,
         )
         timings["traversal_ms"] = (time.perf_counter() - t0) * 1000
         if not traversal_resp.bundle.paths:
@@ -390,6 +470,7 @@ class EnhancedKGRAGPipeline:
                     query=query,
                     seed_entity_ids=seed_entity_ids,
                     partition_hits=traversal_hits,
+                    seed_entities=resolved_seeds,
                 )
                 timings["traversal_ms"] += (time.perf_counter() - t0) * 1000
         _notify("traversal_done", {

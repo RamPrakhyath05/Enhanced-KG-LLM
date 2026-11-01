@@ -18,7 +18,7 @@ from src.traversal.evidence_context import EvidenceBundle
 from src.traversal.path_scoring_traverser import relation_intent_name, relation_matches_query
 
 
-CITATION_REGEX = re.compile(r"\[P\d+\.E\d+\]")
+CITATION_REGEX = re.compile(r"\[(?:P\d+\.E\d+|S\d+)\]")
 
 
 @dataclass(frozen=True)
@@ -91,6 +91,30 @@ class OllamaClient:
             pass
         return []
 
+    def preload(self) -> bool:
+        """Preload the model into memory/VRAM without generating text."""
+        if not self.is_available():
+            return False
+        url = f"{self.base_url}/api/generate"
+        payload = {
+            "model": self.model_name,
+        }
+        try:
+            if requests is not None:
+                resp = requests.post(url, json=payload, timeout=self.timeout)
+                return resp.status_code == 200
+            data_bytes = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                url,
+                data=data_bytes,
+                headers={"Content-Type": "application/json", "User-Agent": "Enhanced-KG-LLM"},
+                method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                return resp.status == 200
+        except Exception:
+            return False
+
     def generate(
         self,
         prompt: str,
@@ -138,7 +162,8 @@ class OllamaClient:
         If Ollama is not running and mock_if_unavailable=True, synthesizes a clean,
         grounded mock response referencing bundle edges so tests and pipelines don't crash.
         """
-        if not bundle.paths:
+        has_topic_entities = any(cit.get("label", "").startswith("S") for cit in bundle.citations)
+        if not bundle.paths and not has_topic_entities:
             return GroundedAnswer(
                 query=query,
                 answer=(
@@ -152,24 +177,12 @@ class OllamaClient:
                 skip_reason="no evidence",
             )
 
-        direct_answer = self._answer_from_relation_evidence(query, bundle)
-        if direct_answer:
-            answer, citations = direct_answer
-            return GroundedAnswer(
-                query=query,
-                answer=answer,
-                citations_used=citations,
-                model_name=f"{self.model_name} (direct KG evidence)",
-                raw_context=bundle.context,
-                was_skipped=True,
-                skip_reason="direct relation in KG evidence",
-            )
-
         system_instruction = (
             "You are a factual knowledge-graph reasoning assistant. "
             "You must answer the user's question using ONLY the provided knowledge-graph evidence. "
+            "Standard biographical parenthetical date ranges like (Birth Date – Death Date) denote a person's birth and death dates. "
             "For every factual assertion in your answer, you MUST cite the corresponding citation tag "
-            "exactly as provided (e.g. [P1.E1]). "
+            "exactly as provided (e.g. [P1.E1] or [S1]). "
             "Answer concisely and put the citation immediately after each supported fact. "
             "If the evidence does not contain sufficient facts to answer, explicitly state that. "
             "Do not infer or hallucinate relationships not shown in the evidence."
@@ -201,6 +214,20 @@ class OllamaClient:
                 if not mock_if_unavailable:
                     raise
                 print(f"[OllamaClient] Generation error: {e}. Falling back to synthetic grounded answer.")
+
+        # Offline fallback when Ollama is unavailable or mock requested
+        direct_answer = self._answer_from_relation_evidence(query, bundle)
+        if direct_answer:
+            answer, citations = direct_answer
+            return GroundedAnswer(
+                query=query,
+                answer=answer,
+                citations_used=citations,
+                model_name=f"{self.model_name} (direct KG evidence fallback)",
+                raw_context=bundle.context,
+                was_skipped=True,
+                skip_reason="direct relation in KG evidence (offline fallback)",
+            )
 
         if not mock_if_unavailable:
             raise ConnectionError(
@@ -268,6 +295,12 @@ class OllamaClient:
                     and relation_matches_query(edge.relation_name, query)
                 ):
                     matched.append(f"P{path_number}.E{edge_number}")
+        if not matched:
+            for cit in bundle.citations:
+                if cit.get("label", "").startswith("S"):
+                    s_name = normalize(cit.get("entity_name", ""))
+                    if s_name and (s_name in query_text or s_name in answer_text):
+                        matched.append(cit["label"])
         return tuple(dict.fromkeys(matched))
 
     @staticmethod

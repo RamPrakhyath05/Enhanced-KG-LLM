@@ -35,6 +35,7 @@ class PartitionRAGTraversalAdapter:
         query: str,
         seed_entity_ids: Iterable[str],
         partition_hits: Sequence[dict],
+        seed_entities: Sequence[Any] | None = None,
     ) -> PartitionTraversalResponse:
         partition_ids = tuple(
             int(hit["community_id"])
@@ -56,6 +57,6 @@ class PartitionRAGTraversalAdapter:
             allowed_partition_ids=partition_ids,
         )
         return PartitionTraversalResponse(
-            bundle=self.context_builder.build(result),
+            bundle=self.context_builder.build(result, seed_entities=seed_entities),
             selected_partition_ids=partition_ids,
         )

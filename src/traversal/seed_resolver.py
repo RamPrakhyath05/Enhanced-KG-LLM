@@ -45,6 +45,15 @@ QUERY_TERMS = {
 MENTION_STOP_WORDS = STOP_WORDS | QUERY_TERMS
 
 
+QUERY_PREFIXES = (
+    "what is a ", "what is an ", "what is the ", "what is ",
+    "what are the ", "what are ",
+    "when is the ", "when is ", "when was the ", "when was ",
+    "who is the ", "who is ", "who was the ", "who was ",
+    "tell me about the ", "tell me about ", "where is the ", "where is ",
+)
+
+
 @dataclass(frozen=True)
 class ResolvedSeed:
     """A candidate seed entity identified from the query."""
@@ -64,30 +73,57 @@ class EntitySeedResolver:
         self.db_client = db_client
 
     def extract_mentions(self, query: str) -> list[str]:
-        """Extract likely subject names, excluding question and relation wording."""
-        cleaned = re.sub(r"[^\w\s]", " ", query).strip()
-        words = cleaned.split()
-        if not words:
-            return []
+        """Extract likely subject names, preserving natural entity phrases and prepositions."""
+        q = query.strip()
+        q_lower = q.lower()
+        for prefix in QUERY_PREFIXES:
+            if q_lower.startswith(prefix):
+                q = q[len(prefix):].strip()
+                break
 
-        # Remove question words and relation intent first. Joining the remaining
-        # tokens still permits names such as "Lord of the Rings" to be matched.
-        significant = [w for w in words if w.lower() not in MENTION_STOP_WORDS and len(w) >= 2]
-        if not significant:
+        q_clean = re.sub(r"[\?\.!]+$", "", q).strip()
+        q_norm = q_clean.replace("’", "'")
+        raw_tokens = [t for t in re.findall(r"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)?", q_norm) if t]
+        if not raw_tokens:
             return []
 
         candidates: list[str] = []
+
+        # 1. Full subject phrase (e.g. "independence day of india", "india's independence day")
+        if len(raw_tokens) > 1:
+            candidates.append(q_norm)
+            candidates.append(q_norm.title())
+            if "'s" in q_norm:
+                candidates.append(q_norm.replace("'s", "s"))
+                candidates.append(q_norm.replace("'s", ""))
+
+        # 2. Sliding n-grams from length 5 down to 1 over raw tokens (preserving prepositions like 'of' in phrases)
+        for gram_size in range(min(5, len(raw_tokens)), 0, -1):
+            for i in range(len(raw_tokens) - gram_size + 1):
+                gram_tokens = raw_tokens[i : i + gram_size]
+                phrase = " ".join(gram_tokens).strip()
+                candidates.append(phrase)
+                candidates.append(phrase.title())
+                if "'s" in phrase:
+                    no_apos = phrase.replace("'s", "").strip()
+                    candidates.append(no_apos)
+                    candidates.append(no_apos.title())
+
+        # 3. Stop-word stripped n-grams for robust coverage of complex sentences
+        significant = [w for w in raw_tokens if w.lower() not in MENTION_STOP_WORDS and len(w) >= 2]
         for gram_size in range(min(4, len(significant)), 0, -1):
             for i in range(len(significant) - gram_size + 1):
                 phrase = " ".join(significant[i : i + gram_size]).strip()
-                candidates.extend((phrase, phrase.title()))
+                candidates.append(phrase)
+                candidates.append(phrase.title())
 
-        # De-duplicate exact strings while retaining both input and title case.
         seen: set[str] = set()
-        unique_candidates = []
+        unique_candidates: list[str] = []
+        filter_words = {"the", "is", "of", "a", "an", "in", "to", "for", "are", "was", "were", "and"}
         for candidate in candidates:
-            if candidate not in seen:
-                seen.add(candidate)
+            c_key = candidate.casefold()
+            if c_key not in seen and len(candidate) >= 2 and c_key not in filter_words:
+                seen.add(c_key)
                 unique_candidates.append(candidate)
         return unique_candidates
 
@@ -202,7 +238,18 @@ class EntitySeedResolver:
             elif eid in allowed_entity_ids:
                 partition_boost = 0.5
 
-            total_confidence = base_score + length_bonus + partition_boost
+            # Description substance boost: comprehensive entities get prioritized over stubs
+            desc_bonus = min(0.15, len(desc.split()) / 500.0) if desc else 0.0
+
+            # Penalize entertainment homonyms (albums, songs, singles) for general concept queries
+            media_penalty = 0.0
+            query_lower = query.lower()
+            if any(query_lower.startswith(p) for p in ("what is a ", "what is an ", "what is ")) and not any(m in query_lower for m in ("album", "song", "film", "movie", "band")):
+                desc_sample = desc[:140].lower()
+                if any(m in desc_sample for m in ("studio album", "compilation album", "single by", "song by", "film directed")):
+                    media_penalty = 0.25
+
+            total_confidence = base_score + length_bonus + partition_boost + desc_bonus - media_penalty
 
             if total_confidence < min_confidence:
                 continue
@@ -221,17 +268,17 @@ class EntitySeedResolver:
                 )
 
         ranked = sorted(scored_seeds.values(), key=lambda s: s.confidence, reverse=True)
-        # A single mention can match several unrelated entities (e.g. the
-        # company and fruit named Apple). Keep only its strongest entity while
-        # still allowing distinct mentions in multi-entity questions.
+        # For general queries with a single mention, allow up to 2 homonyms so graph traversal explores both.
+        unique_candidate_phrases = {c.casefold() for c in candidates}
+        max_per_mention = 2 if len(unique_candidate_phrases) <= 1 else 1
         selected: list[ResolvedSeed] = []
-        seen_mentions: set[str] = set()
+        mention_counts: dict[str, int] = {}
         for seed in ranked:
             mention_key = seed.matched_term.casefold()
-            if mention_key in seen_mentions:
+            if mention_counts.get(mention_key, 0) >= max_per_mention:
                 continue
             selected.append(seed)
-            seen_mentions.add(mention_key)
+            mention_counts[mention_key] = mention_counts.get(mention_key, 0) + 1
             if len(selected) >= max_seeds:
                 break
         return selected
