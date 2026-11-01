@@ -1,0 +1,50 @@
+{
+  "benchmark": "Module 1 (Semantic-Structural Graph Partitioning)",
+  "meta": {
+    "label": "w_cosine",
+    "membership": "/home/pesu-rf/Documents/Capstone_Team165/partition/membership_final_v6.pkl",
+    "n_graph_nodes": 3529659,
+    "n_non_graph": 1283832,
+    "n_partitions": 3625,
+    "size_cap": 8000,
+    "overflow": 0,
+    "build_seconds": 112.6
+  },
+  "dimacs_balance": {
+    "num_partitions_k": 3625,
+    "total_partitioned_nodes": 4813491,
+    "average_partition_size": 1327.8595862068967,
+    "min_size": 150,
+    "median_size": 1049,
+    "mean_size": 1327.8595862068967,
+    "std_dev_size": 1161.2084859201673,
+    "p90_size": 2653.6,
+    "p95_size": 3652.7999999999943,
+    "p99_size": 5533.76,
+    "max_size": 8000,
+    "empty_partitions_count": 0,
+    "dimacs_load_balance_factor_lambda": 6.024733400353298,
+    "dimacs_bounded_imbalance_epsilon": 5.024733400353298,
+    "gini_inequality_coefficient": 0.4340549928065327,
+    "size_cap_limit": 8000,
+    "overflow_count": 0,
+    "capacity_compliance_rate": 1.0
+  },
+  "semantic_cohesion": {
+    "embedding_dimensions": 384,
+    "total_evaluated_centroids": 3625,
+    "sampled_centroids_for_pairwise": 500,
+    "mean_inter_cluster_cosine_distance": 0.8275448679924011,
+    "mean_nearest_neighbor_cosine_distance": 0.16848134994506836,
+    "median_nearest_neighbor_cosine_distance": 0.15876972675323486
+  },
+  "brink_containment": {
+    "brink_questions_evaluated": 331,
+    "multi_hop_grounding_paths_inspected": 331,
+    "full_path_containment_count": 194,
+    "full_path_containment_rate_pcr": 0.5861027190332326,
+    "hop1_containment_rate": 0.6706948640483383,
+    "average_partition_boundary_crossings_per_path": 0.5498489425981873,
+    "topic_and_answer_copartition_rate": 0.7069486404833837
+  }
+}

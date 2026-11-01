@@ -1,0 +1,238 @@
+{
+  "benchmark": "Module 4 (LLM Context-Based Generation)",
+  "protocol": {
+    "split": "BRINK official validation pilot",
+    "seed": 20261028,
+    "sampling": "two questions per rule group, up to 2; one unresolved-QID question excluded",
+    "n_rules": 173,
+    "n_questions": 331,
+    "retrieval_input": "/home/pesu-rf/Documents/Capstone_Team165/new/artifacts/evaluation/brink_val_system_benchmark_selected-resolution-v1/per_question_system_benchmark.jsonl",
+    "retrieval_rows": 331,
+    "question_file_sha256": "d35917f41b887d11e13cb6ce78a647dceaf2012de4d6f7d4b6d55081a91ed71a",
+    "retrieval_sample_sha256": "0e249133b061d70f63e4da01b0b38bef205dab8d1cf15e267011f00bd6cdd0c2",
+    "systems": [
+      "full_graph",
+      "structural_partition",
+      "semantic_partition"
+    ],
+    "evidence_budget": 100,
+    "seed_policy": "retrieval benchmark uses gold topic entity; this is an oracle-seed answer-generation diagnostic, not the automatic-linker end-to-end pipeline"
+  },
+  "systems": {
+    "full_graph": {
+      "Hits@Any": 0.32628398791540786,
+      "Hits@Hard": 0.17522658610271905,
+      "Precision": 0.10576136306596434,
+      "Recall": 0.2236259051580709,
+      "F1": 0.09331700948595321,
+      "HHR": 0.5370370370370371,
+      "records_saved": 331,
+      "timeouts_or_missing": 0,
+      "answer_count_mean": 21.033232628398792,
+      "generation_latency_ms": {
+        "median": 1246.511141071096,
+        "p95": 1279.591790982522
+      }
+    },
+    "structural_partition": {
+      "Hits@Any": 0.32628398791540786,
+      "Hits@Hard": 0.1782477341389728,
+      "Precision": 0.09901563364450602,
+      "Recall": 0.23075896581007427,
+      "F1": 0.09353190172050106,
+      "HHR": 0.5462962962962963,
+      "records_saved": 331,
+      "timeouts_or_missing": 0,
+      "answer_count_mean": 21.987915407854985,
+      "generation_latency_ms": {
+        "median": 1253.4876769641414,
+        "p95": 1286.1442279536277
+      }
+    },
+    "semantic_partition": {
+      "Hits@Any": 0.3202416918429003,
+      "Hits@Hard": 0.17220543806646527,
+      "Precision": 0.09584405907161718,
+      "Recall": 0.22157082506761505,
+      "F1": 0.08844752034029253,
+      "HHR": 0.5377358490566038,
+      "records_saved": 331,
+      "timeouts_or_missing": 0,
+      "answer_count_mean": 21.16012084592145,
+      "generation_latency_ms": {
+        "median": 1252.5839899899438,
+        "p95": 1287.8849098924547
+      }
+    }
+  },
+  "paired_differences_vs_full_graph": {
+    "structural_partition": {
+      "Hits@Any": {
+        "question_bootstrap": {
+          "delta": 0.0,
+          "ci95": [
+            -0.02416918429003021,
+            0.02416918429003021
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": 0.0,
+          "ci95": [
+            -0.023952095808383235,
+            0.024096385542168676
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      },
+      "Hits@Hard": {
+        "question_bootstrap": {
+          "delta": 0.0030211480362537764,
+          "ci95": [
+            -0.01812688821752266,
+            0.02416918429003021
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": 0.0030211480362537764,
+          "ci95": [
+            -0.017964071856287425,
+            0.026627218934911243
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      },
+      "F1": {
+        "question_bootstrap": {
+          "delta": 0.00021489223454784792,
+          "ci95": [
+            -0.009468802987790615,
+            0.010185409475936245
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": 0.00021489223454784792,
+          "ci95": [
+            -0.00855418615164335,
+            0.009361908476278569
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      }
+    },
+    "semantic_partition": {
+      "Hits@Any": {
+        "question_bootstrap": {
+          "delta": -0.006042296072507553,
+          "ci95": [
+            -0.03323262839879154,
+            0.021148036253776436
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": -0.006042296072507553,
+          "ci95": [
+            -0.03293413173652695,
+            0.020958083832335328
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      },
+      "Hits@Hard": {
+        "question_bootstrap": {
+          "delta": -0.0030211480362537764,
+          "ci95": [
+            -0.027190332326283987,
+            0.01812688821752266
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": -0.0030211480362537764,
+          "ci95": [
+            -0.024844720496894408,
+            0.018461538461538463
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      },
+      "F1": {
+        "question_bootstrap": {
+          "delta": -0.004869489145660675,
+          "ci95": [
+            -0.0151936921496705,
+            0.005102421299304741
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "questions"
+        },
+        "rule_cluster_bootstrap": {
+          "delta": -0.004869489145660675,
+          "ci95": [
+            -0.01476792783386747,
+            0.004852312176031018
+          ],
+          "n_questions": 331,
+          "n_rule_groups": 173,
+          "resampling": "rule groups"
+        }
+      }
+    }
+  },
+  "evidence_quality_at_100_adjacency_entries": {
+    "full_graph": {
+      "n_supported": 302,
+      "evidence_recall_macro": 0.6114790286975718,
+      "complete_path_coverage": 0.33112582781456956
+    },
+    "structural_partition": {
+      "n_supported": 302,
+      "evidence_recall_macro": 0.5965783664459161,
+      "complete_path_coverage": 0.31788079470198677
+    },
+    "semantic_partition": {
+      "n_supported": 302,
+      "evidence_recall_macro": 0.6032008830022074,
+      "complete_path_coverage": 0.32450331125827814
+    }
+  },
+  "llm_configuration": {
+    "model_tag": "llama3.2:1b",
+    "temperature": 0.0,
+    "num_ctx": 8192,
+    "system_prompt": "Answer the question using only the supplied knowledge graph facts. Return only exact entity QID tokens that occur in the supplied facts, separated by commas. Do not return labels, explanations, or facts. If the facts do not support an answer, return NONE.",
+    "prompt_template": "Question: {question}\n\nKnowledge graph facts (entity and relation labels are followed by their exact IDs):\n{facts}\n\nReturn every distinct answer entity supported by the facts as exact QID tokens separated by commas.\nDo not guess QIDs. If the facts do not support an answer, return NONE.\n"
+  },
+  "grounding_audit": {
+    "total_entities_returned_by_llm": 15673,
+    "entities_grounded_in_evidence": 7004,
+    "hallucinated_entities_rejected": 8669,
+    "context_grounding_faithfulness_rate": 44.68831748867479,
+    "raw_hallucination_rate": 55.31168251132521,
+    "mean_generation_latency_ms": 1217.6157576612302
+  }
+}

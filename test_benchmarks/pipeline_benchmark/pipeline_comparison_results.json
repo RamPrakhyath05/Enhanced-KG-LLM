@@ -1,0 +1,34 @@
+{
+  "benchmark": "3-Way End-to-End Pipeline Benchmark",
+  "total_queries": 10,
+  "pipeline_1_baseline": {
+    "mean_seeds": 2.9,
+    "mean_paths": 3.0,
+    "mean_answers": 2.9,
+    "citation_rate_pct": 100.0,
+    "mean_retrieval_ms": 41.29390122834593,
+    "mean_traversal_ms": 85.58344366028905,
+    "mean_llm_ms": 1175.8359164232388,
+    "mean_total_ms": 1441.760046640411
+  },
+  "pipeline_2_adaptive_gating": {
+    "mean_seeds": 2.9,
+    "mean_paths": 5.7,
+    "mean_answers": 5.3,
+    "citation_rate_pct": 100.0,
+    "mean_retrieval_ms": 44.79056636337191,
+    "mean_traversal_ms": 85.24596521165222,
+    "mean_llm_ms": 1478.9396573556587,
+    "mean_total_ms": 1742.285518348217
+  },
+  "pipeline_3_adaptive_mechanisms": {
+    "mean_seeds": 2.3,
+    "mean_paths": 6.0,
+    "mean_answers": 5.2,
+    "citation_rate_pct": 80.0,
+    "mean_retrieval_ms": 50.38334911223501,
+    "mean_traversal_ms": 174.39680197276175,
+    "mean_llm_ms": 1519.8897009715438,
+    "mean_total_ms": 1899.4590315269306
+  }
+}

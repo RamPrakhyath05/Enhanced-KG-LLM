@@ -1,0 +1,260 @@
+{
+  "benchmark": "Module 3 (Query-Aware Traversal & Entity Linking)",
+  "entity_linking": {
+    "total_questions_evaluated": 331,
+    "mention_extraction_coverage": 100.0,
+    "mean_mentions_per_query": 28.06646525679758,
+    "mean_extraction_latency_ms": 0.017894631718760892,
+    "median_extraction_latency_ms": 0.016410835087299347,
+    "p95_extraction_latency_ms": 0.030935974791646004,
+    "hybrid_linker_accuracy": {
+      "hits@1": 0.8127,
+      "hits@3": 0.9033,
+      "hits@5": 0.9366,
+      "mrr": 0.8541
+    },
+    "sample_extractions": [
+      {
+        "id": "28",
+        "question": "What drug has a significant interaction with Severane?",
+        "gold_topics": [
+          "Q419394"
+        ],
+        "top_candidate": "What drug has a",
+        "all_mentions": [
+          "What drug has a significant interaction with Severane",
+          "What drug has a significant",
+          "drug has a significant interaction",
+          "has a significant interaction with",
+          "a significant interaction with Severane"
+        ]
+      },
+      {
+        "id": "102",
+        "question": "What drug has a significant interaction with triludan\u00ae?",
+        "gold_topics": [
+          "Q417909"
+        ],
+        "top_candidate": "What drug has a",
+        "all_mentions": [
+          "What drug has a significant interaction with triludan\u00ae",
+          "What drug has a significant",
+          "drug has a significant interaction",
+          "has a significant interaction with",
+          "a significant interaction with triludan"
+        ]
+      },
+      {
+        "id": "177",
+        "question": "What entity has a genetic association with neuro blastoma?",
+        "gold_topics": [
+          "Q938205"
+        ],
+        "top_candidate": "What entity has a",
+        "all_mentions": [
+          "What entity has a genetic association with neuro blastoma",
+          "What entity has a genetic",
+          "entity has a genetic association",
+          "has a genetic association with",
+          "a genetic association with neuro"
+        ]
+      }
+    ]
+  },
+  "traversal": {
+    "pilot_results": {
+      "full_graph": {
+        "evidence_recall_macro": 0.5740181268882175,
+        "complete_path_coverage": 0.3021148036253776,
+        "hop1_premise_recall": 0.649546827794562,
+        "hop2_deduction_recall": 0.3112033195020747,
+        "mean_latency_ms": 350.52244994499904,
+        "median_latency_ms": 82.18771999236196,
+        "p95_latency_ms": 1054.383513488574,
+        "n_questions": 331
+      },
+      "structural_partition": {
+        "evidence_recall_macro": 0.5604229607250756,
+        "complete_path_coverage": 0.29003021148036257,
+        "hop1_premise_recall": 0.6374622356495468,
+        "hop2_deduction_recall": 0.3029045643153527,
+        "mean_latency_ms": 328.1674457459325,
+        "median_latency_ms": 64.75569499889389,
+        "p95_latency_ms": 1009.7366190020693,
+        "n_questions": 331
+      },
+      "semantic_partition": {
+        "evidence_recall_macro": 0.5664652567975831,
+        "complete_path_coverage": 0.29607250755287007,
+        "hop1_premise_recall": 0.6435045317220544,
+        "hop2_deduction_recall": 0.3070539419087137,
+        "mean_latency_ms": 304.28193816338353,
+        "median_latency_ms": 60.62644699704833,
+        "p95_latency_ms": 969.5049404981546,
+        "n_questions": 331
+      }
+    },
+    "full_scale_scaling": {
+      "full_graph": {
+        "by_budget": {
+          "10": {
+            "budget": 10,
+            "evidence_recall_macro": 0.4472540288379983,
+            "complete_path_coverage": 0.2503180661577608
+          },
+          "25": {
+            "budget": 25,
+            "evidence_recall_macro": 0.5720419847328242,
+            "complete_path_coverage": 0.32506361323155214
+          },
+          "50": {
+            "budget": 50,
+            "evidence_recall_macro": 0.6167302798982186,
+            "complete_path_coverage": 0.34987277353689566
+          },
+          "100": {
+            "budget": 100,
+            "evidence_recall_macro": 0.641857506361323,
+            "complete_path_coverage": 0.36768447837150126
+          },
+          "200": {
+            "budget": 200,
+            "evidence_recall_macro": 0.6558524173027989,
+            "complete_path_coverage": 0.38040712468193383
+          }
+        },
+        "overall_mean_latency_ms": 385.7999449348699,
+        "overall_median_latency_ms": 108.44613899826072,
+        "overall_p95_latency_ms": 1179.5516213984201,
+        "index_size_mb": 192.989990234375,
+        "indexed_edges": 20477248
+      },
+      "structural_partition": {
+        "by_budget": {
+          "10": {
+            "budget": 10,
+            "evidence_recall_macro": 0.44264206955046653,
+            "complete_path_coverage": 0.24650127226463103
+          },
+          "25": {
+            "budget": 25,
+            "evidence_recall_macro": 0.5650445292620863,
+            "complete_path_coverage": 0.3190203562340967
+          },
+          "50": {
+            "budget": 50,
+            "evidence_recall_macro": 0.6087786259541983,
+            "complete_path_coverage": 0.3435114503816794
+          },
+          "100": {
+            "budget": 100,
+            "evidence_recall_macro": 0.6308842239185748,
+            "complete_path_coverage": 0.35846055979643765
+          },
+          "200": {
+            "budget": 200,
+            "evidence_recall_macro": 0.6447201017811702,
+            "complete_path_coverage": 0.37213740458015265
+          }
+        },
+        "overall_mean_latency_ms": 361.47963260045117,
+        "overall_median_latency_ms": 85.63604298979044,
+        "overall_p95_latency_ms": 1114.1844695783216,
+        "index_size_mb": 187.56510162353516,
+        "indexed_edges": 19766197
+      },
+      "semantic_partition": {
+        "by_budget": {
+          "10": {
+            "budget": 10,
+            "evidence_recall_macro": 0.4442324003392706,
+            "complete_path_coverage": 0.2474554707379135
+          },
+          "25": {
+            "budget": 25,
+            "evidence_recall_macro": 0.5666348600508904,
+            "complete_path_coverage": 0.32029262086513993
+          },
+          "50": {
+            "budget": 50,
+            "evidence_recall_macro": 0.609096692111959,
+            "complete_path_coverage": 0.3438295165394402
+          },
+          "100": {
+            "budget": 100,
+            "evidence_recall_macro": 0.6319974554707377,
+            "complete_path_coverage": 0.3597328244274809
+          },
+          "200": {
+            "budget": 200,
+            "evidence_recall_macro": 0.6459923664122135,
+            "complete_path_coverage": 0.37372773536895676
+          }
+        },
+        "overall_mean_latency_ms": 336.009480110635,
+        "overall_median_latency_ms": 79.09694200498052,
+        "overall_p95_latency_ms": 1072.3510308191162,
+        "index_size_mb": 183.59164428710938,
+        "indexed_edges": 19245388
+      }
+    },
+    "paired_comparisons": {
+      "semantic_partition_minus_full_graph": {
+        "annotated_evidence_recall_macro": -0.009860050890585241,
+        "annotated_evidence_recall_macro_95pct_paired_bootstrap_ci": [
+          -0.01383587786259542,
+          -0.006361323155216285
+        ],
+        "comparison": "semantic_partition_minus_full_graph",
+        "complete_annotated_path_coverage": -0.007951653944020356,
+        "complete_annotated_path_coverage_95pct_paired_bootstrap_ci": [
+          -0.012086513994910942,
+          -0.003816793893129771
+        ],
+        "questions": 3144,
+        "replicates": 10000,
+        "seed": 2026
+      },
+      "semantic_partition_minus_structural_partition": {
+        "annotated_evidence_recall_macro": 0.0011132315521628498,
+        "annotated_evidence_recall_macro_95pct_paired_bootstrap_ci": [
+          -0.002385496183206107,
+          0.004611959287531806
+        ],
+        "comparison": "semantic_partition_minus_structural_partition",
+        "complete_annotated_path_coverage": 0.001272264631043257,
+        "complete_annotated_path_coverage_95pct_paired_bootstrap_ci": [
+          -0.002544529262086514,
+          0.005089058524173028
+        ],
+        "questions": 3144,
+        "replicates": 10000,
+        "seed": 2026
+      },
+      "structural_partition_minus_full_graph": {
+        "annotated_evidence_recall_macro": -0.01097328244274809,
+        "annotated_evidence_recall_macro_95pct_paired_bootstrap_ci": [
+          -0.015108142493638677,
+          -0.00715648854961832
+        ],
+        "comparison": "structural_partition_minus_full_graph",
+        "complete_annotated_path_coverage": -0.009223918575063612,
+        "complete_annotated_path_coverage_95pct_paired_bootstrap_ci": [
+          -0.013676844783715014,
+          -0.004770992366412214
+        ],
+        "questions": 3144,
+        "replicates": 10000,
+        "seed": 2026
+      }
+    },
+    "budgets_evaluated": [
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "full_evidence_denominator": 3144
+  }
+}
